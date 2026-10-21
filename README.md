@@ -23,8 +23,9 @@ No Claude Code, use os dois comandos do projeto:
 
 1. **`/iniciar-tarefa nome da tarefa`** — atualiza a `main` e cria uma branch só para você.
 2. Trabalhe normalmente com o Claude.
-3. **`/finalizar-tarefa`** — confere o código, commita, envia a branch e te dá o link do Pull Request.
-4. No link: **Create pull request** → **Merge pull request** → **Confirm merge**. Entrou na `main`.
+3. **`/finalizar-tarefa`** — confere o código, commita, junta na `main` e envia ao GitHub.
+   Não precisa abrir o site.
+4. Avise a outra pessoa que a tarefa entrou.
 
 Nunca trabalhe direto na `main`. Equivalente manual:
 ```bash
@@ -33,8 +34,12 @@ git checkout -b feat/nome-da-tarefa
 # ... trabalha ...
 git add -A && git commit -m "o que foi feito"
 git pull origin main
-git push -u origin feat/nome-da-tarefa
+git checkout main && git pull
+git merge --no-ff feat/nome-da-tarefa
+git push
 ```
+
+Prompts prontos para pedir ao Claude ficam em `docs/prompts/` (ex.: `esqueleto-visual.md`).
 
 ## Estrutura
 ```
