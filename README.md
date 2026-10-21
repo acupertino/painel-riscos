@@ -19,14 +19,22 @@ npm run dev
 Abra http://localhost:3000.
 
 ## Rotina de trabalho
+No Claude Code, use os dois comandos do projeto:
+
+1. **`/iniciar-tarefa nome da tarefa`** — atualiza a `main` e cria uma branch só para você.
+2. Trabalhe normalmente com o Claude.
+3. **`/finalizar-tarefa`** — confere o código, commita, envia a branch e te dá o link do Pull Request.
+4. No link: **Create pull request** → **Merge pull request** → **Confirm merge**. Entrou na `main`.
+
+Nunca trabalhe direto na `main`. Equivalente manual:
 ```bash
-git checkout main && git pull          # pega o que já foi juntado
-git checkout -b feat/nome-da-tarefa    # uma branch por tarefa
+git checkout main && git pull
+git checkout -b feat/nome-da-tarefa
 # ... trabalha ...
-git add . && git commit -m "o que foi feito"
+git add -A && git commit -m "o que foi feito"
+git pull origin main
 git push -u origin feat/nome-da-tarefa
 ```
-Depois, no GitHub, abra um **Pull Request** para a `main`. A outra pessoa revisa e faz o merge.
 
 ## Estrutura
 ```
