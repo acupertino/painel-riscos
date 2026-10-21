@@ -44,3 +44,4 @@ next-env.d.ts
 # dados locais / sensíveis
 /.cache/
 /externos/
+/EXTERNO/
