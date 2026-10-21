@@ -5,7 +5,9 @@ const API_URL = 'https://api.monday.com/v2'
 const API_VERSION = '2024-10'
 
 // Quadros analisados pelo painel. Preencher com os IDs (número na URL do quadro).
-export const QUADROS: { id: number; nome: string }[] = []
+export const QUADROS: { id: number; nome: string }[] = [
+  { id: 18408464040, nome: 'Calendário Detalhado 2026' },
+]
 
 export interface ValorColuna {
   id: string
