@@ -38,10 +38,11 @@ Referência visual ao vivo: https://monday-v2-7jc2.vercel.app/ (ver páginas da 
 - Segredos só no `.env.local` (cada pessoa com o seu token da Monday). Nunca commitar tokens,
   bases de pessoas ou dados financeiros. `.cache/` e `externos/` são ignorados pelo git.
 - Não alterar dados na Monday sem pedido explícito: o app é de leitura.
-- Git: nunca commitar nem dar push direto na `main`. Fluxo de cada tarefa:
+- Git: nunca trabalhar nem commitar direto na `main`; ela só recebe merges feitos pelo
+  `/finalizar-tarefa`. Fluxo de cada tarefa:
   1. `/iniciar-tarefa` → `git pull` na `main` e cria a branch (`feat/...`, `fix/...`, `docs/...`).
   2. Trabalhar e commitar na branch.
-  3. `/finalizar-tarefa` → `tsc`, commit, `git pull origin main`, push da branch e link do Pull Request.
-  4. A própria pessoa abre o PR e clica em Merge no GitHub (não é preciso esperar revisão).
-  Skills em `.claude/skills/`.
+  3. `/finalizar-tarefa` → `tsc`, commit, `git pull origin main`, merge na `main` e push, tudo
+     pelo terminal (sem Pull Request no site, sem esperar revisão).
+  Skills em `.claude/skills/`. Prompts prontos em `docs/prompts/`.
 - Antes de dar uma tarefa como pronta: `npx tsc --noEmit` limpo.
