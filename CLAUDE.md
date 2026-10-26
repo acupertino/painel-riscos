@@ -24,9 +24,15 @@ Referência visual ao vivo: https://monday-v2-7jc2.vercel.app/ (ver páginas da 
 
 ## Padrão visual
 - Casca: sidebar fixa `w-60` à esquerda (`md:`), BottomNav no celular, conteúdo `md:ml-60 bg-gray-50`.
-- Cabeçalho de página: `fixed top-0 md:left-60 z-30 bg-slate-600 border-b border-slate-500 pt-6 pb-5`,
-  título branco centralizado e navegação em pílula à direita
-  (`rounded-full bg-white/10 ring-1 ring-white/15 p-1`; aba ativa `bg-white text-slate-700`).
+- Marca do Instituto Ânima (desde 26/10/2026): logo em `public/logo-instituto-anima.png` no topo da
+  sidebar; cores em `globals.css` como `marca-marinho` #00347f (principal: títulos, aba e botão
+  ativos), `marca-roxo` #5b2a86, `marca-azul` #4a6fb5, `marca-ciano` #2ec4f6, `marca-azul-escuro`
+  #0e6bb0 e `marca-claro` #eaf1fb (fundo de item ativo); `.faixa-marca` = degradê do logo.
+- Cabeçalho de página (`src/components/PageHeader.tsx`): claro, `sticky top-0 z-30 bg-white`
+  (sticky, não fixed: a altura varia), título `text-marca-roxo` centralizado, navegação em pílula
+  logo abaixo (`rounded-full bg-slate-100 ring-1 ring-slate-200 p-1`; aba ativa
+  `bg-marca-marinho text-white`), espaço opcional à direita (`direita`, usado pela legenda de risco)
+  e faixa `.faixa-marca` de 4px embaixo.
 - Cards: `rounded-xl bg-white border border-slate-200 shadow-sm p-4`; categoria com `border-l-4`.
 - Cores de status: concluído #34d399, em andamento #facc15, em atraso #f87171, a iniciar #3b82f6,
   outros #94a3b8, sem status #d1d5db (versões suaves: #6ee7b7, #fde68a, #fca5a5, #93c5fd, #cbd5e1, #e5e7eb).

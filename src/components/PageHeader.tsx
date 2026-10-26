@@ -1,5 +1,6 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LINKS, estaAtivo } from '@/components/navegacao'
@@ -9,39 +10,46 @@ interface Props {
   subtitulo?: string
   // hrefs dos LINKS que aparecem na pílula (strings, para poder vir de páginas de servidor)
   abas?: string[]
+  direita?: ReactNode // ex.: legenda fixa, à direita do título
 }
 
-// Cabeçalho slate fixo no topo; o conteúdo abaixo precisa de pt-[120px].
-export default function PageHeader({ titulo, subtitulo, abas: hrefs }: Props) {
+// Cabeçalho claro preso no topo, com a faixa do degradê da marca embaixo. É sticky (e não
+// fixed) porque a altura muda com abas e legenda: assim o conteúdo nunca fica escondido.
+export default function PageHeader({ titulo, subtitulo, abas: hrefs, direita }: Props) {
   const caminho = usePathname()
   const abas = LINKS.filter(l => hrefs?.includes(l.href))
+
   return (
-    <header className="fixed top-0 left-0 right-0 md:left-60 z-30 bg-slate-600 border-b border-slate-500 pt-6 pb-5">
-      <div className="text-center px-4">
-        <h1 className="text-2xl font-bold text-white">{titulo}</h1>
-        {subtitulo && <p className="text-sm text-slate-300">{subtitulo}</p>}
-      </div>
-      {abas.length > 0 && (
-        <div className="hidden lg:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2">
-          <nav className="inline-flex items-center gap-1 rounded-full bg-white/10 ring-1 ring-white/15 p-1 backdrop-blur-sm">
-            {abas.map(a => {
-              const ativo = estaAtivo(a.href, caminho)
-              return (
-                <Link
-                  key={a.href}
-                  href={a.href}
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-semibold transition-colors ${
-                    ativo ? 'bg-white text-slate-700 shadow-sm' : 'text-slate-200 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {a.icone('w-4 h-4')}
-                  {a.rotulo}
-                </Link>
-              )
-            })}
-          </nav>
+    <header className="sticky top-0 z-30 bg-white shadow-sm">
+      {/* md:h-28 + faixa h-1 = 116px, a mesma altura do bloco do logo na Sidebar (linhas alinhadas). */}
+      <div className="py-3 px-4 md:px-8 md:h-28 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
+        <div className="hidden md:block" />
+        <div className="text-center">
+          <h1 className="text-xl font-bold text-marca-roxo">{titulo}</h1>
+          {subtitulo && <p className="text-xs text-slate-500">{subtitulo}</p>}
+          {abas.length > 0 && (
+            <nav className="hidden md:inline-flex mt-2 items-center gap-1 rounded-full bg-slate-100 ring-1 ring-slate-200 p-1">
+              {abas.map(a => {
+                const ativo = estaAtivo(a.href, caminho)
+                return (
+                  <Link
+                    key={a.href}
+                    href={a.href}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold transition-colors ${
+                      ativo ? 'bg-marca-marinho text-white shadow-sm' : 'text-slate-600 hover:text-marca-marinho hover:bg-white'
+                    }`}
+                  >
+                    {a.icone('w-4 h-4')}
+                    {a.rotuloCurto ?? a.rotulo}
+                  </Link>
+                )
+              })}
+            </nav>
+          )}
         </div>
-      )}
+        {direita && <div className="mt-3 flex justify-center md:mt-0 md:justify-end">{direita}</div>}
+      </div>
+      <div className="faixa-marca h-1" aria-hidden="true" />
     </header>
   )
 }

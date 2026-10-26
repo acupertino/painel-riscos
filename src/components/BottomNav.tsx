@@ -15,11 +15,11 @@ export default function BottomNav() {
             key={l.href}
             href={l.href}
             className={`flex-1 flex flex-col items-center justify-center gap-0.5 text-xs ${
-              ativo ? 'text-slate-800 font-semibold' : 'text-slate-500'
+              ativo ? 'text-marca-marinho font-semibold' : 'text-slate-500'
             }`}
           >
             {l.icone('w-5 h-5')}
-            {l.rotulo}
+            {l.rotuloCurto ?? l.rotulo}
           </Link>
         )
       })}
