@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Painel de Riscos",
-  description: "Análise de riscos a partir dos quadros da Monday",
+  title: "Acompanhamento do Portfólio",
+  description: "Acompanhamento do portfólio a partir do Calendário Detalhado da Monday",
 };
 
 export default function RootLayout({

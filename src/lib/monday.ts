@@ -4,9 +4,12 @@
 const API_URL = 'https://api.monday.com/v2'
 const API_VERSION = '2024-10'
 
+// Quadro do Calendário Detalhado 2026: fonte única das páginas da semana (decisão de 26/10/2026).
+export const CALENDARIO_ID = 18408464040
+
 // Quadros analisados pelo painel. Preencher com os IDs (número na URL do quadro).
 export const QUADROS: { id: number; nome: string }[] = [
-  { id: 18408464040, nome: 'Calendário Detalhado 2026' },
+  { id: CALENDARIO_ID, nome: 'Calendário Detalhado 2026' },
 ]
 
 export interface ValorColuna {
