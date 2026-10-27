@@ -26,6 +26,17 @@ function Conteudo({ children }: { children: ReactNode }) {
   const ctx = useSemana()
   const naPauta = caminho === '/semana/pauta'
 
+  // O COMEX não depende da Monday nem da semana: só o cabeçalho e o conteúdo.
+  if (caminho === '/semana/comex')
+    return (
+      <>
+        <PageHeader titulo={TITULO} subtitulo={SUBTITULO} abas={ABAS_SEMANA} />
+        <main className="pt-4 px-4 md:px-8 pb-8">
+          <div className="animate-fade-in-up">{children}</div>
+        </main>
+      </>
+    )
+
   return (
     <>
       <PageHeader titulo={TITULO} subtitulo={SUBTITULO} abas={ABAS_SEMANA} />
