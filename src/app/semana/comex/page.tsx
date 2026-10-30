@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useSemana } from '@/components/semana/ContextoSemana'
 import { EtiquetaArea, Vazio } from '@/components/semana/Etiquetas'
+import AvisoNaoSalvo, { useAvisoAoSair } from '@/components/AvisoNaoSalvo'
 import { dataCurta } from '@/lib/semana'
 import {
   AREAS_COMEX,
@@ -29,6 +30,8 @@ export default function Comex() {
   const [reunioes, setReunioes] = useState<ReuniaoComex[] | null>(null)
   const [selecionada, setSelecionada] = useState<string | null>(null)
   const [erro, setErro] = useState<string | null>(null)
+  const [erroSalvar, setErroSalvar] = useState<string | null>(null)
+  const [pendente, setPendente] = useState<ReuniaoComex[] | null>(null) // lista que falhou ao salvar
   const [salvando, setSalvando] = useState(false)
   const [novaData, setNovaData] = useState<string | null>(null)
   const [copiado, setCopiado] = useState(false)
@@ -50,10 +53,12 @@ export default function Comex() {
     setSalvando(true)
     try {
       const r = await fetch('/api/comex', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ reunioes: ordenadas }) })
-      if (!r.ok) throw new Error((await r.json()).error)
-      setErro(null)
+      if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error ?? `erro ${r.status}`)
+      setErroSalvar(null)
+      setPendente(null)
     } catch (e) {
-      setErro(String(e))
+      setErroSalvar(String(e))
+      setPendente(ordenadas)
     } finally {
       setSalvando(false)
     }
@@ -118,8 +123,11 @@ export default function Comex() {
             <button className="text-sm text-slate-500 hover:text-slate-800 underline" onClick={() => setNovaData(null)}>Cancelar</button>
           </span>
         )}
-        <span className="ml-auto text-xs text-slate-500">{salvando ? 'Salvando…' : erro ? `Erro ao salvar: ${erro}` : ''}</span>
+        <span className={`ml-auto text-xs ${erroSalvar ? 'font-semibold text-red-600' : 'text-slate-500'}`}>
+          {salvando ? 'Salvando…' : erroSalvar ? 'Não salvo' : ''}
+        </span>
       </div>
+      <AvisoNaoSalvo erro={erroSalvar} aoTentarDeNovo={() => pendente && salvar(pendente)} />
 
       {!reuniao ? (
         <Vazio texto="Nenhuma reunião do COMEX registrada. Use “+ Data do COMEX” para começar." />
@@ -249,6 +257,7 @@ function NovoPonto({ aoCriar }: { aoCriar: (p: PontoComex) => void }) {
   const [aberto, setAberto] = useState(false)
   const [area, setArea] = useState('')
   const [pergunta, setPergunta] = useState('')
+  useAvisoAoSair(!!pergunta.trim())
   if (!aberto)
     return (
       <button className="text-sm font-semibold text-marca-marinho hover:underline" onClick={() => setAberto(true)}>
@@ -284,6 +293,7 @@ function NovoPonto({ aoCriar }: { aoCriar: (p: PontoComex) => void }) {
 
 function NovoEncaminhamento({ aoCriar }: { aoCriar: (texto: string) => void }) {
   const [texto, setTexto] = useState('')
+  useAvisoAoSair(!!texto.trim())
   const criar = () => {
     if (!texto.trim()) return
     aoCriar(texto.trim())

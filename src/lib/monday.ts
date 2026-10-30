@@ -6,10 +6,13 @@ const API_VERSION = '2024-10'
 
 // Quadro do Calendário Detalhado 2026: fonte única das páginas da semana (decisão de 26/10/2026).
 export const CALENDARIO_ID = 18408464040
+// Quadro Avaliações_GAV (privado): fonte da aba Escritório de Projetos (pedido de 30/10/2026).
+export const AVALIACOES_GAV_ID = 9794510912
 
 // Quadros analisados pelo painel. Preencher com os IDs (número na URL do quadro).
 export const QUADROS: { id: number; nome: string }[] = [
   { id: CALENDARIO_ID, nome: 'Calendário Detalhado 2026' },
+  { id: AVALIACOES_GAV_ID, nome: 'Avaliações_GAV' },
 ]
 
 export interface ValorColuna {
