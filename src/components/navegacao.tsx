@@ -69,6 +69,12 @@ export const LINKS: LinkNavegacao[] = [
     rotulo: 'COMEX',
     icone: c => svg(c, <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>),
   },
+  {
+    href: '/semana/comunicacao',
+    rotulo: 'Plano de Comunicação',
+    rotuloCurto: 'Comunicação',
+    icone: c => svg(c, <><path d="m3 11 18-8v18L3 13z" /><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" /></>),
+  },
 ]
 
 export const estaAtivo = (href: string, caminho: string) => caminho === href
