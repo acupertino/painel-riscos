@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { AVALIACOES_GAV_ID, buscarQuadro } from '@/lib/monday'
 import { avaliacoesDoEscritorio } from '@/lib/escritorio'
 import { comCache } from '@/lib/cache'
+import { bloquearSemAcesso } from '@/lib/acesso'
 
 // Avaliações e ações da visualização "Escritório de projetos" do quadro Avaliações_GAV.
 // Cache de 30 min em .cache/; ?refresh=1 força nova leitura da Monday.
@@ -9,6 +10,8 @@ import { comCache } from '@/lib/cache'
 export const maxDuration = 120
 
 export async function GET(req: Request) {
+  const bloqueio = await bloquearSemAcesso()
+  if (bloqueio) return bloqueio
   const refresh = new URL(req.url).searchParams.get('refresh') === '1'
   try {
     const data = await comCache('escritorio', refresh, async () => {

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LINKS, estaAtivo } from '@/components/navegacao'
+import { LINKS, RESTRITO, estaAtivo } from '@/components/navegacao'
 
 export default function Sidebar() {
   const caminho = usePathname()
@@ -30,6 +30,20 @@ export default function Sidebar() {
           )
         })}
       </nav>
+      {/* Botão discreto da área restrita (pede senha). */}
+      <Link
+        href={RESTRITO}
+        title="Área restrita"
+        aria-label="Área restrita"
+        className={`m-3 self-start rounded-md p-1.5 transition-colors ${
+          caminho.startsWith(RESTRITO) ? 'text-marca-marinho' : 'text-slate-200 hover:text-slate-400'
+        }`}
+      >
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      </Link>
     </aside>
   )
 }

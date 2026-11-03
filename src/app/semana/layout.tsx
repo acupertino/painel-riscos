@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import PageHeader from '@/components/PageHeader'
-import { ABAS_SEMANA } from '@/components/navegacao'
+import { ABAS_SEMANA, RESTRITO } from '@/components/navegacao'
 import { ProvedorSemana, useSemana } from '@/components/semana/ContextoSemana'
 import MiniAgenda from '@/components/semana/MiniAgenda'
 import LegendaRisco from '@/components/semana/LegendaRisco'
@@ -26,11 +26,13 @@ function Conteudo({ children }: { children: ReactNode }) {
   const ctx = useSemana()
   const naPauta = caminho === '/semana/pauta'
 
-  // COMEX, Avaliações e Plano de Comunicação não usam o Calendário Detalhado: só o cabeçalho e o conteúdo.
-  if (caminho === '/semana/comex' || caminho === '/semana/escritorio' || caminho === '/semana/comunicacao')
+  // COMEX e a área restrita não usam a barra do Calendário Detalhado: só o cabeçalho e o conteúdo
+  // (a área restrita tem a própria navegação em restrito/layout.tsx).
+  const restrito = caminho.startsWith(RESTRITO)
+  if (caminho === '/semana/comex' || restrito)
     return (
       <>
-        <PageHeader titulo={TITULO} subtitulo={caminho === '/semana/escritorio' ? 'Avaliações_GAV' : caminho === '/semana/comex' ? SUBTITULO : undefined} abas={ABAS_SEMANA} />
+        <PageHeader titulo={TITULO} subtitulo={restrito ? 'Área restrita' : SUBTITULO} abas={restrito ? undefined : ABAS_SEMANA} />
         <main className="pt-4 px-4 md:px-8 pb-8">
           <div className="animate-fade-in-up">{children}</div>
         </main>
