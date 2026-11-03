@@ -26,11 +26,11 @@ function Conteudo({ children }: { children: ReactNode }) {
   const ctx = useSemana()
   const naPauta = caminho === '/semana/pauta'
 
-  // COMEX e Escritório de Projetos não usam o Calendário Detalhado: só o cabeçalho e o conteúdo.
-  if (caminho === '/semana/comex' || caminho === '/semana/escritorio')
+  // COMEX, Avaliações e Plano de Comunicação não usam o Calendário Detalhado: só o cabeçalho e o conteúdo.
+  if (caminho === '/semana/comex' || caminho === '/semana/escritorio' || caminho === '/semana/comunicacao')
     return (
       <>
-        <PageHeader titulo={TITULO} subtitulo={caminho === '/semana/escritorio' ? 'Avaliações_GAV' : SUBTITULO} abas={ABAS_SEMANA} />
+        <PageHeader titulo={TITULO} subtitulo={caminho === '/semana/escritorio' ? 'Avaliações_GAV' : caminho === '/semana/comex' ? SUBTITULO : undefined} abas={ABAS_SEMANA} />
         <main className="pt-4 px-4 md:px-8 pb-8">
           <div className="animate-fade-in-up">{children}</div>
         </main>
