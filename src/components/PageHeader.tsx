@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LINKS, estaAtivo } from '@/components/navegacao'
+import { TODOS_OS_LINKS, estaAtivo } from '@/components/navegacao'
 
 interface Props {
   titulo: string
@@ -17,7 +17,7 @@ interface Props {
 // fixed) porque a altura muda com abas e legenda: assim o conteúdo nunca fica escondido.
 export default function PageHeader({ titulo, subtitulo, abas: hrefs, direita }: Props) {
   const caminho = usePathname()
-  const abas = LINKS.filter(l => hrefs?.includes(l.href))
+  const abas = TODOS_OS_LINKS.filter(l => hrefs?.includes(l.href))
 
   return (
     <header className="sticky top-0 z-30 bg-white shadow-sm">

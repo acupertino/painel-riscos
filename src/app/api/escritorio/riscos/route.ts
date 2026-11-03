@@ -1,14 +1,19 @@
 import { NextResponse } from 'next/server'
 import type { RiscoSemana } from '@/lib/escritorio'
+import { bloquearSemAcesso } from '@/lib/acesso'
 import { gravarDados, lerDados } from '@/lib/dados'
 
 // Riscos da semana do Escritório de Projetos, registrados à mão em dados/riscos-escritorio.json.
 
 export async function GET() {
+  const bloqueio = await bloquearSemAcesso()
+  if (bloqueio) return bloqueio
   return NextResponse.json({ riscos: lerDados<RiscoSemana[]>('riscos-escritorio', []) })
 }
 
 export async function PUT(req: Request) {
+  const bloqueio = await bloquearSemAcesso()
+  if (bloqueio) return bloqueio
   try {
     const { riscos } = (await req.json()) as { riscos: RiscoSemana[] }
     if (!Array.isArray(riscos)) return NextResponse.json({ error: 'Formato inválido' }, { status: 400 })
