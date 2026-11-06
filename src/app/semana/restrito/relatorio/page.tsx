@@ -80,7 +80,7 @@ export default function Relatorio() {
       <p className="text-xs text-slate-500">
         Aba experimental. Ponto de atenção = linha em aberto (nem concluída nem cancelada) que está <b>sem data</b>, <b>precisa de definição</b> (sem status,
         pendente, aguardando ou formulada como decisão) ou com <b>prazo estourado</b> (prazo vencido ou status de atraso). Da Monday entram só os subelementos; os elementos
-        (linhas-mãe) aparecem apenas como referência na coluna da ação. Ficam de fora os Encaminhamentos de SQUAD e tudo o que for esteira de produção.
+        (linhas-mãe) aparecem apenas como referência na coluna da ação. Ficam de fora os Encaminhamentos de SQUAD, tudo o que for esteira de produção e o que está com status “Previsto para 2027”.
       </p>
 
       {!relatorio ? (
