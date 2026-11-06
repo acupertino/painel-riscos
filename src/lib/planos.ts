@@ -4,6 +4,14 @@
 // Plano de Comunicação pedido em 03/11/2026; demais planos e área restrita em 03/11/2026.
 
 import { novoId } from '@/lib/comex'
+import {
+  ADVOCACY_POLICY_PAPERS_ID,
+  COMUNICACAO_EDUCACAO_BASICA_ID,
+  COMUNICACAO_INSTITUCIONAL_ID,
+  CREDENCIAMENTO_MEC_ID,
+  EXTENSAO_GM_SEDUC_ID,
+  EXTENSAO_REGULARES_MEC_ID,
+} from '@/lib/monday'
 
 export type StatusPlano = 'a iniciar' | 'em andamento' | 'em atraso' | 'concluído'
 
@@ -68,7 +76,16 @@ export interface Plano {
   // 'encaminhamentos': lista compacta com botão feito/pendente, uma frente por reunião; nas
   // pendências da semana entram também os itens sem prazo.
   formato?: 'encaminhamentos'
+  // Quadro da Monday que alimenta a aba (só leitura); quando existe, a aba deixa de ser preenchida à mão.
+  quadroMonday?: number
+  // Subabas lidas da Monday: a frente de mesmo id deixa de ser preenchida à mão (os dados manuais
+  // continuam no arquivo, só não aparecem).
+  frentesMonday?: { id: string; quadro: number }[]
 }
+
+// Quadro da Monday de uma aba inteira ou de uma subaba (frente).
+export const quadroDe = (p: Plano, frente?: string | null) =>
+  frente ? p.frentesMonday?.find(f => f.id === frente)?.quadro : p.quadroMonday
 
 export const PLANOS: Plano[] = [
   {
@@ -83,10 +100,38 @@ export const PLANOS: Plano[] = [
         acoes: acoesPorPublico(),
       },
     ],
+    frentesMonday: [{ id: 'educacao-basica', quadro: COMUNICACAO_EDUCACAO_BASICA_ID }],
   },
-  { slug: 'credenciamento-ia-mec', titulo: 'Credenciamento IA no MEC', inicial: () => frenteUnica('Credenciamento IA no MEC') },
-  { slug: 'comunicacao-institucional', titulo: 'Comunicação Institucional', inicial: () => frenteUnica('Comunicação Institucional') },
-  { slug: 'eixo-advocacy', titulo: 'Eixo Advocacy', inicial: () => frenteUnica('Eixo Advocacy') },
+  {
+    slug: 'credenciamento-ia-mec',
+    titulo: 'Credenciamento IA no MEC',
+    inicial: () => frenteUnica('Credenciamento IA no MEC'),
+    quadroMonday: CREDENCIAMENTO_MEC_ID,
+  },
+  {
+    slug: 'comunicacao-institucional',
+    titulo: 'Comunicação Institucional',
+    inicial: () => frenteUnica('Comunicação Institucional'),
+    quadroMonday: COMUNICACAO_INSTITUCIONAL_ID,
+  },
+  {
+    slug: 'eixo-advocacy',
+    titulo: 'Advocacy + Policy Papers',
+    inicial: () => frenteUnica('Advocacy + Policy Papers'),
+    quadroMonday: ADVOCACY_POLICY_PAPERS_ID,
+  },
+  {
+    slug: 'extensao-gm-seduc',
+    titulo: 'Cursos de Extensão, GM e Entregáveis com SEDUC',
+    inicial: () => frenteUnica('Cursos de Extensão, GM e Entregáveis com SEDUC'),
+    quadroMonday: EXTENSAO_GM_SEDUC_ID,
+  },
+  {
+    slug: 'extensao-regulares-mec',
+    titulo: 'Cursos de Extensão, Plano de Ação Regulares e MEC',
+    inicial: () => frenteUnica('Cursos de Extensão, Plano de Ação Regulares e MEC'),
+    quadroMonday: EXTENSAO_REGULARES_MEC_ID,
+  },
   { slug: 'novos-estados', titulo: 'Plano de Ação Novos Estados', inicial: () => frenteUnica('Plano de Ação Novos Estados') },
   {
     slug: 'encaminhamentos-squad',

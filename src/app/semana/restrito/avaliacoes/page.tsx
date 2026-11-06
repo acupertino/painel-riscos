@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSemana } from '@/components/semana/ContextoSemana'
 import { EtiquetaNivel, Vazio } from '@/components/semana/Etiquetas'
 import AvisoNaoSalvo, { useAvisoAoSair } from '@/components/AvisoNaoSalvo'
+import { PontosDeAtencao } from '@/components/restrito/QuadroMonday'
+import BarraMonday from '@/components/restrito/BarraMonday'
+import type { PontoDeAtencao } from '@/lib/quadroRestrito'
 import { novoId } from '@/lib/comex'
 import { dataCurta } from '@/lib/semana'
 import {
@@ -35,6 +38,7 @@ const periodoPrevisto = (a: AcaoGav) =>
 interface Dados {
   geradoEm: string
   avaliacoes: AvaliacaoGav[]
+  pontos?: PontoDeAtencao[] // comentários dos quadros próprios de cada tópico
 }
 
 export default function EscritorioDeProjetos() {
@@ -69,28 +73,27 @@ export default function EscritorioDeProjetos() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
-        {dados && <span>Dados da Monday de {new Date(dados.geradoEm).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}</span>}
-        <button
-          onClick={() => {
-            setCarregando(true)
-            buscar(true)
-          }}
-          disabled={carregando}
-          className="rounded-full px-2.5 py-0.5 text-xs font-semibold text-marca-marinho ring-1 ring-slate-200 bg-white hover:bg-marca-claro disabled:opacity-50"
-        >
-          {carregando ? 'Atualizando…' : 'Atualizar'}
-        </button>
-      </div>
+      <BarraMonday
+        quadros="Avaliações_GAV, AVALIAÇÃO CP e AVALIAÇÃO SE"
+        geradoEm={dados?.geradoEm ?? null}
+        carregando={carregando}
+        erro={erro}
+        aoAtualizar={() => {
+          setCarregando(true)
+          buscar(true)
+        }}
+      />
 
       {erro && !dados ? (
-        <Vazio texto={`Não foi possível ler o quadro Avaliações_GAV na Monday: ${erro}`} />
+        <Vazio texto={`Não foi possível ler os quadros de avaliações na Monday: ${erro}`} />
       ) : !dados ? (
         <div className="rounded-xl bg-white border border-slate-200 shadow-sm p-6 text-center text-sm text-slate-500 animate-pulse">
-          Lendo o quadro Avaliações_GAV na Monday…
+          Lendo os quadros de avaliações na Monday…
         </div>
       ) : (
         <>
+          {!!dados.pontos?.length && <PontosDeAtencao pontos={dados.pontos} />}
+
           <Indicadores avaliacoes={dados.avaliacoes} hoje={hoje} />
 
           <div className="flex flex-wrap items-center gap-3">
@@ -167,6 +170,7 @@ function CartaoAvaliacao({ avaliacao, hoje }: { avaliacao: AvaliacaoGav; hoje: s
         <h2 className="text-base font-bold text-slate-800">{avaliacao.nome}</h2>
         <span className="text-xs text-slate-500">
           {concluidas} de {total} {total === 1 ? 'ação concluída' : 'ações concluídas'}
+          {avaliacao.fonte && ` · quadro ${avaliacao.fonte}`}
         </span>
         <div className="ml-auto flex h-2 w-40 overflow-hidden rounded-full bg-slate-100" title={contagem.map(x => `${x.c}: ${x.n}`).join(' · ')}>
           {contagem.map(x => (

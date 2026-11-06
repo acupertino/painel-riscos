@@ -10,6 +10,7 @@ import { estaConcluida, type Acao } from '@/lib/calendario'
 import { categoriaDe, type AvaliacaoGav } from '@/lib/escritorio'
 import type { FrenteDoPlano, StatusPlano } from '@/lib/planos'
 import { estaRespondido, type ReuniaoComex } from '@/lib/comex'
+import { estaAbertaQuadro, type AcaoQuadro, type GrupoQuadro } from '@/lib/quadroRestrito'
 import { agruparPorAssunto, dataCurta, type Semana } from '@/lib/semana'
 
 export interface Pendencia {
@@ -86,6 +87,25 @@ export function pendenciasDoPlano(
     for (const a of f.acoes) {
       avaliar(f.nome, a.nome, a.status, a.prazo, a.responsavel || undefined)
       for (const e of a.entregas) avaliar(f.nome, e.nome, e.status, e.prazo, `entrega de: ${a.nome}`)
+    }
+  return { itens: itens.sort(porPrazo), semPrazo }
+}
+
+// Abas ligadas a um quadro da Monday: ações e subações em aberto (nem concluídas nem canceladas)
+// com fim projetado até o fim da semana, incluindo atrasadas.
+export function pendenciasDoQuadro(grupos: GrupoQuadro[], semana: Semana, hoje: string): { itens: Pendencia[]; semPrazo: number } {
+  const itens: Pendencia[] = []
+  let semPrazo = 0
+  const avaliar = (grupo: string, a: AcaoQuadro, detalhe?: string) => {
+    if (!estaAbertaQuadro(a)) return
+    if (!a.fimPrevisto) semPrazo++
+    else if (a.fimPrevisto <= semana.fim)
+      itens.push({ grupo, nome: a.nome, detalhe, prazo: a.fimPrevisto, status: a.status ?? 'sem status', atrasada: a.fimPrevisto < hoje })
+  }
+  for (const g of grupos)
+    for (const a of g.acoes) {
+      avaliar(g.nome, a, a.responsavel ?? undefined)
+      for (const s of a.subacoes) avaliar(g.nome, s, `subação de: ${a.nome}`)
     }
   return { itens: itens.sort(porPrazo), semPrazo }
 }

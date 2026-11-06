@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { notFound, useParams } from 'next/navigation'
 import { Vazio } from '@/components/semana/Etiquetas'
 import AvisoNaoSalvo, { useAvisoAoSair } from '@/components/AvisoNaoSalvo'
+import QuadroMonday from '@/components/restrito/QuadroMonday'
 import {
   COR_STATUS_PLANO,
   STATUS_PLANO,
@@ -27,10 +28,29 @@ const campo = 'rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm t
 export default function PaginaPlano() {
   const plano = planoDe(useParams<{ plano: string }>().plano)
   if (!plano) notFound()
-  return <EditorPlano key={plano.slug} slug={plano.slug} titulo={plano.titulo} encaminhamentos={plano.formato === 'encaminhamentos'} />
+  if (plano.quadroMonday) return <QuadroMonday key={plano.slug} slug={plano.slug} />
+  return (
+    <EditorPlano
+      key={plano.slug}
+      slug={plano.slug}
+      titulo={plano.titulo}
+      encaminhamentos={plano.formato === 'encaminhamentos'}
+      frentesMonday={plano.frentesMonday?.map(f => f.id) ?? []}
+    />
+  )
 }
 
-function EditorPlano({ slug, titulo, encaminhamentos }: { slug: string; titulo: string; encaminhamentos: boolean }) {
+function EditorPlano({
+  slug,
+  titulo,
+  encaminhamentos,
+  frentesMonday,
+}: {
+  slug: string
+  titulo: string
+  encaminhamentos: boolean
+  frentesMonday: string[] // subabas lidas da Monday em vez de preenchidas à mão
+}) {
   const url = `/api/planos/${slug}`
   const [frentes, setFrentes] = useState<FrenteDoPlano[] | null>(null)
   const [selecionada, setSelecionada] = useState<string | null>(null)
@@ -97,7 +117,9 @@ function EditorPlano({ slug, titulo, encaminhamentos }: { slug: string; titulo: 
       </div>
       <AvisoNaoSalvo erro={erroSalvar} aoTentarDeNovo={() => pendente && salvar(pendente)} />
 
-      {encaminhamentos ? (
+      {frentesMonday.includes(frente.id) ? (
+        <QuadroMonday key={frente.id} slug={slug} frente={frente.id} />
+      ) : encaminhamentos ? (
         <ListaEncaminhamentos key={frente.id} frente={frente} aoMudar={mudarAcoes} />
       ) : (
       <article key={frente.id} className="rounded-xl bg-white border border-slate-200 shadow-sm p-4 md:p-6 space-y-4 animate-fade-in-up">
