@@ -3,8 +3,9 @@
 // cada grupo do quadro é uma avaliação e os subelementos aparecem dentro de cada ação.
 // Os riscos da semana são registrados à mão no app (dados/riscos-escritorio.json).
 
-import type { Elemento, Subelemento } from '@/lib/monday'
+import { AVALIACAO_CP_ID, AVALIACAO_SE_ID, type Elemento, type Subelemento } from '@/lib/monday'
 import type { NivelAlerta } from '@/lib/semana'
+import { primeiraData, ultimaData, valorColuna, type PontoDeAtencao } from '@/lib/quadroRestrito'
 
 export interface AcaoGav {
   id: string
@@ -20,6 +21,7 @@ export interface AcaoGav {
 export interface AvaliacaoGav {
   nome: string // grupo do quadro
   acoes: AcaoGav[]
+  fonte?: string // quadro próprio, quando o tópico não vem do Avaliações_GAV
 }
 
 export interface RiscoSemana {
@@ -31,23 +33,67 @@ export interface RiscoSemana {
   responsavel: string
 }
 
-const valor = (e: Elemento | Subelemento, titulo: string) => e.colunas.find(c => c.titulo === titulo)?.texto ?? null
-
-// Colunas de cronograma vêm como "2026-07-29 - 2026-10-16": início pega a 1ª data e fim a última.
-const primeiraData = (t: string | null) => t?.match(/\d{4}-\d{2}-\d{2}/)?.[0] ?? null
-const ultimaData = (t: string | null) => t?.match(/\d{4}-\d{2}-\d{2}/g)?.at(-1) ?? null
+// Títulos do Avaliações_GAV primeiro e, depois, os dos quadros próprios (RESPONSÁVEL, Inicio projetado…).
+const valor = valorColuna
 
 function acaoDe(e: Elemento | Subelemento, subacoes: AcaoGav[] = []): AcaoGav {
   return {
     id: e.id,
     nome: e.nome.trim(),
-    responsaveis: valor(e, 'Responsáveis'),
+    responsaveis: valor(e, 'Responsáveis', 'Responsável'),
     status: valor(e, 'Status'),
-    inicioPrevisto: primeiraData(valor(e, 'Início previsto')),
-    fimPrevisto: ultimaData(valor(e, 'Fim previsto')),
+    inicioPrevisto: primeiraData(valor(e, 'Início previsto', 'Inicio projetado')),
+    fimPrevisto: ultimaData(valor(e, 'Fim previsto', 'Fim projetado')),
     fimReal: ultimaData(valor(e, 'Fim real')),
     subacoes,
   }
+}
+
+// Tópicos que passaram a ter quadro próprio na Monday (06/11/2026): cada linha do quadro é um tópico
+// e as subações dela são as ações. Em `linhas`, a chave é o nome da linha e o valor, o tópico que ela substitui.
+export const QUADROS_DE_TOPICOS: { quadro: number; linhas: Record<string, string> }[] = [
+  {
+    quadro: AVALIACAO_CP_ID,
+    linhas: { 'Av. Coordenação Pedagógica': 'Impacto Coordenação Pedagógica', 'Etapa Qualitativa': 'Coordenação Pedagógica quali' },
+  },
+  {
+    quadro: AVALIACAO_SE_ID,
+    linhas: { 'Av. Socioemocional 2026': 'Diagnóstica SE 2026', 'Av. Socioemocional 2025': 'Diagnóstica SE 2025' },
+  },
+]
+
+export function topicosDeQuadroProprio(
+  nomeQuadro: string,
+  elementos: Elemento[],
+  nomes: Record<string, string>,
+): { avaliacoes: AvaliacaoGav[]; pontos: PontoDeAtencao[] } {
+  const pontos: PontoDeAtencao[] = []
+  const avaliacoes = elementos.map(e => {
+    const topico = nomes[e.nome.trim()] ?? e.nome.trim()
+    for (const c of e.comentarios ?? []) pontos.push({ ...c, acao: topico })
+    for (const s of e.subelementos) for (const c of s.comentarios ?? []) pontos.push({ ...c, acao: `${topico} › ${s.nome.trim()}` })
+    return { nome: topico, fonte: nomeQuadro, acoes: e.subelementos.map(s => acaoDe(s)) }
+  })
+  return { avaliacoes, pontos }
+}
+
+// Tópicos do Avaliações_GAV que não aparecem na aba: Policy papers passou para a aba
+// Advocacy + Policy Papers (pedido de 06/11/2026).
+export const TOPICOS_FORA_DA_ABA = ['Policy papers']
+
+export const semTopicosFora = (avaliacoes: AvaliacaoGav[]) =>
+  avaliacoes.filter(a => !TOPICOS_FORA_DA_ABA.some(t => t.toLowerCase() === a.nome.toLowerCase().trim()))
+
+// Troca os tópicos de mesmo nome (sem diferença de maiúsculas) e mantém a ordem; os novos vão para o fim.
+export function substituirTopicos(base: AvaliacaoGav[], novos: AvaliacaoGav[]): AvaliacaoGav[] {
+  const chave = (s: string) => s.toLowerCase().trim()
+  const porNome = new Map(novos.map(n => [chave(n.nome), n]))
+  const resultado = base.map(a => {
+    const n = porNome.get(chave(a.nome))
+    if (n) porNome.delete(chave(a.nome))
+    return n ? { ...n, nome: a.nome } : a
+  })
+  return [...resultado, ...porNome.values()]
 }
 
 // Avaliações na ordem em que aparecem no quadro, só com os elementos marcados como marco.

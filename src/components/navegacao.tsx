@@ -78,6 +78,11 @@ export const LINKS_RESTRITOS: LinkNavegacao[] = [
     icone: c => svg(c, <><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></>),
   },
   {
+    href: `${RESTRITO}/relatorio`,
+    rotulo: 'Relatório',
+    icone: c => svg(c, <><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></>),
+  },
+  {
     href: `${RESTRITO}/avaliacoes`,
     rotulo: 'Avaliações',
     icone: c => svg(c, <><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /><line x1="2" y1="13" x2="22" y2="13" /></>),
@@ -102,9 +107,20 @@ export const LINKS_RESTRITOS: LinkNavegacao[] = [
   },
   {
     href: `${RESTRITO}/eixo-advocacy`,
-    rotulo: 'Eixo Advocacy',
-    rotuloCurto: 'Advocacy',
+    rotulo: 'Advocacy + Policy Papers',
     icone: c => svg(c, <><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></>),
+  },
+  {
+    href: `${RESTRITO}/extensao-gm-seduc`,
+    rotulo: 'CURSOS DE EXTENSÃO, GM E ENTREGÁVEIS COM SEDUC',
+    rotuloCurto: 'Extensão, GM e SEDUC',
+    icone: c => svg(c, <><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c3 2 9 2 12 0v-5" /></>),
+  },
+  {
+    href: `${RESTRITO}/extensao-regulares-mec`,
+    rotulo: 'CURSOS DE EXTENSÃO, PLANO DE AÇÃO REGULARES E MEC',
+    rotuloCurto: 'Extensão, Regulares e MEC',
+    icone: c => svg(c, <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /><path d="m9 9 2 2 4-4" /></>),
   },
   {
     href: `${RESTRITO}/novos-estados`,

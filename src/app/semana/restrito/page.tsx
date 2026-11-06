@@ -7,12 +7,14 @@ import { EtiquetaNivel, Vazio } from '@/components/semana/Etiquetas'
 import { RESTRITO } from '@/components/navegacao'
 import type { AvaliacaoGav, RiscoSemana } from '@/lib/escritorio'
 import type { ReuniaoComex } from '@/lib/comex'
-import { PLANOS, type FrenteDoPlano } from '@/lib/planos'
+import { PLANOS } from '@/lib/planos'
 import { dataCurta } from '@/lib/semana'
+import { comoErro, lerJson, lerPlano, type FontePlano } from '@/lib/fontesRestritas'
 import {
   pendenciasDasAvaliacoes,
   pendenciasDoComex,
   pendenciasDoPlano,
+  pendenciasDoQuadro,
   pendenciasDosClusters,
   pendenciasEmTexto,
   type BlocoPendencias,
@@ -29,15 +31,8 @@ interface Fontes {
   avaliacoes: AvaliacaoGav[] | string // string = mensagem de erro
   riscos: RiscoSemana[]
   comex: ReuniaoComex[] | string
-  planos: Record<string, FrenteDoPlano[] | string>
+  planos: Record<string, FontePlano | string>
 }
-
-const lerJson = async <T,>(url: string): Promise<T> => {
-  const j = await (await fetch(url)).json()
-  if (j.error) throw new Error(j.error)
-  return j
-}
-const comoErro = (e: unknown) => String((e as Error).message ?? e)
 
 export default function PendenciasDaSemana() {
   const ctx = useSemana()
@@ -50,7 +45,7 @@ export default function PendenciasDaSemana() {
       lerJson<{ avaliacoes: AvaliacaoGav[] }>('/api/escritorio').then(j => j.avaliacoes, comoErro),
       lerJson<{ riscos: RiscoSemana[] }>('/api/escritorio/riscos').then(j => j.riscos, () => []),
       lerJson<{ reunioes: ReuniaoComex[] }>('/api/comex').then(j => j.reunioes, comoErro),
-      ...PLANOS.map(p => lerJson<{ frentes: FrenteDoPlano[] }>(`/api/planos/${p.slug}`).then(j => j.frentes, comoErro)),
+      ...PLANOS.map(p => lerPlano(p).catch(comoErro)),
     ])
     setFontes({ avaliacoes, riscos, comex, planos: Object.fromEntries(PLANOS.map((p, i) => [p.slug, planos[i]])) })
   }, [])
@@ -80,11 +75,17 @@ export default function PendenciasDaSemana() {
     })
     for (const p of PLANOS) {
       const f = fontes.planos[p.slug]
+      if (typeof f === 'string') {
+        lista.push({ fonte: p.titulo, href: `${RESTRITO}/${p.slug}`, cor: '#00347f', itens: [], semPrazo: 0, erro: f })
+        continue
+      }
+      const partes = [pendenciasDoPlano(f.manual, semana, hoje, p.formato === 'encaminhamentos'), ...f.quadros.map(g => pendenciasDoQuadro(g, semana, hoje))]
       lista.push({
         fonte: p.titulo,
         href: `${RESTRITO}/${p.slug}`,
         cor: '#00347f',
-        ...(typeof f === 'string' ? { itens: [], semPrazo: 0, erro: f } : pendenciasDoPlano(f, semana, hoje, p.formato === 'encaminhamentos')),
+        itens: partes.flatMap(x => x.itens).sort((a, b) => (a.prazo ?? '9999').localeCompare(b.prazo ?? '9999')),
+        semPrazo: partes.reduce((n, x) => n + x.semPrazo, 0),
       })
     }
     const cx = fontes.comex
