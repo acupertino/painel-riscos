@@ -24,6 +24,10 @@ const FORA_DO_RELATORIO = [
 const semAcento = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim()
 export const ficaForaDoRelatorio = (nome: string) => FORA_DO_RELATORIO.some(r => r.test(semAcento(nome)))
 
+// Status “Previsto para 2027” na Monday: a linha foi adiada de propósito e não entra como pendência
+// (pedido da Isa em 06/11/2026). Conta como linha lida, mas não como em aberto.
+const ficaParaDepois = (status: string | null) => !!status && /previsto para 2027/i.test(status)
+
 export type Motivo ='Prazo estourado' | 'Precisa de definição' | 'Sem data'
 
 // Ordem fixa = ordem das cores nos gráficos e prioridade do "motivo principal".
@@ -178,7 +182,7 @@ export function montarRelatorio(fontes: FonteRelatorio[], hoje: string): Relator
     const visitar = (it: ItemBase, grupo: string, acao: string | null) => {
       if (ficaForaDoRelatorio(it.nome)) return
       if (!it.elemento) resumo.analisadas++
-      if (!it.elemento && !it.fechado) {
+      if (!it.elemento && !it.fechado && !ficaParaDepois(it.status)) {
         resumo.abertas++
         const c = classificar(it, hoje)
         if (c.motivos.length) {
