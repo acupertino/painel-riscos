@@ -81,6 +81,9 @@ export interface Plano {
   // Subabas lidas da Monday: a frente de mesmo id deixa de ser preenchida à mão (os dados manuais
   // continuam no arquivo, só não aparecem).
   frentesMonday?: { id: string; quadro: number }[]
+  // Subabas retiradas da aba: não aparecem em lugar nenhum, mas os registros continuam guardados no
+  // arquivo em dados/ (o salvar não os apaga).
+  frentesRetiradas?: string[]
 }
 
 // Quadro da Monday de uma aba inteira ou de uma subaba (frente).
@@ -101,6 +104,7 @@ export const PLANOS: Plano[] = [
       },
     ],
     frentesMonday: [{ id: 'educacao-basica', quadro: COMUNICACAO_EDUCACAO_BASICA_ID }],
+    frentesRetiradas: ['policy-papers'], // Comunicação - Policy Papers retirada a pedido da Isa (07/11/2026)
   },
   {
     slug: 'credenciamento-ia-mec',
