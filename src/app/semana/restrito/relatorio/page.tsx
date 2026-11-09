@@ -1,70 +1,29 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { useSemana } from '@/components/semana/ContextoSemana'
 import { Vazio } from '@/components/semana/Etiquetas'
 import BarraMonday from '@/components/restrito/BarraMonday'
-import { RESTRITO } from '@/components/navegacao'
-import { PLANOS } from '@/lib/planos'
-import type { AvaliacaoGav } from '@/lib/escritorio'
-import { comoErro, lerJson, lerPlano } from '@/lib/fontesRestritas'
+import { useFontesRestritas } from '@/components/restrito/useFontesRestritas'
 import { dataCurta } from '@/lib/semana'
 import { baixar, gerarXlsx } from '@/lib/xlsx'
 import {
-  ABAS_FORA_DO_RELATORIO,
   COR_MOTIVO,
   MOTIVOS,
-  fonteDeAvaliacoes,
-  fonteDePlano,
-  fonteDeQuadros,
   montarRelatorio,
   relatorioEmPlanilhas,
   responsaveisDe,
-  type FonteRelatorio,
   type LinhaRelatorio,
   type Motivo,
 } from '@/lib/relatorio'
 
-// Relatório (experimental): todos os pontos de atenção das abas restritas, com análises para a
-// diretoria. Mostra só a lista de linhas com ponto de atenção (pedido de 06/11/2026). Critério: sem data, precisa de definição ou prazo estourado (regras em src/lib/relatorio.ts).
+// Relatório: extração operacional, linha a linha, do que precisa ser atualizado na Monday (o resumo
+// executivo fica na aba Resumo). Mostra só a lista de linhas com ponto de atenção (pedido de 06/11/2026). Critério: sem data, precisa de definição ou prazo estourado (regras em src/lib/relatorio.ts).
 
 export default function Relatorio() {
   const { hoje } = useSemana()
-  const [fontes, setFontes] = useState<FonteRelatorio[] | null>(null)
-  const [erros, setErros] = useState<string[]>([])
-  const [carregando, setCarregando] = useState(true)
-  const [geradoEm, setGeradoEm] = useState<string | null>(null)
-
-  const buscar = useCallback(async (atualizar: boolean) => {
-    setCarregando(true)
-    const falhas: string[] = []
-    const avaliacoes = lerJson<{ avaliacoes: AvaliacaoGav[] }>(`/api/escritorio${atualizar ? '?refresh=1' : ''}`).then(
-      j => [fonteDeAvaliacoes('Avaliações', `${RESTRITO}/avaliacoes`, j.avaliacoes)],
-      e => (falhas.push(`Avaliações: ${comoErro(e)}`), []),
-    )
-    const planos = PLANOS.filter(p => !ABAS_FORA_DO_RELATORIO.includes(p.slug)).map(p =>
-      lerPlano(p, atualizar).then(
-        f => {
-          const href = `${RESTRITO}/${p.slug}`
-          return [
-            ...(f.quadros.length ? [fonteDeQuadros(p.titulo, href, f.quadros)] : []),
-            ...(f.manual.length ? [fonteDePlano(f.quadros.length ? `${p.titulo} (à mão)` : p.titulo, href, f.manual)] : []),
-          ]
-        },
-        e => (falhas.push(`${p.titulo}: ${comoErro(e)}`), []),
-      ),
-    )
-    const todas = (await Promise.all([avaliacoes, ...planos])).flat()
-    setFontes(todas)
-    setErros(falhas)
-    setGeradoEm(new Date().toISOString())
-    setCarregando(false)
-  }, [])
-
-  useEffect(() => {
-    buscar(false)
-  }, [buscar])
+  const { fontes, erros, carregando, geradoEm, buscar } = useFontesRestritas()
 
   const relatorio = useMemo(() => (fontes ? montarRelatorio(fontes, hoje) : null), [fontes, hoje])
 
