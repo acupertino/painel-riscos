@@ -332,3 +332,64 @@ export function relatorioEmPlanilhas(linhas: LinhaRelatorio[], porAba: Relatorio
     },
   ]
 }
+
+// ---------- Resumo (aba de gráficos, pedido de 09/11/2026) ----------
+// Mesmo universo do Relatório (sem esteiras de produção, sem "Previsto para 2027" e sem Encaminhamentos
+// de SQUAD), olhando o andamento do ano. Conta subelementos e também elementos sem subelementos (nos
+// quadros sem subelementos, como Credenciamento, a ação é o próprio elemento); linha-mãe não conta.
+//
+// - do ano: linhas com prazo previsto entre 01/01 e 31/12 do ano corrente (canceladas ficam fora);
+// - previstas até hoje: as do ano cujo prazo já chegou (deveriam estar concluídas);
+// - realizadas: as do ano já concluídas (no prazo ou não, e também as adiantadas).
+// Linhas sem prazo não entram na conta e são mostradas à parte.
+
+export interface AndamentoAba {
+  aba: string
+  href: string
+  doAno: number
+  previstas: number
+  realizadas: number
+  atrasadas: number // previstas até hoje e ainda não concluídas
+  semPrazo: number
+}
+
+export interface Andamento extends Omit<AndamentoAba, 'aba' | 'href'> {
+  ano: string
+  porAba: AndamentoAba[]
+}
+
+const cancelada = (status: string | null) => !!status && /cancel/i.test(status)
+// "Plano X (à mão)" soma na mesma aba que "Plano X" (as duas partes apontam para a mesma página).
+const nomeDaAba = (aba: string) => aba.replace(/ \(à mão\)$/, '')
+
+export function montarAndamento(fontes: FonteRelatorio[], hoje: string): Andamento {
+  const ano = hoje.slice(0, 4)
+  const inicio = `${ano}-01-01`
+  const fim = `${ano}-12-31`
+  const abas = new Map<string, AndamentoAba>()
+  for (const f of fontes) {
+    const nome = nomeDaAba(f.aba)
+    const r = abas.get(nome) ?? { aba: nome, href: f.href, doAno: 0, previstas: 0, realizadas: 0, atrasadas: 0, semPrazo: 0 }
+    abas.set(nome, r)
+    const visitar = (it: ItemBase) => {
+      if (ficaForaDoRelatorio(it.nome)) return
+      const conta = !it.elemento || !it.subitens.length
+      if (conta && !ficaParaDepois(it.status) && !cancelada(it.status)) {
+        if (!it.fim) r.semPrazo++
+        else if (it.fim >= inicio && it.fim <= fim) {
+          r.doAno++
+          if (it.fim <= hoje) r.previstas++
+          if (it.fim <= hoje && !it.fechado) r.atrasadas++
+          if (it.fechado) r.realizadas++
+        }
+      }
+      for (const s of it.subitens) visitar(s)
+    }
+    for (const g of f.grupos) if (!ficaForaDoRelatorio(g.nome)) for (const it of g.itens) visitar(it)
+  }
+  const porAba = [...abas.values()]
+  const soma = (k: 'doAno' | 'previstas' | 'realizadas' | 'atrasadas' | 'semPrazo') => porAba.reduce((n, a) => n + a[k], 0)
+  return { ano, doAno: soma('doAno'), previstas: soma('previstas'), realizadas: soma('realizadas'), atrasadas: soma('atrasadas'), semPrazo: soma('semPrazo'), porAba }
+}
+
+export const percentual = (parte: number, total: number) => (total ? Math.round((parte / total) * 100) : 0)

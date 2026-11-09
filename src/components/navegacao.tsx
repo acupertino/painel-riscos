@@ -78,6 +78,11 @@ export const LINKS_RESTRITOS: LinkNavegacao[] = [
     icone: c => svg(c, <><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></>),
   },
   {
+    href: `${RESTRITO}/resumo`,
+    rotulo: 'Resumo',
+    icone: c => svg(c, <><path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" /></>),
+  },
+  {
     href: `${RESTRITO}/relatorio`,
     rotulo: 'Relatório',
     icone: c => svg(c, <><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></>),
