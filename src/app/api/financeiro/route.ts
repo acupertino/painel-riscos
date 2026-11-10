@@ -3,8 +3,8 @@ import { bloquearSemAcesso } from '@/lib/acesso'
 import { lerDados } from '@/lib/dados'
 import type { MarcoFinanceiro } from '@/lib/fisico'
 
-// Marcos da execução financeira (% por programa e rubrica), em dados/financeiro.json: dado financeiro, fica
-// fora do git (cada pessoa guarda o seu). Sem o arquivo, a aba Físico-financeiro mostra só o físico.
+// Marcos da execução financeira (% por programa e rubrica), em dados/financeiro.json (vai para o git desde
+// 10/11/2026; antes de enviar, confirmar com a Isa se há algo sensível). Sem o arquivo, mostra só o físico.
 
 export async function GET() {
   const bloqueio = await bloquearSemAcesso()

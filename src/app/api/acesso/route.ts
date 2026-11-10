@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { COOKIE_ACESSO, estaLiberado, resumoDaSenha, senhaConfigurada, senhaCorreta } from '@/lib/acesso'
 
 // Entrada e saída da área restrita. GET diz se o navegador já está liberado; POST confere a
-// senha e grava o cookie por 30 dias; DELETE apaga o cookie.
+// senha e grava o cookie por 1 dia (pedido da Isa em 10/11/2026; antes eram 30); DELETE apaga o cookie.
 
 export async function GET() {
   return NextResponse.json({ configurada: senhaConfigurada(), liberado: await estaLiberado() })
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: 60 * 60 * 24,
     path: '/',
   })
   return res

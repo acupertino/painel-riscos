@@ -41,8 +41,12 @@ Referência visual ao vivo: https://monday-v2-7jc2.vercel.app/ (ver páginas da 
 
 ## Regras
 - Nomes de variáveis e funções em português; texto da interface sempre "a Monday" (feminino).
-- Segredos só no `.env.local` (cada pessoa com o seu token da Monday). Nunca commitar tokens,
-  bases de pessoas ou dados financeiros. `.cache/` e `externos/` são ignorados pelo git.
+- Segredos só no `.env.local` (cada pessoa com o seu token da Monday). Nunca commitar tokens nem bases
+  de pessoas. `.cache/` e `externos/` são ignorados pelo git.
+- Área restrita e `dados/` (decisão da Isa em 10/11/2026, repositório privado): a senha da área restrita
+  fica fixa em `src/lib/acesso.ts` e os registros manuais de `dados/*.json` (COMEX, planos, riscos,
+  marcos do financeiro) vão para o git e para a Vercel. Antes de subir dado financeiro novo, confirmar
+  com a Isa se algo é sensível. Na Vercel o disco é só de leitura: edições são feitas no computador.
 - Não alterar dados na Monday sem pedido explícito: o app é de leitura.
 - Git: nunca trabalhar nem commitar direto na `main`; ela só recebe merges feitos pelo
   `/finalizar-tarefa`. Fluxo de cada tarefa:

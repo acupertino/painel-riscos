@@ -213,7 +213,7 @@ Hierarquia da árvore: IT em `blue-50` com borda `blue-100`; IO em `emerald-50` 
 ## 7. Segurança e git
 
 - `.gitignore`: `node_modules/`, `.next/`, `.env*.local`, `.cache/`, `externos/`, `*.tsbuildinfo`.
-- Nada de token, base de cursistas ou dado financeiro no repositório.
+- Nada de token ou base de cursistas no repositório. Dados financeiros em `dados/` só depois de a Isa confirmar que não são sensíveis.
 - Trabalho a dois: branch por tarefa, Pull Request para a `main` e proteção da `main` no GitHub.
 - O hook de auto-commit e push do projeto atual **não** deve ser copiado: ele empurra direto para
   a branch principal.

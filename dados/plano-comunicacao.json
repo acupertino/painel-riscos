@@ -1,0 +1,131 @@
+[
+  {
+    "id": "educacao-basica",
+    "nome": "Comunicação - Educação Básica",
+    "objetivo": "",
+    "acoes": [
+      {
+        "id": "eb1pubex",
+        "nome": "Plano de comunicação para Público externo",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "",
+        "entregas": [
+          {
+            "id": "eb1tkpub",
+            "nome": "Toolkit de comunicação para Público externo",
+            "status": "a iniciar",
+            "prazo": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "policy-papers",
+    "nome": "Comunicação - Policy Papers",
+    "objetivo": "Trazer boas práticas de como fazer formação continuada em parceria com governos.",
+    "acoes": [
+      {
+        "id": "7s1xta4n",
+        "nome": "Plano de comunicação para Público externo",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "",
+        "entregas": [
+          {
+            "id": "jh5lnxri",
+            "nome": "Toolkit de comunicação para Público externo",
+            "status": "a iniciar",
+            "prazo": "2026-12-10"
+          },
+          {
+            "id": "1p7vp5bp",
+            "nome": "Produção do release",
+            "status": "a iniciar",
+            "prazo": ""
+          },
+          {
+            "id": "nfotv8nn",
+            "nome": "Cards para Instagram",
+            "status": "a iniciar",
+            "prazo": "2026-12-10"
+          },
+          {
+            "id": "nwpm2kds",
+            "nome": "Estratégia de entrada via Undime",
+            "status": "a iniciar",
+            "prazo": "2026-12-10"
+          }
+        ]
+      },
+      {
+        "id": "pp5dpun9",
+        "nome": "Plano de comunicação para Ecossistema",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "",
+        "entregas": [
+          {
+            "id": "i51fexqq",
+            "nome": "Toolkit de comunicação para Ecossistema",
+            "status": "a iniciar",
+            "prazo": "2026-12-10"
+          },
+          {
+            "id": "7m634vcq",
+            "nome": "Produção do release",
+            "status": "a iniciar",
+            "prazo": ""
+          },
+          {
+            "id": "oysaokgf",
+            "nome": "Cards para Instagram",
+            "status": "a iniciar",
+            "prazo": "2026-12-10"
+          }
+        ]
+      },
+      {
+        "id": "m2kmz5qb",
+        "nome": "Plano de comunicação para Stakeholders",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "",
+        "entregas": [
+          {
+            "id": "jo6ibdpp",
+            "nome": "Toolkit de comunicação para Stakeholders",
+            "status": "a iniciar",
+            "prazo": "2026-12-10"
+          },
+          {
+            "id": "8m0s820x",
+            "nome": "Produção do release",
+            "status": "a iniciar",
+            "prazo": ""
+          },
+          {
+            "id": "wvjpumlw",
+            "nome": "Cards para Instagram",
+            "status": "a iniciar",
+            "prazo": "2026-12-10"
+          }
+        ]
+      },
+      {
+        "id": "4h4xz2q3",
+        "nome": "Livro físico para os estados e Ecossistema",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "",
+        "entregas": []
+      }
+    ]
+  }
+]

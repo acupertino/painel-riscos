@@ -1,0 +1,10 @@
+[
+  {
+    "id": "4aga5oay",
+    "semana": "2026-10-26",
+    "descricao": "1. Amostragem da pesquisa: uma turma por professor matriculado dentro da amostra de professores matriculados por curso x uma turma de 30 alunos em média = amostra ideal (1669 professores x uma turma de 30 por professor)\n> Risco: Não alcançar a amostra visto que, até a data de 30/10, tínhamos apenas 900 professores e 130 estudantes que concluíram o questionário. Em novembro, as redes não responderão a pesquisa porque estarão mobilizadas para avaliações externas. Retornaremos em dezembro, mas existe um risco de não conseguirmos mobilizar para responder. \n> Mitigação: Oppen está fazendo a comunicação via e-mail e whatsapp, representantes da Secretaria estão mobilizados e Leila vai entender a possibilidade de diminuir a amostra sem impactar no número da Zurich.",
+    "avaliacao": "Diagnóstica SE 2026",
+    "nivel": "crítico",
+    "responsavel": ""
+  }
+]

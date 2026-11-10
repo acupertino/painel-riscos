@@ -1,0 +1,54 @@
+[
+  {
+    "id": "c27out26",
+    "data": "2026-10-27",
+    "encaminhamentos": [
+      {
+        "id": "e1freq",
+        "texto": "Deixar para que o cursista registre as três frequências até o final da UC.",
+        "pontos": [
+          {
+            "id": "p2gda",
+            "area": "GDA",
+            "pergunta": "Como vai tratar os dados?",
+            "resposta": "Como há abono da UC 4, não há necessidade de seguir com a ação."
+          },
+          {
+            "id": "p3com",
+            "area": "Comunicação",
+            "pergunta": "Como vai comunicar o cursista? Via Bianca e via GDE e GFOR.",
+            "resposta": "Como há abono da UC 4, não há necessidade de seguir com a ação."
+          },
+          {
+            "id": "tm6m3emk",
+            "area": "GEOP",
+            "pergunta": "Como vai funcionar a operacionalização?",
+            "resposta": "Como há abono da UC 4, não há necessidade de seguir com a ação."
+          }
+        ]
+      },
+      {
+        "id": "709gojzb",
+        "texto": "Levantamento de chamados relacionados às eletivas - Como foi, desde o início do módulo de eletivas, o contato que o cursista fez nos canais de comunicação?",
+        "pontos": [
+          {
+            "id": "bfete0is",
+            "area": "GEOP",
+            "pergunta": "Como está o levantamento dos contatos?",
+            "resposta": "2 atendimentos foram relacionados a mudança no formato das eletivas - em um total de 245 atendimentos"
+          }
+        ]
+      },
+      {
+        "id": "0qxarn1s",
+        "texto": "Atualização: Convite para cursistas formados especialistas serem mentores no próximo ano.",
+        "pontos": []
+      },
+      {
+        "id": "sfunbtet",
+        "texto": "Update a respeito do Programa de Reconhecimento: Aguardando validação do jurídico para agendar live de lançamento",
+        "pontos": []
+      }
+    ]
+  }
+]

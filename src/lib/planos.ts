@@ -1,6 +1,6 @@
 // Planos da área restrita (Plano de Comunicação, Credenciamento IA no MEC etc.): cada plano tem
 // uma ou mais frentes (subabas), e cada frente tem objetivo, ações e entregas. Não vem da Monday:
-// é registrado no próprio app e salvo em dados/plano-{slug}.json (fora do git).
+// é registrado no próprio app e salvo em dados/plano-{slug}.json.
 // Plano de Comunicação pedido em 03/11/2026; demais planos e área restrita em 03/11/2026.
 
 import { novoId } from '@/lib/comex'

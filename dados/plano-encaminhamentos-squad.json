@@ -1,0 +1,953 @@
+[
+  {
+    "id": "squad-2026-10-29",
+    "nome": "Squad 29/10",
+    "objetivo": "",
+    "acoes": [
+      {
+        "id": "8p9igfd0",
+        "nome": "Repassar aos mediadores o material da Live 1 da Mentoria de Gestão da Aprendizagem assim que chegar, mesmo sem diagramação final (live em 09/11, 16h–18h, via StreamYard)",
+        "status": "a iniciar",
+        "responsavel": "Nathalia",
+        "prazo": "2026-11-06",
+        "observacoes": "Mentoria de Gestão da Aprendizagem",
+        "entregas": []
+      },
+      {
+        "id": "f453hh5a",
+        "nome": "Repassar aos mediadores o material da Live 2 da Mentoria assim que chegar (live em 16/11, 10h–12h, via StreamYard)",
+        "status": "a iniciar",
+        "responsavel": "Nathalia",
+        "prazo": "2026-11-13",
+        "observacoes": "Mentoria de Gestão da Aprendizagem",
+        "entregas": []
+      },
+      {
+        "id": "hgq424in",
+        "nome": "Disparar a comunicação da recuperação de Gestão Municipal (UC1 à UC4), segmentada em quatro grupos: pendência na UC6 e na extraordinária; só na UC6; só na extraordinária; sem pendência (não recebe mensagem)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação de Gestão Municipal",
+        "entregas": []
+      },
+      {
+        "id": "ic0uhp7m",
+        "nome": "Tratar a recuperação da UC5 à UC8 de Gestão Municipal em processo posterior",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação de Gestão Municipal",
+        "entregas": []
+      },
+      {
+        "id": "f6b0o1ta",
+        "nome": "Enviar à Bianca os números de entregas antes e depois de cada ação de comunicação da recuperação extraordinária, para o reporte semanal à consultoria",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "08spn2t9",
+        "nome": "Confirmar com Lucas (GDA) se dá para estender o prazo da atividade objetiva até 09/11 (fechando a dissertativa em 04/11); validar com Lucas e Renata",
+        "status": "a iniciar",
+        "responsavel": "Lucas (GDA)",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "fl4lmbgg",
+        "nome": "Definir o ajuste do prazo do TCC da oferta regular de 08/11 para 09/11, para nenhuma entrega cair no domingo",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "88tcqapt",
+        "nome": "Enviar às secretarias as bases de quem não entregou o TCC, para reforçar a entrega (o TCC não será prorrogado)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "7rtiaq16",
+        "nome": "Tratar a forma de compartilhamento de dados com as secretarias (LGPD) no início da agenda do jurídico de 30/10 (consulta aberta por Marina)",
+        "status": "a iniciar",
+        "responsavel": "Gustavo",
+        "prazo": "2026-10-30",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "06w4hg58",
+        "nome": "Fechar os ajustes de texto do programa de reconhecimento, enviar ao jurídico para validação final e seguir para assinatura da Dani; lançar só após o OK de que o documento subiu para assinatura",
+        "status": "a iniciar",
+        "responsavel": "Renata",
+        "prazo": "2026-10-30",
+        "observacoes": "Programa de reconhecimento",
+        "entregas": []
+      },
+      {
+        "id": "apubai2w",
+        "nome": "Incluir o programa de reconhecimento na próxima comunicação de TCC, como estímulo de última chance",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Programa de reconhecimento",
+        "entregas": []
+      },
+      {
+        "id": "astiy87r",
+        "nome": "Validar a nova data da pesquisa de satisfação de Diretores e CP (prevista para 26/10, não liberada)",
+        "status": "a iniciar",
+        "responsavel": "Lucas",
+        "prazo": "",
+        "observacoes": "Indicadores e pesquisa de satisfação",
+        "entregas": []
+      },
+      {
+        "id": "xwp7bjxn",
+        "nome": "Abrir a pesquisa de satisfação da regular do módulo 3 e de Gestores Municipais (16/11 a 06/12)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-11-16",
+        "observacoes": "Indicadores e pesquisa de satisfação",
+        "entregas": []
+      },
+      {
+        "id": "4x0h2i1k",
+        "nome": "Confirmar com a secretaria o caso dos mais de 100 cursistas de Minas aprovados duas vezes no mesmo curso (não emitir dois certificados)",
+        "status": "a iniciar",
+        "responsavel": "Gustavo",
+        "prazo": "",
+        "observacoes": "Extensão",
+        "entregas": []
+      },
+      {
+        "id": "ueidhi5j",
+        "nome": "Iniciar o resgate (86 inscrições no formulário)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-11-09",
+        "observacoes": "Resgate",
+        "entregas": []
+      },
+      {
+        "id": "dotgorzt",
+        "nome": "Incluir na pesquisa de satisfação a pergunta sobre interesse em ser mentor em 2027, integrada à comunicação da pesquisa, sem nova peça na régua",
+        "status": "a iniciar",
+        "responsavel": "Renata",
+        "prazo": "",
+        "observacoes": "Encaminhamentos da N1",
+        "entregas": []
+      },
+      {
+        "id": "bgiy6kyg",
+        "nome": "Avaliar o abono da frequência da UC4, comunicado como facilidade de fim de ano (proposta anterior do squad)",
+        "status": "a iniciar",
+        "responsavel": "Renata",
+        "prazo": "",
+        "observacoes": "Encaminhamentos da N1",
+        "entregas": []
+      },
+      {
+        "id": "lszekdz5",
+        "nome": "Levar ao COMEX o material dos contatos nos canais de atendimento desde o início das eletivas",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Encaminhamentos da N1",
+        "entregas": []
+      }
+    ]
+  },
+  {
+    "id": "squad-2026-10-21",
+    "nome": "Squad 21/10",
+    "objetivo": "",
+    "acoes": [
+      {
+        "id": "oznvrd8y",
+        "nome": "Postergar para segunda-feira os prazos que terminariam no domingo em Gestão Democrática e Coordenação Pedagógica (TCC e atividades)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Calendário",
+        "entregas": []
+      },
+      {
+        "id": "h0d86g6j",
+        "nome": "Abrir a recuperação extraordinária das UCs 1 a 4 de Gestão Municipal, com atividades objetivas (28/10 a 09/11)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-10-28",
+        "observacoes": "Recuperação extraordinária de Gestão Municipal",
+        "entregas": []
+      },
+      {
+        "id": "pwk7fu75",
+        "nome": "Comunicar a recuperação de Gestão Municipal em quatro grupos (UC6 e extraordinária; só UC6; só extraordinária; sem pendências), reforçando que quem recupera segue apto ao TCC e à certificação",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária de Gestão Municipal",
+        "entregas": []
+      },
+      {
+        "id": "ef9rd2sm",
+        "nome": "Monitorar semanalmente, por relatório, os cursistas com as duas recuperações",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária de Gestão Municipal",
+        "entregas": []
+      },
+      {
+        "id": "qffvmldg",
+        "nome": "Disparar a comunicação da recuperação extraordinária dos cursos síncronos (22/10 a 04/11, 2.488 cursistas), incluindo o WhatsApp liberado",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-10-22",
+        "observacoes": "Recuperação extraordinária dos síncronos",
+        "entregas": []
+      },
+      {
+        "id": "tf3fip1j",
+        "nome": "Alinhar com as secretarias o repost da comunicação nas redes sociais",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária dos síncronos",
+        "entregas": []
+      },
+      {
+        "id": "2hle9bpt",
+        "nome": "Levantar o custo de WhatsApp por grupo para os demais disparos (possível realocação de saldo de outras linhas)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária dos síncronos",
+        "entregas": []
+      },
+      {
+        "id": "1kgq3f2q",
+        "nome": "Fazer nova verificação de abandono após a recuperação extraordinária",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária dos síncronos",
+        "entregas": []
+      },
+      {
+        "id": "mk77k8q4",
+        "nome": "Comunicar o TCC na semana seguinte",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária dos síncronos",
+        "entregas": []
+      },
+      {
+        "id": "seqxnmao",
+        "nome": "Comunicar aos cursistas com entregas pendentes a entrega única no espaço da 3ª entrega (itens das três etapas, atrasadas valendo até 50%); em Diretores, os cursistas ainda não foram comunicados",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "t4b02fam",
+        "nome": "Em 09/11, comunicar dois dias extras de TCC apenas a quem não entregou (prazo de 08/11 cai no domingo)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-11-09",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "d400062f",
+        "nome": "Organizar o plantão extra do próximo mês e os quatro plantões extraordinários de TCC",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "adpu8ui5",
+        "nome": "Reforçar via comunicação as atividades regulares em aberto de Eletivas e GM (26 e 27/10)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-10-27",
+        "observacoes": "Atividades regulares em aberto",
+        "entregas": []
+      },
+      {
+        "id": "duwncx4c",
+        "nome": "Acompanhar as entregas em aberto da extensão na Bahia, no Pará e em São Paulo",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Extensão",
+        "entregas": []
+      },
+      {
+        "id": "f5y5h8wr",
+        "nome": "Identificar quem é da rede municipal entre os cerca de 1.400 de Minas (faltam cerca de 1.500 para a meta Zurich)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Extensão",
+        "entregas": []
+      },
+      {
+        "id": "e4wuksn8",
+        "nome": "Verificar com Verônica se o cadastro da oferta das turmas de 2024 e 2025 pode ficar aberto até 25/10, para a busca ativa nominal pelas secretarias",
+        "status": "a iniciar",
+        "responsavel": "Amanda",
+        "prazo": "",
+        "observacoes": "Turmas anteriores",
+        "entregas": []
+      },
+      {
+        "id": "jyj4edu1",
+        "nome": "Fazer a última chamada por WhatsApp das turmas anteriores, no horário com atendimento completo",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-10-22",
+        "observacoes": "Turmas anteriores",
+        "entregas": []
+      },
+      {
+        "id": "uis25krg",
+        "nome": "Enviar ao ecossistema a base para matrícula das turmas anteriores",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-10-26",
+        "observacoes": "Turmas anteriores",
+        "entregas": []
+      },
+      {
+        "id": "lq3yldm7",
+        "nome": "Confirmar o prazo final de inscrição das turmas anteriores (22/10 ou 25/10), após o retorno de Amanda",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Pontos em aberto",
+        "entregas": []
+      },
+      {
+        "id": "86hhr47i",
+        "nome": "Confirmar o valor disponível para WhatsApp e a origem do remanejamento de verba",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Pontos em aberto",
+        "entregas": []
+      }
+    ]
+  },
+  {
+    "id": "squad-2026-10-07",
+    "nome": "Squad 07/10",
+    "objetivo": "",
+    "acoes": [
+      {
+        "id": "uohuyvus",
+        "nome": "Notificar todos os professores formadores sobre a operação de equivalência de nota do TCC (entregas perdidas valendo até 50%)",
+        "status": "a iniciar",
+        "responsavel": "Naiane",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "rzkq15zk",
+        "nome": "Incluir na régua de comunicação aos cursistas que as entregas perdidas do TCC valem até 50%",
+        "status": "a iniciar",
+        "responsavel": "Bianca (GIMP)",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "zqg0t6sj",
+        "nome": "Disparar a comunicação do novo formato de TCC aos coordenadores de Gestores Municipais, com a data do plantão extraordinário",
+        "status": "a iniciar",
+        "responsavel": "GDE",
+        "prazo": "2026-10-09",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "2w7m5xaa",
+        "nome": "Definir a data do plantão extraordinário para os coordenadores de Gestores Municipais",
+        "status": "a iniciar",
+        "responsavel": "GFOR",
+        "prazo": "2026-10-09",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "do8rfo4i",
+        "nome": "Depois de fechar a comunicação, rodar nova análise na base para garantir que todos os cursistas que entregaram o TCC estejam mapeados",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "y1cun806",
+        "nome": "Olhar na base quem já fez todas as entregas, considerando todos os cursistas de Gestores Municipais e não só os coordenadores, para comunicar de forma assertiva",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "t74cq4eu",
+        "nome": "Conversar com a Dani no COMEX sobre o prazo do TCC de Gestores Municipais (cenário 1 ou 2) e retornar no grupo; até lá, segurar a comunicação de prazo",
+        "status": "a iniciar",
+        "responsavel": "Renata",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "zx8f3x65",
+        "nome": "Atualizar os manuais do TCC conforme a decisão de prazo",
+        "status": "a iniciar",
+        "responsavel": "Nathalia",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "p8ur786t",
+        "nome": "Intensificar a comunicação de CP-BA: quem perdeu a primeira entrega pode entregar na segunda ou na terceira, com as perdidas valendo até 50%",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "3vqoj5c5",
+        "nome": "Conferir se a comunicação de aprovação dos TCCs recorrigidos chegou ao cursista",
+        "status": "a iniciar",
+        "responsavel": "GIMP",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "rqmd75bh",
+        "nome": "Reenviar a base atualizada dos recorrigidos para todos; comunicação ao cursista sai em 08/10 (Samara alinha com a Bianca)",
+        "status": "a iniciar",
+        "responsavel": "GDA",
+        "prazo": "2026-10-08",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "0jggew68",
+        "nome": "Retirar da comunicação a orientação de abrir protocolo em caso de entrega incorreta (o atendimento trata direto com o cursista)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "1ru4vby6",
+        "nome": "Confirmar com a GEOP o tempo de cada grupo na recuperação extraordinária",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "zs6wkp7k",
+        "nome": "Calendarizar a recuperação extraordinária do M3 depois do resultado da recuperação extraordinária geral",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "bkwxqpjk",
+        "nome": "Contemplar as pendências do M1 na recuperação do M2",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "synw617i",
+        "nome": "Garantir a consigna correta da nova atividade de recuperação na plataforma",
+        "status": "a iniciar",
+        "responsavel": "Nathalia",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "dzas31lr",
+        "nome": "Criar a comunicação da recuperação para os cursistas",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "h5lrxsrz",
+        "nome": "Contratar os novos corretores para a recuperação",
+        "status": "a iniciar",
+        "responsavel": "GFOR / Naiane",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "f0jgt7py",
+        "nome": "Confirmar com a GEOP o prazo que a operação precisa (foram citados 20 e 45 dias) e alinhar uma data única",
+        "status": "a iniciar",
+        "responsavel": "GEOP",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "d1hxqoev",
+        "nome": "Entender com o Squad da ULife (Rafa: sprints e backlog) se há apoio para transpor as notas feitas fora da UC; sem previsibilidade, levar à Renata a contratação de PJ por período curto",
+        "status": "a iniciar",
+        "responsavel": "Amanda / Ana",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "9vdy61bi",
+        "nome": "Enviar o Forms de reconexão aos cursistas de 2024 e 2025 (aberto até 22/10, matrículas em 26/10, início em 09/11)",
+        "status": "a iniciar",
+        "responsavel": "GEOP",
+        "prazo": "2026-10-08",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "gypoz2ns",
+        "nome": "Definir se a atividade de recuperação será objetiva ou upload de documento",
+        "status": "a iniciar",
+        "responsavel": "GDE",
+        "prazo": "2026-10-08",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "r79yfpj3",
+        "nome": "Confirmar o formato para Nathalia voltar à matriz e identificar, com a lista individual, em quais UCs GDE precisa criar a atividade",
+        "status": "a iniciar",
+        "responsavel": "Nathalia / GDE",
+        "prazo": "",
+        "observacoes": "Recuperação extraordinária",
+        "entregas": []
+      },
+      {
+        "id": "1xbzabkr",
+        "nome": "Realinhar com Panfile se haverá recuperação geral de Gestores Municipais (depende do calendário do TCC)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Especialização",
+        "entregas": []
+      },
+      {
+        "id": "ud4qa61c",
+        "nome": "Reforçar no painel de 07/10, com tela única de destaque, o encerramento da atividade",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-10-07",
+        "observacoes": "Especialização",
+        "entregas": []
+      },
+      {
+        "id": "i1s0o3yb",
+        "nome": "Substituir o pop-up vigente na ULife pelo lembrete da atividade atual",
+        "status": "a iniciar",
+        "responsavel": "GEOP",
+        "prazo": "",
+        "observacoes": "Especialização",
+        "entregas": []
+      },
+      {
+        "id": "w9cy0jxw",
+        "nome": "Avaliar o WhatsApp para quem não entregou: orçamento, se pode ser usado, data de envio, filtro por frequência e custo",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Especialização",
+        "entregas": []
+      },
+      {
+        "id": "q2jwwje2",
+        "nome": "Confirmar com a Meta o tempo de envio e o orçamento do WhatsApp",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Especialização",
+        "entregas": []
+      },
+      {
+        "id": "054pdejg",
+        "nome": "Postergar para 13/10 todas as atividades com prazo anterior a 12/10 (DE segue em 15/10)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Especialização",
+        "entregas": []
+      },
+      {
+        "id": "y7kh2soi",
+        "nome": "Avaliar comunicação com vídeo curto do formador (cerca de 50 s), o impacto no orçamento e se a ação de extensão prevê WhatsApp",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Extensão",
+        "entregas": []
+      },
+      {
+        "id": "rtfpo6c9",
+        "nome": "Ajustar no site o prazo de inscrição da Bahia (ofertas unificadas, inscrições até 12/10)",
+        "status": "a iniciar",
+        "responsavel": "Amanda",
+        "prazo": "2026-10-12",
+        "observacoes": "Extensão",
+        "entregas": []
+      },
+      {
+        "id": "dhr9xety",
+        "nome": "Tratar a base da Bahia na terça-feira e enviar",
+        "status": "a iniciar",
+        "responsavel": "Lucas",
+        "prazo": "",
+        "observacoes": "Extensão",
+        "entregas": []
+      },
+      {
+        "id": "ugo4hhmu",
+        "nome": "Acompanhar o retorno do Pará sobre possível ajuste de datas da segunda oferta",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Extensão",
+        "entregas": []
+      },
+      {
+        "id": "qbtcp1rv",
+        "nome": "Pesquisa de satisfação (ponto em aberto)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Pontos em aberto",
+        "entregas": []
+      }
+    ]
+  },
+  {
+    "id": "squad-2026-10-01",
+    "nome": "Squad 01/10",
+    "objetivo": "",
+    "acoes": [
+      {
+        "id": "uen70oxz",
+        "nome": "Segregar a análise de \"Acadêmico Pós\" por tipo de dúvida (AVA, aulas, disciplinas, avaliação etc.)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Atendimento",
+        "entregas": []
+      },
+      {
+        "id": "837dqehc",
+        "nome": "Trazer ao squad os casos de cursistas que acionam o atendimento querendo voltar, para definir estratégias de resgate",
+        "status": "a iniciar",
+        "responsavel": "Atendimento",
+        "prazo": "",
+        "observacoes": "Atendimento",
+        "entregas": []
+      },
+      {
+        "id": "2vrtoh0p",
+        "nome": "Trazer os dados de atendimento proporcionais a cada território (acionamentos ÷ nº de cursistas)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Atendimento",
+        "entregas": []
+      },
+      {
+        "id": "f08ixo1n",
+        "nome": "Identificar o tema que mais leva à evasão, cruzando acionamentos com resolutividade, rechamada e desistentes; compartilhar o overview mensal de agosto",
+        "status": "a iniciar",
+        "responsavel": "Amanda",
+        "prazo": "",
+        "observacoes": "Atendimento",
+        "entregas": []
+      },
+      {
+        "id": "pj6o5oxk",
+        "nome": "Qualificar os acionamentos de TCC e priorizar 2 a 3 mensagens-chave na comunicação do TCC",
+        "status": "a iniciar",
+        "responsavel": "Gustavo / Bianca",
+        "prazo": "",
+        "observacoes": "Atendimento",
+        "entregas": []
+      },
+      {
+        "id": "c6c48iod",
+        "nome": "Levar ao COMEX de 05/10 os dados de atendimento mais qualificados",
+        "status": "a iniciar",
+        "responsavel": "Amanda",
+        "prazo": "2026-10-05",
+        "observacoes": "Atendimento",
+        "entregas": []
+      },
+      {
+        "id": "0w77g3gd",
+        "nome": "Agendar reunião extraordinária para estudar a antecipação dos módulos 1 e 2, a não oferta da recuperação da UC4 e o levantamento de riscos; depois o squad fecha a proposta ao COMEX",
+        "status": "a iniciar",
+        "responsavel": "Lucas",
+        "prazo": "",
+        "observacoes": "Rec 3 como recuperação do curso todo",
+        "entregas": []
+      },
+      {
+        "id": "l7l43znz",
+        "nome": "Comunicar os cursistas do TCC convertidos para aprovados, olhando o todo e entendendo os dados das pessoas convertidas",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Recorreção de TCC",
+        "entregas": []
+      },
+      {
+        "id": "wjypzjt2",
+        "nome": "Alinhar com Lucas a organização da lista dos 406 aprovados e definir se ela entra no plano de resgate",
+        "status": "a iniciar",
+        "responsavel": "Lucas",
+        "prazo": "",
+        "observacoes": "Recorreção de TCC",
+        "entregas": []
+      },
+      {
+        "id": "7j3fbjo2",
+        "nome": "Comunicar ao cursista que não ter entregado uma das fases do TCC não inviabiliza a última entrega",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Comunicação do TCC",
+        "entregas": []
+      },
+      {
+        "id": "qmftv60j",
+        "nome": "Orientar os formadores sobre o lançamento das notas do TCC por campo e avaliar o impacto na operação",
+        "status": "a iniciar",
+        "responsavel": "Nathalia / Amanda",
+        "prazo": "",
+        "observacoes": "Comunicação do TCC",
+        "entregas": []
+      },
+      {
+        "id": "jnlyc36x",
+        "nome": "Garantir o fim da correção do TCC em 11/12, para dados fechados até 18/12 (sem nenhum dia de atraso)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-12-11",
+        "observacoes": "Comunicação do TCC",
+        "entregas": []
+      }
+    ]
+  },
+  {
+    "id": "squad-2026-09-23",
+    "nome": "Squad 23/09",
+    "objetivo": "",
+    "acoes": [
+      {
+        "id": "osj1jg7i",
+        "nome": "Aplicar no calendário da pós a Proposta 2: recuperações depois do fechamento da frequência e abono geral na UC4",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Calendário das ofertas de pós-graduação",
+        "entregas": []
+      },
+      {
+        "id": "b6xs2rxr",
+        "nome": "Revisar as telas de atualização que não apresentam conteúdo novo e propor os ajustes necessários",
+        "status": "a iniciar",
+        "responsavel": "GDE / GOPE",
+        "prazo": "",
+        "observacoes": "Canais de atendimento",
+        "entregas": []
+      },
+      {
+        "id": "4x7ieivh",
+        "nome": "Reabrir a coleta da pesquisa de satisfação dos cursos para diretores escolares, gestores municipais e CP Bahia",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-09-30",
+        "observacoes": "Pesquisa de satisfação",
+        "entregas": []
+      },
+      {
+        "id": "ewrd0392",
+        "nome": "Concluir a revalidação dos cerca de 700 TCCs não aprovados, com parecer e justificativas das notas revisadas",
+        "status": "a iniciar",
+        "responsavel": "GFOR",
+        "prazo": "2026-09-29",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "hlm2lzxz",
+        "nome": "Analisar em conjunto a possibilidade de alterar o fluxo de atualização das notas na plataforma; envio das notas para transposição previsto para 29/09",
+        "status": "a iniciar",
+        "responsavel": "GEOP / GFOR",
+        "prazo": "2026-09-29",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "ngr7jj76",
+        "nome": "Estender em uma semana a janela da segunda entrega do TCC (de 23/11 até 30/11)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "TCC",
+        "entregas": []
+      },
+      {
+        "id": "8itn2mwb",
+        "nome": "Produzir os materiais da campanha de Setembro Amarelo (fundo de tela, capa de PPT e materiais para os painéis)",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Setembro amarelo",
+        "entregas": []
+      }
+    ]
+  },
+  {
+    "id": "squad-2026-09-17",
+    "nome": "Squad 17/09",
+    "objetivo": "",
+    "acoes": [
+      {
+        "id": "51f2j2iy",
+        "nome": "Apresentar os dados atualizados da pesquisa de satisfação na próxima agenda de Squad",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Pesquisa de satisfação",
+        "entregas": []
+      },
+      {
+        "id": "hdl1pow4",
+        "nome": "Comunicar por e-mail os cursistas não respondentes da pesquisa (geral e M2), a partir da base enviada pela GDA",
+        "status": "a iniciar",
+        "responsavel": "GIMP",
+        "prazo": "",
+        "observacoes": "Pesquisa de satisfação",
+        "entregas": []
+      },
+      {
+        "id": "z17c2a7j",
+        "nome": "Fazer o alinhamento completo do fluxo do calendário detalhado na semanal de quinta-feira (GDA assume a gestão; piloto na Monday com o escritório de projetos)",
+        "status": "a iniciar",
+        "responsavel": "GDA / Escritório de projetos",
+        "prazo": "",
+        "observacoes": "Calendário unificado",
+        "entregas": []
+      },
+      {
+        "id": "4wicxnqv",
+        "nome": "Comunicar diretamente os cursistas próximos do prazo de entrega, como lembrete",
+        "status": "a iniciar",
+        "responsavel": "GIMP",
+        "prazo": "",
+        "observacoes": "Volume baixo de entregas",
+        "entregas": []
+      },
+      {
+        "id": "szibxzlj",
+        "nome": "Fazer nova projeção com base nas entregas realizadas",
+        "status": "a iniciar",
+        "responsavel": "GDA",
+        "prazo": "2026-09-24",
+        "observacoes": "Volume baixo de entregas",
+        "entregas": []
+      },
+      {
+        "id": "n62vnknk",
+        "nome": "Analisar se a maioria dos pendentes de Gestores Municipais são secretários, para avaliar ação complementar pós-eleição (incluindo o TCC)",
+        "status": "a iniciar",
+        "responsavel": "GDA",
+        "prazo": "",
+        "observacoes": "Volume baixo de entregas",
+        "entregas": []
+      },
+      {
+        "id": "4mj3vp8k",
+        "nome": "Avaliar reforço adicional na régua de comunicação",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Volume baixo de entregas",
+        "entregas": []
+      },
+      {
+        "id": "w4fgglag",
+        "nome": "Avaliar uma terceira oportunidade de recuperação extraordinária do Módulo 1",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Volume baixo de entregas",
+        "entregas": []
+      },
+      {
+        "id": "arsir47h",
+        "nome": "Tratar os 13 questionamentos do jurídico sobre o regulamento do programa de reconhecimento em agenda específica",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "2026-09-17",
+        "observacoes": "Programa de reconhecimento",
+        "entregas": []
+      },
+      {
+        "id": "zvleffw6",
+        "nome": "Validar o retorno do jurídico e avançar na recuperação extraordinária",
+        "status": "a iniciar",
+        "responsavel": "",
+        "prazo": "",
+        "observacoes": "Programa de reconhecimento",
+        "entregas": []
+      }
+    ]
+  }
+]

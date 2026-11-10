@@ -1,6 +1,6 @@
 // Reuniões do COMEX: data, encaminhamentos e, em cada encaminhamento, as perguntas que ficam
 // para cada área responder. Não vem da Monday: é registrado no próprio app e salvo em
-// dados/comex.json (fora do git). Aba criada em 27/10/2026.
+// dados/comex.json. Aba criada em 27/10/2026.
 
 export interface PontoComex {
   id: string
