@@ -8,7 +8,7 @@ import BarraMonday from '@/components/restrito/BarraMonday'
 import { useFontesRestritas } from '@/components/restrito/useFontesRestritas'
 import { LINKS_RESTRITOS } from '@/components/navegacao'
 import { dataCurta } from '@/lib/semana'
-import { montarAndamento, percentual, type Andamento, type MesAndamento } from '@/lib/relatorio'
+import { montarAndamento, percentual, type AcaoAtrasada, type Andamento, type MesAndamento } from '@/lib/relatorio'
 
 // Resumo (pedido de 09/11/2026): resumo executivo (a lista operacional fica no Relatório), com o andamento do ano de todas as abas da área restrita. Uma bateria com o
 // percentual realizado contra o previsto até hoje e colunas por frente. Regras em montarAndamento.
@@ -43,6 +43,7 @@ export default function Resumo() {
       ) : (
         <>
           <Bateria a={andamento} hoje={hoje} />
+          <StatusAtrasos a={andamento} />
           <ColunasPorFrente a={andamento} />
           <MesAMes a={andamento} hoje={hoje} />
           <p className="text-xs text-slate-500">
@@ -302,6 +303,137 @@ function MesAMes({ a, hoje }: { a: Andamento; hoje: string }) {
       <p className="mt-2 text-xs text-slate-500">
         Colunas mais claras: meses que ainda não chegaram (o realizado são ações concluídas antes do prazo). A Monday não guarda a data em
         que cada ação foi concluída, por isso o realizado aparece no mês do prazo.
+      </p>
+    </section>
+  )
+}
+
+// ---------- Status dos atrasos (pedido de 10/11/2026): leitura executiva para a diretoria ----------
+// Só ações com prazo já vencido (ontem ou antes) e ainda abertas. Agrupa por ação-mãe (ou grupo do quadro)
+// e mostra as ações mais atrasadas de cada assunto. Fatos, sem recomendação.
+
+const FAIXAS = [
+  { chave: 'ate30', rotulo: 'Até 30 dias', de: 1, ate: 30, cor: '#fca5a5' },
+  { chave: 'ate90', rotulo: '31 a 90 dias', de: 31, ate: 90, cor: '#ef4444' },
+  { chave: 'mais90', rotulo: 'Mais de 90 dias', de: 91, ate: Infinity, cor: '#991b1b' },
+] as const
+
+const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`
+// "fulano@institutoanimaeducacao.org.br" vira "fulano"; nomes repetidos aparecem uma vez.
+const pessoas = (lista: (string | null)[]) =>
+  [...new Set(lista.flatMap(r => (r ? r.split(',') : [])).map(r => r.trim().replace(/@.*$/, '')).filter(Boolean))]
+
+interface Assunto {
+  nome: string
+  acoes: AcaoAtrasada[]
+  maior: number
+  responsaveis: string[]
+}
+
+function assuntosDe(atrasos: AcaoAtrasada[]): Assunto[] {
+  const mapa = new Map<string, AcaoAtrasada[]>()
+  for (const t of atrasos) {
+    const chave = t.mae ?? t.grupo
+    mapa.set(chave, [...(mapa.get(chave) ?? []), t])
+  }
+  return [...mapa.entries()]
+    .map(([nome, acoes]) => ({ nome, acoes, maior: Math.max(...acoes.map(x => x.dias)), responsaveis: pessoas(acoes.map(x => x.responsavel)) }))
+    .sort((a, b) => b.acoes.length - a.acoes.length || b.maior - a.maior)
+}
+
+const corDoAtraso = (dias: number) => FAIXAS.find(f => dias >= f.de && dias <= f.ate)?.cor ?? FAIXAS[0].cor
+
+function StatusAtrasos({ a }: { a: Andamento }) {
+  const frentes = a.porAba
+    .filter(x => x.doAno > 0)
+    .map(x => {
+      const vencidas = x.atrasos.filter(t => t.dias > 0)
+      return { ...x, rotulo: rotuloCurto(x.href, x.aba), vencidas, maior: vencidas.length ? Math.max(...vencidas.map(t => t.dias)) : 0 }
+    })
+  const comAtraso = frentes.filter(x => x.vencidas.length).sort((x, y) => y.vencidas.length - x.vencidas.length)
+  const emDia = frentes.filter(x => !x.vencidas.length).map(x => x.rotulo)
+  const total = comAtraso.reduce((n, x) => n + x.vencidas.length, 0)
+  if (!total) return null
+  const duas = comAtraso.slice(0, 2)
+  const nasDuas = duas.reduce((n, x) => n + x.vencidas.length, 0)
+  const pior = comAtraso.flatMap(x => x.vencidas.map(t => ({ ...t, frente: x.rotulo }))).sort((p, q) => q.dias - p.dias)[0]
+  const grafico = comAtraso.map(x => ({
+    frente: x.rotulo,
+    ...Object.fromEntries(FAIXAS.map(f => [f.chave, x.vencidas.filter(t => t.dias >= f.de && t.dias <= f.ate).length])),
+  }))
+
+  return (
+    <section className="rounded-xl bg-white border border-slate-200 shadow-sm p-4">
+      <header>
+        <h2 className="text-base font-semibold text-slate-800">Status dos atrasos</h2>
+        <p className="text-xs text-slate-500">Ações com prazo vencido e ainda abertas na Monday, por frente.</p>
+      </header>
+
+      <ul className="mt-3 space-y-1.5 text-sm text-slate-700 list-disc pl-5">
+        <li>
+          <b>{plural(total, 'ação está', 'ações estão')} com prazo vencido</b> em {comAtraso.length} de {frentes.length} frentes.
+        </li>
+        {comAtraso.length > 1 && (
+          <li>
+            {duas.map(x => x.rotulo).join(' e ')} concentram <b>{percentual(nasDuas, total)}%</b> dos atrasos ({nasDuas} de {total}).
+          </li>
+        )}
+        <li>
+          Maior atraso: “{pior.nome}” ({pior.frente}), vencida há <b>{pior.dias} dias</b>.
+        </li>
+        {emDia.length > 0 && <li>Sem atrasos: {emDia.join(', ')}.</li>}
+      </ul>
+
+      <div className="mt-4 overflow-x-auto">
+      <div className="min-w-[560px]" style={{ height: 40 + comAtraso.length * 38 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={grafico} layout="vertical" margin={{ top: 0, right: 24, left: 0, bottom: 0 }} barCategoryGap="28%">
+            <CartesianGrid horizontal={false} stroke="#e2e8f0" />
+            <XAxis type="number" allowDecimals={false} tick={EIXO} tickLine={false} axisLine={false} />
+            <YAxis type="category" dataKey="frente" width={200} tick={EIXO} tickLine={false} axisLine={false} />
+            <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ fontSize: 12, borderRadius: 8 }} />
+            <Legend itemSorter={null} verticalAlign="top" align="right" height={28} iconType="square" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
+            {FAIXAS.map(f => (
+              <Bar key={f.chave} dataKey={f.chave} name={f.rotulo} stackId="atraso" fill={f.cor} stroke="#fff" strokeWidth={1} animationDuration={450} animationEasing="ease-out" />
+            ))}
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      </div>
+
+      <div className="mt-4 grid gap-3 lg:grid-cols-2">
+        {comAtraso.map(x => (
+          <article key={x.href} className="rounded-lg border border-slate-200 border-l-4 p-3" style={{ borderLeftColor: corDoAtraso(x.maior) }}>
+            <header className="flex items-baseline justify-between gap-2">
+              <h3 className="text-sm font-semibold text-slate-800">{x.rotulo}</h3>
+              <p className="text-xs text-slate-500 whitespace-nowrap">
+                <b className="text-slate-800">{plural(x.vencidas.length, 'ação', 'ações')}</b> · até {x.maior} dias
+              </p>
+            </header>
+            <ul className="mt-2 space-y-2">
+              {assuntosDe(x.vencidas).map(s => {
+                const nomes = [...new Set(s.acoes.map(t => t.nome))]
+                return (
+                  <li key={s.nome} className="text-xs text-slate-600">
+                    <p className="text-slate-800">
+                      <span className="inline-block h-2 w-2 rounded-full mr-1.5 align-middle" style={{ backgroundColor: corDoAtraso(s.maior) }} />
+                      <b>{s.nome}</b> · {plural(s.acoes.length, 'ação', 'ações')}, até {s.maior} dias
+                    </p>
+                    <p className="pl-3.5">
+                      {nomes.slice(0, 3).join('; ')}
+                      {nomes.length > 3 && <span className="text-slate-400"> e mais {nomes.length - 3}</span>}
+                    </p>
+                    {s.responsaveis.length > 0 && <p className="pl-3.5 text-slate-400">Resp.: {s.responsaveis.join(', ')}</p>}
+                  </li>
+                )
+              })}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p className="mt-3 text-xs text-slate-500">
+        Ações com prazo até ontem e sem conclusão registrada na Monday, agrupadas pela ação-mãe (ou pelo grupo do quadro). A lista linha a linha
+        fica na aba Relatório.
       </p>
     </section>
   )
