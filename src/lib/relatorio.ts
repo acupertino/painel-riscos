@@ -342,6 +342,8 @@ export function relatorioEmPlanilhas(linhas: LinhaRelatorio[], porAba: Relatorio
 // - previstas até hoje: as do ano cujo prazo já chegou (deveriam estar concluídas);
 // - realizadas: as do ano já concluídas (no prazo ou não, e também as adiantadas).
 // Linhas sem prazo não entram na conta e são mostradas à parte.
+// Por mês (pedido de 09/11/2026): projetadas = linhas com prazo naquele mês; realizadas = dessas, as já
+// concluídas. A Monday não guarda a data de conclusão, então o realizado é contado no mês do prazo.
 
 export interface AndamentoAba {
   aba: string
@@ -351,9 +353,16 @@ export interface AndamentoAba {
   realizadas: number
   atrasadas: number // previstas até hoje e ainda não concluídas
   semPrazo: number
+  porMes: MesAndamento[] // 12 meses, janeiro a dezembro
+}
+
+export interface MesAndamento {
+  projetadas: number
+  realizadas: number
 }
 
 export interface Andamento extends Omit<AndamentoAba, 'aba' | 'href'> {
+  porMes: MesAndamento[]
   ano: string
   porAba: AndamentoAba[]
 }
@@ -369,7 +378,7 @@ export function montarAndamento(fontes: FonteRelatorio[], hoje: string): Andamen
   const abas = new Map<string, AndamentoAba>()
   for (const f of fontes) {
     const nome = nomeDaAba(f.aba)
-    const r = abas.get(nome) ?? { aba: nome, href: f.href, doAno: 0, previstas: 0, realizadas: 0, atrasadas: 0, semPrazo: 0 }
+    const r = abas.get(nome) ?? { aba: nome, href: f.href, doAno: 0, previstas: 0, realizadas: 0, atrasadas: 0, semPrazo: 0, porMes: Array.from({ length: 12 }, () => ({ projetadas: 0, realizadas: 0 })) }
     abas.set(nome, r)
     const visitar = (it: ItemBase) => {
       if (ficaForaDoRelatorio(it.nome)) return
@@ -381,6 +390,9 @@ export function montarAndamento(fontes: FonteRelatorio[], hoje: string): Andamen
           if (it.fim <= hoje) r.previstas++
           if (it.fim <= hoje && !it.fechado) r.atrasadas++
           if (it.fechado) r.realizadas++
+          const mes = r.porMes[Number(it.fim.slice(5, 7)) - 1]
+          mes.projetadas++
+          if (it.fechado) mes.realizadas++
         }
       }
       for (const s of it.subitens) visitar(s)
@@ -389,7 +401,11 @@ export function montarAndamento(fontes: FonteRelatorio[], hoje: string): Andamen
   }
   const porAba = [...abas.values()]
   const soma = (k: 'doAno' | 'previstas' | 'realizadas' | 'atrasadas' | 'semPrazo') => porAba.reduce((n, a) => n + a[k], 0)
-  return { ano, doAno: soma('doAno'), previstas: soma('previstas'), realizadas: soma('realizadas'), atrasadas: soma('atrasadas'), semPrazo: soma('semPrazo'), porAba }
+  const porMes = Array.from({ length: 12 }, (_, i) => ({
+    projetadas: porAba.reduce((n, a) => n + a.porMes[i].projetadas, 0),
+    realizadas: porAba.reduce((n, a) => n + a.porMes[i].realizadas, 0),
+  }))
+  return { ano, porMes, doAno: soma('doAno'), previstas: soma('previstas'), realizadas: soma('realizadas'), atrasadas: soma('atrasadas'), semPrazo: soma('semPrazo'), porAba }
 }
 
 export const percentual = (parte: number, total: number) => (total ? Math.round((parte / total) * 100) : 0)
