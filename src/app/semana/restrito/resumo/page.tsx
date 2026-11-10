@@ -1,14 +1,14 @@
 'use client'
 
-import { useMemo } from 'react'
-import { Bar, BarChart, CartesianGrid, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { useMemo, useState } from 'react'
+import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { useSemana } from '@/components/semana/ContextoSemana'
 import { Vazio } from '@/components/semana/Etiquetas'
 import BarraMonday from '@/components/restrito/BarraMonday'
 import { useFontesRestritas } from '@/components/restrito/useFontesRestritas'
 import { LINKS_RESTRITOS } from '@/components/navegacao'
 import { dataCurta } from '@/lib/semana'
-import { montarAndamento, percentual, type Andamento } from '@/lib/relatorio'
+import { montarAndamento, percentual, type Andamento, type MesAndamento } from '@/lib/relatorio'
 
 // Resumo (pedido de 09/11/2026): resumo executivo (a lista operacional fica no Relatório), com o andamento do ano de todas as abas da área restrita. Uma bateria com o
 // percentual realizado contra o previsto até hoje e colunas por frente. Regras em montarAndamento.
@@ -44,6 +44,7 @@ export default function Resumo() {
         <>
           <Bateria a={andamento} hoje={hoje} />
           <ColunasPorFrente a={andamento} />
+          <MesAMes a={andamento} hoje={hoje} />
           <p className="text-xs text-slate-500">
             Conta as ações com prazo previsto em {andamento.ano}, de todas as abas da área restrita. Ficam de fora as linhas-mãe da Monday (quando
             há subelementos, contam os subelementos), as canceladas, as com status “Previsto para 2027”, as esteiras de produção e os
@@ -212,6 +213,96 @@ function ColunasPorFrente({ a }: { a: Andamento }) {
         </div>
       </div>
       {semDados.length > 0 && <p className="mt-2 text-xs text-slate-500">Sem ações com prazo em {a.ano}: {semDados.join(', ')}.</p>}
+    </section>
+  )
+}
+
+const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+
+type LinhaMes = MesAndamento & { mes: string; futuro: boolean }
+
+function DicaMes({ active, payload }: { active?: boolean; payload?: { payload: LinhaMes }[] }) {
+  if (!active || !payload?.length) return null
+  const d = payload[0].payload
+  return (
+    <div className="rounded-lg bg-white border border-slate-200 shadow-md px-3 py-2 text-xs text-slate-700">
+      <p className="font-semibold text-slate-800">{d.mes}</p>
+      <p>
+        <span className="inline-block h-2 w-2 rounded-sm mr-1" style={{ backgroundColor: COR_PREVISTO }} />
+        Projetado: {d.projetadas} {d.projetadas === 1 ? 'ação' : 'ações'} com prazo no mês
+      </p>
+      <p>
+        <span className="inline-block h-2 w-2 rounded-sm mr-1" style={{ backgroundColor: COR_REALIZADO }} />
+        Realizado: {d.realizadas} ({percentual(d.realizadas, d.projetadas)}%)
+      </p>
+      {!d.futuro && d.projetadas > d.realizadas && (
+        <p className="mt-1 text-slate-500">{d.projetadas - d.realizadas} ainda abertas</p>
+      )}
+      {d.futuro && <p className="mt-1 text-slate-500">Mês ainda por vir: realizado = concluídas antes do prazo</p>}
+    </div>
+  )
+}
+
+// Mês a mês (pedido de 09/11/2026): projetado x realizado, no total ou por frente.
+function MesAMes({ a, hoje }: { a: Andamento; hoje: string }) {
+  const frentes = a.porAba.filter(x => x.doAno > 0)
+  const [escolhida, setEscolhida] = useState<string | null>(null)
+  const atual = frentes.find(f => f.href === escolhida)
+  const meses = atual ? atual.porMes : a.porMes
+  const mesHoje = Number(hoje.slice(5, 7)) - 1
+  const dados: LinhaMes[] = meses.map((m, i) => ({ ...m, mes: `${MESES[i]}/${a.ano.slice(2)}`, futuro: i > mesHoje }))
+  const ate = meses.slice(0, mesHoje + 1)
+  const projAte = ate.reduce((n, m) => n + m.projetadas, 0)
+  const realAte = ate.reduce((n, m) => n + m.realizadas, 0)
+  const opcoes = [{ href: null as string | null, rotulo: 'Todas as frentes' }, ...frentes.map(f => ({ href: f.href as string | null, rotulo: rotuloCurto(f.href, f.aba) }))]
+  return (
+    <section className="rounded-xl bg-white border border-slate-200 shadow-sm p-4">
+      <header>
+        <h2 className="text-base font-semibold text-slate-800">Mês a mês</h2>
+        <p className="text-xs text-slate-500">
+          Ações com prazo em cada mês (projetado) e quantas delas já foram concluídas (realizado). Até {MESES[mesHoje].toLowerCase()}:{' '}
+          <b className="text-slate-700">{realAte} de {projAte}</b> ({percentual(realAte, projAte)}%).
+        </p>
+      </header>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {opcoes.map(o => (
+          <button
+            key={o.href ?? 'todas'}
+            onClick={() => setEscolhida(o.href)}
+            className={
+              'rounded-full px-3 py-1 text-xs ring-1 transition-colors ' +
+              (o.href === escolhida ? 'bg-marca-marinho text-white ring-marca-marinho' : 'bg-white text-slate-600 ring-slate-200 hover:bg-slate-50')
+            }
+          >
+            {o.rotulo}
+          </button>
+        ))}
+      </div>
+      <div className="mt-3 overflow-x-auto">
+        <div className="h-80 min-w-[680px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={dados} margin={{ top: 20, right: 8, left: -12, bottom: 0 }} barGap={2} barCategoryGap="20%">
+              <CartesianGrid vertical={false} stroke="#e2e8f0" />
+              <XAxis dataKey="mes" interval={0} tick={EIXO} tickLine={false} axisLine={{ stroke: '#cbd5e1' }} />
+              <YAxis allowDecimals={false} tick={EIXO} tickLine={false} axisLine={false} />
+              <Tooltip content={<DicaMes />} cursor={{ fill: '#f1f5f9' }} />
+              <Legend verticalAlign="top" align="right" height={28} iconType="square" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
+              <Bar dataKey="projetadas" name="Projetado" fill={COR_PREVISTO} radius={[4, 4, 0, 0]} animationDuration={450} animationEasing="ease-out">
+                {dados.map(d => <Cell key={d.mes} fillOpacity={d.futuro ? 0.45 : 1} />)}
+                <LabelList dataKey="projetadas" position="top" style={{ fontSize: 10, fill: '#64748b' }} />
+              </Bar>
+              <Bar dataKey="realizadas" name="Realizado" fill={COR_REALIZADO} radius={[4, 4, 0, 0]} animationDuration={450} animationEasing="ease-out">
+                {dados.map(d => <Cell key={d.mes} fillOpacity={d.futuro ? 0.45 : 1} />)}
+                <LabelList dataKey="realizadas" position="top" style={{ fontSize: 10, fill: '#1e293b', fontWeight: 600 }} />
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+      <p className="mt-2 text-xs text-slate-500">
+        Colunas mais claras: meses que ainda não chegaram (o realizado são ações concluídas antes do prazo). A Monday não guarda a data em
+        que cada ação foi concluída, por isso o realizado aparece no mês do prazo.
+      </p>
     </section>
   )
 }
