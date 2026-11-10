@@ -65,3 +65,41 @@ body {
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 9999px; }
+
+/* Impressão / "Salvar como PDF" (pedido de 10/11/2026, botão Baixar PDF do Resumo): A4 deitada, sem menus
+   nem botões, cores preservadas e cartões sem quebra no meio. */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  aside,
+  nav,
+  .nao-imprimir {
+    display: none !important;
+  }
+  header.sticky {
+    position: static;
+    box-shadow: none;
+  }
+  .md\:ml-60 {
+    margin-left: 0 !important;
+  }
+  .min-h-screen {
+    min-height: 0 !important;
+    background: #fff !important;
+  }
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+  article,
+  .recharts-responsive-container {
+    break-inside: avoid;
+  }
+}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { useSemana } from '@/components/semana/ContextoSemana'
 import { Vazio } from '@/components/semana/Etiquetas'
@@ -8,7 +8,8 @@ import BarraMonday from '@/components/restrito/BarraMonday'
 import { useFontesRestritas } from '@/components/restrito/useFontesRestritas'
 import { LINKS_RESTRITOS } from '@/components/navegacao'
 import { dataCurta } from '@/lib/semana'
-import { montarAndamento, percentual, type AcaoAtrasada, type Andamento, type MesAndamento } from '@/lib/relatorio'
+import { baixar, gerarXlsx } from '@/lib/xlsx'
+import { curvaAcumulada, montarAndamento, percentual, resumoEmPlanilhas, type AcaoAtrasada, type Andamento, type MesAndamento } from '@/lib/relatorio'
 
 // Resumo (pedido de 09/11/2026): resumo executivo (a lista operacional fica no Relatório), com o andamento do ano de todas as abas da área restrita. Uma bateria com o
 // percentual realizado contra o previsto até hoje e colunas por frente. Regras em montarAndamento.
@@ -18,6 +19,8 @@ const COR_PREVISTO = '#86b6ef'
 const COR_REALIZADO = '#1c5cab'
 const COR_MARCA_PREVISTO = '#0d366b'
 const EIXO = { fontSize: 12, fill: '#64748b' }
+// Enquanto prepara o PDF os gráficos ficam sem animação, para não sair um quadro no meio do movimento.
+const Imprimindo = createContext(false)
 
 const rotuloCurto = (href: string, aba: string) => {
   const l = LINKS_RESTRITOS.find(x => x.href === href)
@@ -28,9 +31,32 @@ export default function Resumo() {
   const { hoje } = useSemana()
   const { fontes, erros, carregando, geradoEm, buscar } = useFontesRestritas()
   const andamento = useMemo(() => (fontes ? montarAndamento(fontes, hoje) : null), [fontes, hoje])
+  const [imprimindo, setImprimindo] = useState(false)
+  const dataArquivo = hoje.split('-').reverse().join('-')
+
+  // PDF (pedido de 10/11/2026): fixa a largura da folha A4 deitada para os gráficos se redesenharem nesse
+  // tamanho, espera a animação e abre a janela de impressão ("Salvar como PDF"). O título vira o nome do arquivo.
+  useEffect(() => {
+    if (!imprimindo) return
+    const titulo = document.title
+    const t = setTimeout(() => {
+      document.title = `Resumo executivo - ${dataArquivo}`
+      window.print()
+      document.title = titulo
+      setImprimindo(false)
+    }, 1500)
+    return () => clearTimeout(t)
+  }, [imprimindo, dataArquivo])
+
+  const baixarExcel = () => {
+    if (andamento) baixar(gerarXlsx(resumoEmPlanilhas(andamento, hoje, x => rotuloCurto(x.href, x.aba))), `Resumo executivo - ${dataArquivo}.xlsx`)
+  }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 print:space-y-3" style={imprimindo ? { width: 940 } : undefined}>
+      <p className="hidden print:block text-sm text-slate-600">
+        <b className="text-marca-marinho">Resumo executivo</b> · gerado em {dataCurta(hoje)}/{hoje.slice(0, 4)}
+      </p>
       <BarraMonday
         quadros="todas as abas da área restrita"
         geradoEm={geradoEm}
@@ -42,10 +68,30 @@ export default function Resumo() {
         <Vazio texto="Lendo todas as abas…" />
       ) : (
         <>
-          <Bateria a={andamento} hoje={hoje} />
-          <StatusAtrasos a={andamento} />
-          <ColunasPorFrente a={andamento} />
-          <MesAMes a={andamento} hoje={hoje} />
+          <div className="flex flex-wrap items-center justify-end gap-2 print:hidden">
+            <span className="mr-auto text-xs text-slate-500">Baixe o resumo para enviar à diretoria:</span>
+            <button
+              onClick={() => setImprimindo(true)}
+              disabled={imprimindo}
+              className="inline-flex items-center gap-1.5 rounded-full bg-marca-marinho px-4 py-1.5 text-sm font-semibold text-white hover:bg-marca-azul-escuro disabled:opacity-60"
+            >
+              <IconeDownload />
+              {imprimindo ? 'Preparando…' : 'Baixar PDF'}
+            </button>
+            <button
+              onClick={baixarExcel}
+              className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-marca-marinho ring-1 ring-marca-marinho hover:bg-marca-claro"
+            >
+              <IconeDownload />
+              Baixar Excel
+            </button>
+          </div>
+          <Imprimindo.Provider value={imprimindo}>
+            <Bateria a={andamento} hoje={hoje} />
+            <StatusAtrasos a={andamento} />
+            <ColunasPorFrente a={andamento} />
+            <MesAMes a={andamento} hoje={hoje} />
+          </Imprimindo.Provider>
           <p className="text-xs text-slate-500">
             Conta as ações com prazo previsto em {andamento.ano}, de todas as abas da área restrita. Ficam de fora as linhas-mãe da Monday (quando
             há subelementos, contam os subelementos), as canceladas, as com status “Previsto para 2027”, as esteiras de produção e os
@@ -175,6 +221,7 @@ function DicaFrente({ active, payload }: { active?: boolean; payload?: { payload
 }
 
 function ColunasPorFrente({ a }: { a: Andamento }) {
+  const semAnimacao = useContext(Imprimindo)
   const dados: LinhaGrafico[] = a.porAba
     .filter(x => x.doAno > 0)
     .map(x => ({
@@ -203,10 +250,10 @@ function ColunasPorFrente({ a }: { a: Andamento }) {
             <YAxis domain={[0, 100]} ticks={[0, 25, 50, 75, 100]} tickFormatter={v => `${v}%`} tick={EIXO} tickLine={false} axisLine={false} />
             <Tooltip content={<DicaFrente />} cursor={{ fill: '#f1f5f9' }} />
             <Legend verticalAlign="top" align="right" height={28} iconType="square" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
-            <Bar dataKey="previsto" name="Previsto até hoje" fill={COR_PREVISTO} radius={[4, 4, 0, 0]} animationDuration={450} animationEasing="ease-out">
+            <Bar dataKey="previsto" name="Previsto até hoje" fill={COR_PREVISTO} radius={[4, 4, 0, 0]} animationDuration={450} isAnimationActive={!semAnimacao} animationEasing="ease-out">
               <LabelList dataKey="previsto" position="top" formatter={(v: unknown) => `${v}%`} style={{ fontSize: 11, fill: '#475569' }} />
             </Bar>
-            <Bar dataKey="realizado" name="Realizado" fill={COR_REALIZADO} radius={[4, 4, 0, 0]} animationDuration={450} animationEasing="ease-out">
+            <Bar dataKey="realizado" name="Realizado" fill={COR_REALIZADO} radius={[4, 4, 0, 0]} animationDuration={450} isAnimationActive={!semAnimacao} animationEasing="ease-out">
               <LabelList dataKey="realizado" position="top" formatter={(v: unknown) => `${v}%`} style={{ fontSize: 11, fill: '#1e293b', fontWeight: 600 }} />
             </Bar>
           </BarChart>
@@ -246,6 +293,7 @@ function DicaMes({ active, payload }: { active?: boolean; payload?: { payload: L
 
 // Mês a mês (pedido de 09/11/2026): projetado x realizado, no total ou por frente.
 function MesAMes({ a, hoje }: { a: Andamento; hoje: string }) {
+  const semAnimacao = useContext(Imprimindo)
   const frentes = a.porAba.filter(x => x.doAno > 0)
   const [escolhida, setEscolhida] = useState<string | null>(null)
   const atual = frentes.find(f => f.href === escolhida)
@@ -290,11 +338,11 @@ function MesAMes({ a, hoje }: { a: Andamento; hoje: string }) {
               <YAxis allowDecimals={false} tick={EIXO} tickLine={false} axisLine={false} />
               <Tooltip content={<DicaMes />} cursor={{ fill: '#f1f5f9' }} />
               <Legend verticalAlign="top" align="right" height={28} iconType="square" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
-              <Bar dataKey="projetadas" name="Projetado" fill={COR_PREVISTO} radius={[4, 4, 0, 0]} animationDuration={450} animationEasing="ease-out">
+              <Bar dataKey="projetadas" name="Projetado" fill={COR_PREVISTO} radius={[4, 4, 0, 0]} animationDuration={450} isAnimationActive={!semAnimacao} animationEasing="ease-out">
                 {dados.map(d => <Cell key={d.mes} fillOpacity={d.futuro ? 0.45 : 1} />)}
                 <LabelList dataKey="projetadas" position="top" style={{ fontSize: 10, fill: '#64748b' }} />
               </Bar>
-              <Bar dataKey="realizadas" name="Realizado" fill={COR_REALIZADO} radius={[4, 4, 0, 0]} animationDuration={450} animationEasing="ease-out">
+              <Bar dataKey="realizadas" name="Realizado" fill={COR_REALIZADO} radius={[4, 4, 0, 0]} animationDuration={450} isAnimationActive={!semAnimacao} animationEasing="ease-out">
                 {dados.map(d => <Cell key={d.mes} fillOpacity={d.futuro ? 0.45 : 1} />)}
                 <LabelList dataKey="realizadas" position="top" style={{ fontSize: 10, fill: '#1e293b', fontWeight: 600 }} />
               </Bar>
@@ -346,6 +394,7 @@ function assuntosDe(atrasos: AcaoAtrasada[]): Assunto[] {
 const corDoAtraso = (dias: number) => FAIXAS.find(f => dias >= f.de && dias <= f.ate)?.cor ?? FAIXAS[0].cor
 
 function StatusAtrasos({ a }: { a: Andamento }) {
+  const semAnimacao = useContext(Imprimindo)
   const frentes = a.porAba
     .filter(x => x.doAno > 0)
     .map(x => {
@@ -396,7 +445,7 @@ function StatusAtrasos({ a }: { a: Andamento }) {
             <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ fontSize: 12, borderRadius: 8 }} />
             <Legend itemSorter={null} verticalAlign="top" align="right" height={28} iconType="square" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
             {FAIXAS.map(f => (
-              <Bar key={f.chave} dataKey={f.chave} name={f.rotulo} stackId="atraso" fill={f.cor} stroke="#fff" strokeWidth={1} animationDuration={450} animationEasing="ease-out" />
+              <Bar key={f.chave} dataKey={f.chave} name={f.rotulo} stackId="atraso" fill={f.cor} stroke="#fff" strokeWidth={1} animationDuration={450} isAnimationActive={!semAnimacao} animationEasing="ease-out" />
             ))}
           </BarChart>
         </ResponsiveContainer>
@@ -469,21 +518,15 @@ function DicaCurva({ active, payload, total }: { active?: boolean; payload?: { p
 }
 
 function CurvaAcumulada({ meses, base, ano, mesHoje }: { meses: MesAndamento[]; base: { doAno: number; previstas: number; realizadas: number }; ano: string; mesHoje: number }) {
+  const semAnimacao = useContext(Imprimindo)
   const total = base.doAno
-  let proj = 0
-  let real = 0
-  const dados: PontoCurva[] = meses.map((m, i) => {
-    proj += m.projetadas
-    real += m.realizadas
-    const realizadas = i < mesHoje ? real : i === mesHoje ? base.realizadas : null
-    return {
-      mes: `${MESES[i]}/${ano.slice(2)}`,
-      projetado: percentual(proj, total),
-      realizado: realizadas === null ? null : percentual(realizadas, total),
-      projetadas: proj,
-      realizadas,
-    }
-  })
+  const dados: PontoCurva[] = curvaAcumulada(meses, base.realizadas, mesHoje).map((c, i) => ({
+    mes: `${MESES[i]}/${ano.slice(2)}`,
+    projetado: percentual(c.projetadas, total),
+    realizado: c.realizadas === null ? null : percentual(c.realizadas, total),
+    projetadas: c.projetadas,
+    realizadas: c.realizadas,
+  }))
   const deveria = percentual(base.previstas, total)
   const andou = percentual(base.realizadas, total)
   return (
@@ -504,10 +547,10 @@ function CurvaAcumulada({ meses, base, ano, mesHoje }: { meses: MesAndamento[]; 
               <ReferenceLine x={dados[mesHoje].mes} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: 'hoje', position: 'insideBottomLeft', fontSize: 11, fill: '#64748b' }} />
               <Tooltip content={<DicaCurva total={total} />} cursor={{ stroke: '#cbd5e1' }} />
               <Legend itemSorter={null} verticalAlign="top" align="right" height={28} iconType="plainline" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
-              <Line type="monotone" dataKey="projetado" name="Deveria ter andado" stroke={COR_PREVISTO} strokeWidth={2} strokeDasharray="6 4" dot={{ r: 4, fill: COR_PREVISTO, stroke: '#fff', strokeWidth: 2 }} animationDuration={450} animationEasing="ease-out">
+              <Line type="monotone" dataKey="projetado" name="Deveria ter andado" stroke={COR_PREVISTO} strokeWidth={2} strokeDasharray="6 4" dot={{ r: 4, fill: COR_PREVISTO, stroke: '#fff', strokeWidth: 2 }} animationDuration={450} isAnimationActive={!semAnimacao} animationEasing="ease-out">
                 <LabelList dataKey="projetado" position="top" formatter={(v: unknown) => `${v}%`} style={{ fontSize: 10, fill: '#64748b' }} />
               </Line>
-              <Line type="monotone" dataKey="realizado" name="Andou" stroke={COR_REALIZADO} strokeWidth={2} connectNulls={false} dot={{ r: 4, fill: COR_REALIZADO, stroke: '#fff', strokeWidth: 2 }} animationDuration={450} animationEasing="ease-out">
+              <Line type="monotone" dataKey="realizado" name="Andou" stroke={COR_REALIZADO} strokeWidth={2} connectNulls={false} dot={{ r: 4, fill: COR_REALIZADO, stroke: '#fff', strokeWidth: 2 }} animationDuration={450} isAnimationActive={!semAnimacao} animationEasing="ease-out">
                 <LabelList dataKey="realizado" position="bottom" formatter={(v: unknown) => (v === null || v === undefined ? '' : `${v}%`)} style={{ fontSize: 10, fill: '#1e293b', fontWeight: 600 }} />
               </Line>
             </LineChart>
@@ -519,5 +562,15 @@ function CurvaAcumulada({ meses, base, ano, mesHoje }: { meses: MesAndamento[]; 
         adiantado.
       </p>
     </>
+  )
+}
+
+function IconeDownload() {
+  return (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3v12" />
+      <path d="m7 10 5 5 5-5" />
+      <path d="M5 21h14" />
+    </svg>
   )
 }

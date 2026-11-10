@@ -83,6 +83,11 @@ export const LINKS_RESTRITOS: LinkNavegacao[] = [
     icone: c => svg(c, <><path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" /></>),
   },
   {
+    href: `${RESTRITO}/fisico-financeiro`,
+    rotulo: 'Físico-financeiro',
+    icone: c => svg(c, <><path d="M3 3v18h18" /><path d="m7 15 4-4 3 3 5-6" /></>),
+  },
+  {
     href: `${RESTRITO}/relatorio`,
     rotulo: 'Relatório',
     icone: c => svg(c, <><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></>),

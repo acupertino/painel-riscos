@@ -28,7 +28,7 @@ export default function BarraMonday({
       <button
         onClick={aoAtualizar}
         disabled={carregando}
-        className="ml-auto inline-flex items-center gap-2 rounded-full bg-marca-marinho px-4 py-1.5 text-sm font-semibold text-white hover:bg-marca-azul-escuro disabled:opacity-60"
+        className="print:hidden ml-auto inline-flex items-center gap-2 rounded-full bg-marca-marinho px-4 py-1.5 text-sm font-semibold text-white hover:bg-marca-azul-escuro disabled:opacity-60"
       >
         <svg className={`w-4 h-4 ${carregando ? 'animate-spin' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M21 12a9 9 0 1 1-3-6.7L21 8" />

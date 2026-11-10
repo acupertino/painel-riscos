@@ -425,3 +425,80 @@ export function montarAndamento(fontes: FonteRelatorio[], hoje: string): Andamen
 }
 
 export const percentual = (parte: number, total: number) => (total ? Math.round((parte / total) * 100) : 0)
+
+// ---------- Download do Resumo em Excel (pedido de 10/11/2026) ----------
+
+const MESES_LONGOS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+
+// Acumulado até o fim de cada mês: projetadas = ações com prazo até o fim do mês; realizadas = dessas, as
+// concluídas; no mês atual, todas as concluídas até hoje (inclusive as adiantadas); meses futuros ficam sem valor.
+export function curvaAcumulada(meses: MesAndamento[], realizadasHoje: number, mesHoje: number) {
+  let projetadas = 0
+  let realizadas = 0
+  return meses.map((m, i) => {
+    projetadas += m.projetadas
+    realizadas += m.realizadas
+    return { projetadas, realizadas: i < mesHoje ? realizadas : i === mesHoje ? realizadasHoje : null }
+  })
+}
+
+export function resumoEmPlanilhas(a: Andamento, hoje: string, rotulo: (aba: AndamentoAba) => string): Planilha[] {
+  const frentes = a.porAba.filter(x => x.doAno > 0)
+  const linhaFrente = (nome: string, x: Omit<AndamentoAba, 'aba' | 'href' | 'atrasos' | 'porMes'>) => [
+    nome,
+    x.doAno,
+    x.previstas,
+    x.realizadas,
+    x.atrasadas,
+    percentual(x.previstas, x.doAno),
+    percentual(x.realizadas, x.doAno),
+    percentual(x.realizadas, x.doAno) - percentual(x.previstas, x.doAno),
+  ]
+  const mesHoje = Number(hoje.slice(5, 7)) - 1
+  const curva = curvaAcumulada(a.porMes, a.realizadas, mesHoje)
+  return [
+    {
+      nome: 'Andamento por frente',
+      colunas: [
+        { titulo: 'Frente', largura: 34 },
+        { titulo: `Ações com prazo em ${a.ano}`, largura: 14 },
+        { titulo: 'Previstas até hoje', largura: 12 },
+        { titulo: 'Concluídas', largura: 12 },
+        { titulo: 'Previstas e ainda abertas', largura: 14 },
+        { titulo: '% previsto até hoje', largura: 12 },
+        { titulo: '% realizado', largura: 12 },
+        { titulo: 'Diferença (pontos)', largura: 12 },
+      ],
+      linhas: [...frentes.map(x => linhaFrente(rotulo(x), x)), linhaFrente('Total', a)],
+    },
+    {
+      nome: 'Mês a mês',
+      colunas: [
+        { titulo: 'Mês', largura: 14 },
+        { titulo: 'Ações com prazo no mês', largura: 14 },
+        { titulo: 'Concluídas (prazo no mês)', largura: 14 },
+        { titulo: 'Acumulado: deveria ter andado (%)', largura: 18 },
+        { titulo: 'Acumulado: andou (%)', largura: 16 },
+      ],
+      linhas: a.porMes.map((m, i) => {
+        const c = curva[i]
+        return [`${MESES_LONGOS[i]}/${a.ano}`, m.projetadas, m.realizadas, percentual(c.projetadas, a.doAno), c.realizadas === null ? null : percentual(c.realizadas, a.doAno)]
+      }),
+    },
+    {
+      nome: 'Atrasos',
+      colunas: [
+        { titulo: 'Frente', largura: 28 },
+        { titulo: 'Ação-mãe ou grupo', largura: 40 },
+        { titulo: 'Ação', largura: 50 },
+        { titulo: 'Responsável', largura: 28 },
+        { titulo: 'Status', largura: 18 },
+        { titulo: 'Prazo', largura: 12 },
+        { titulo: 'Dias de atraso', largura: 10 },
+      ],
+      linhas: frentes.flatMap(x =>
+        x.atrasos.filter(t => t.dias > 0).map(t => [rotulo(x), t.mae ?? t.grupo, t.nome, t.responsavel, t.status, { data: t.fim }, t.dias]),
+      ),
+    },
+  ]
+}
