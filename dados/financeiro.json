@@ -1,0 +1,50 @@
+{
+  "marcos": [
+    {
+      "data": "2026-09-30",
+      "fonte": "Print enviado pela Isa em 10/11/2026 (segunda coluna: execução financeira)",
+      "programas": {
+        "Educação Financeira": {
+          "total": 70,
+          "rubricas": {
+            "Articulação": 68,
+            "Avaliação": 46,
+            "Conteúdo": 66,
+            "Formação e Implementação": 72
+          },
+          "justificativas": {
+            "Conteúdo": "Conteúdo já inteiro desenvolvido, mas FOPAG segue até o final do ano.",
+            "Avaliação": "Considerando PdM no primeiro semestre, por isso pode haver variação.",
+            "Formação e Implementação": "Ações físicas concentradas no 2º semestre: 17 de 23 com prazo em novembro e dezembro (oferta do curso de extensão). Até setembro, o físico estava 100% em dia com o cronograma."
+          }
+        },
+        "Educação Socioemocional": {
+          "total": 59,
+          "rubricas": {
+            "Articulação": 81,
+            "Avaliação": 52,
+            "Conteúdo": 76,
+            "Eixo Público": 23,
+            "Formação e Implementação": 64
+          },
+          "justificativas": {
+            "Avaliação": "Os marcos se concentram na execução da coleta de campo e análises, além de validações de instrumento. Como são marcos, pode não representar as articulações com Comitê e os fornecedores. Por isso o financeiro está a maior.",
+            "Conteúdo": "Parte é desenvolvida dentro de casa. FOPAG se estende até dezembro."
+          }
+        },
+        "Coordenadores Pedagógicos e Diretores": {
+          "total": 69,
+          "rubricas": {
+            "Articulação": 68,
+            "Avaliação": 46,
+            "Conteúdo": 85,
+            "Formação e Implementação": 66
+          },
+          "justificativas": {
+            "Conteúdo": "Conteúdo já inteiro desenvolvido, mas FOPAG segue até o final do ano."
+          }
+        }
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { LINKS_RESTRITOS, estaAtivo } from '@/components/navegacao'
 import { Vazio } from '@/components/semana/Etiquetas'
 
-// Área restrita: pede a senha (SENHA_AREA_RESTRITA no .env.local) antes de mostrar as abas.
+// Área restrita: pede a senha (fixa em src/lib/acesso.ts) antes de mostrar as abas.
 // A proteção de verdade está nas rotas de API, que recusam quem não tem o cookie de acesso.
 
 type Estado = 'verificando' | 'bloqueado' | 'sem-senha' | 'liberado'

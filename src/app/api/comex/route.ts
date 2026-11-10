@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import type { ReuniaoComex } from '@/lib/comex'
 import { gravarDados, lerDados } from '@/lib/dados'
 
-// Reuniões do COMEX salvas em dados/comex.json (fora do git). GET lê a lista toda e PUT
+// Reuniões do COMEX salvas em dados/comex.json. GET lê a lista toda e PUT
 // grava a lista toda: o app tem poucas reuniões e uma pessoa editando por vez.
 
 export async function GET() {

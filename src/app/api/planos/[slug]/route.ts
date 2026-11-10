@@ -3,7 +3,7 @@ import { bloquearSemAcesso } from '@/lib/acesso'
 import { planoDe, type FrenteDoPlano } from '@/lib/planos'
 import { gravarDados, lerDados } from '@/lib/dados'
 
-// Planos da área restrita salvos em dados/plano-{slug}.json (fora do git). GET lê as frentes
+// Planos da área restrita salvos em dados/plano-{slug}.json. GET lê as frentes
 // com as ações e PUT grava tudo de uma vez, como no COMEX.
 
 export async function GET(_req: Request, ctx: RouteContext<'/api/planos/[slug]'>) {

@@ -178,7 +178,7 @@ export function evolucao(acoes: AcaoFisica[], ano: string, hoje: string): Evoluc
 // ---------- Financeiro ----------
 
 // Marco da execução financeira: % executado até `data`, por programa e por rubrica (pode trazer rubricas que
-// não existem no físico, como "Eixo Público"). Vem de dados/financeiro.json, fora do git.
+// não existem no físico, como "Eixo Público"). Vem de dados/financeiro.json.
 export interface MarcoFinanceiro {
   data: string // AAAA-MM-DD
   fonte?: string
