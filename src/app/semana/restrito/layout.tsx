@@ -56,7 +56,7 @@ function NavegacaoRestrita({ aoSair }: { aoSair: () => void }) {
           )
         })}
       </nav>
-      <button onClick={aoSair} className="ml-auto mt-1.5 text-xs text-slate-500 hover:text-slate-800 underline">
+      <button onClick={aoSair} className="nao-imprimir ml-auto mt-1.5 text-xs text-slate-500 hover:text-slate-800 underline">
         Sair da área restrita
       </button>
     </div>
