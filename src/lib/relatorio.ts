@@ -354,6 +354,18 @@ export interface AndamentoAba {
   atrasadas: number // previstas até hoje e ainda não concluídas
   semPrazo: number
   porMes: MesAndamento[] // 12 meses, janeiro a dezembro
+  atrasos: AcaoAtrasada[] // previstas até hoje e ainda abertas, da mais atrasada para a menos
+}
+
+// Status de atrasos para a diretoria (pedido de 10/11/2026): mesmas linhas contadas em "atrasadas".
+export interface AcaoAtrasada {
+  grupo: string // grupo do quadro, tópico ou frente
+  mae: string | null // ação-mãe, quando a linha é subelemento
+  nome: string
+  responsavel: string | null
+  status: string | null
+  fim: string
+  dias: number
 }
 
 export interface MesAndamento {
@@ -361,7 +373,7 @@ export interface MesAndamento {
   realizadas: number
 }
 
-export interface Andamento extends Omit<AndamentoAba, 'aba' | 'href'> {
+export interface Andamento extends Omit<AndamentoAba, 'aba' | 'href' | 'atrasos'> {
   porMes: MesAndamento[]
   ano: string
   porAba: AndamentoAba[]
@@ -378,9 +390,9 @@ export function montarAndamento(fontes: FonteRelatorio[], hoje: string): Andamen
   const abas = new Map<string, AndamentoAba>()
   for (const f of fontes) {
     const nome = nomeDaAba(f.aba)
-    const r = abas.get(nome) ?? { aba: nome, href: f.href, doAno: 0, previstas: 0, realizadas: 0, atrasadas: 0, semPrazo: 0, porMes: Array.from({ length: 12 }, () => ({ projetadas: 0, realizadas: 0 })) }
+    const r = abas.get(nome) ?? { aba: nome, href: f.href, doAno: 0, previstas: 0, realizadas: 0, atrasadas: 0, semPrazo: 0, porMes: Array.from({ length: 12 }, () => ({ projetadas: 0, realizadas: 0 })), atrasos: [] }
     abas.set(nome, r)
-    const visitar = (it: ItemBase) => {
+    const visitar = (it: ItemBase, grupo: string, mae: string | null) => {
       if (ficaForaDoRelatorio(it.nome)) return
       const conta = !it.elemento || !it.subitens.length
       if (conta && !ficaParaDepois(it.status) && !cancelada(it.status)) {
@@ -388,18 +400,22 @@ export function montarAndamento(fontes: FonteRelatorio[], hoje: string): Andamen
         else if (it.fim >= inicio && it.fim <= fim) {
           r.doAno++
           if (it.fim <= hoje) r.previstas++
-          if (it.fim <= hoje && !it.fechado) r.atrasadas++
+          if (it.fim <= hoje && !it.fechado) {
+            r.atrasadas++
+            r.atrasos.push({ grupo, mae, nome: it.nome, responsavel: it.responsavel, status: it.status, fim: it.fim, dias: dias(it.fim, hoje) })
+          }
           if (it.fechado) r.realizadas++
           const mes = r.porMes[Number(it.fim.slice(5, 7)) - 1]
           mes.projetadas++
           if (it.fechado) mes.realizadas++
         }
       }
-      for (const s of it.subitens) visitar(s)
+      for (const s of it.subitens) visitar(s, grupo, it.nome)
     }
-    for (const g of f.grupos) if (!ficaForaDoRelatorio(g.nome)) for (const it of g.itens) visitar(it)
+    for (const g of f.grupos) if (!ficaForaDoRelatorio(g.nome)) for (const it of g.itens) visitar(it, g.nome, null)
   }
   const porAba = [...abas.values()]
+  for (const a of porAba) a.atrasos.sort((x, y) => y.dias - x.dias)
   const soma = (k: 'doAno' | 'previstas' | 'realizadas' | 'atrasadas' | 'semPrazo') => porAba.reduce((n, a) => n + a[k], 0)
   const porMes = Array.from({ length: 12 }, (_, i) => ({
     projetadas: porAba.reduce((n, a) => n + a.porMes[i].projetadas, 0),
