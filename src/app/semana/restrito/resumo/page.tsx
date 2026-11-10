@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { useSemana } from '@/components/semana/ContextoSemana'
 import { Vazio } from '@/components/semana/Etiquetas'
 import BarraMonday from '@/components/restrito/BarraMonday'
@@ -279,7 +279,9 @@ function MesAMes({ a, hoje }: { a: Andamento; hoje: string }) {
           </button>
         ))}
       </div>
-      <div className="mt-3 overflow-x-auto">
+      <CurvaAcumulada meses={meses} base={atual ?? a} ano={a.ano} mesHoje={mesHoje} />
+      <h3 className="mt-5 text-sm font-semibold text-slate-800">Ações por mês</h3>
+      <div className="mt-1 overflow-x-auto">
         <div className="h-80 min-w-[680px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={dados} margin={{ top: 20, right: 8, left: -12, bottom: 0 }} barGap={2} barCategoryGap="20%">
@@ -436,5 +438,86 @@ function StatusAtrasos({ a }: { a: Andamento }) {
         fica na aba Relatório.
       </p>
     </section>
+  )
+}
+
+// ---------- Curva acumulada (pedido de 10/11/2026): quanto do projeto (100% = ações com prazo no ano) deveria ter
+// andado até o fim de cada mês e quanto andou. Projetado = ações com prazo até o fim do mês. Realizado = das ações
+// com prazo até o fim do mês, as já concluídas; no mês atual entram todas as concluídas até hoje (inclusive as
+// adiantadas). Como a Monday não guarda a data de conclusão, os meses passados são o retrato de hoje.
+
+type PontoCurva = { mes: string; projetado: number; realizado: number | null; projetadas: number; realizadas: number | null }
+
+function DicaCurva({ active, payload, total }: { active?: boolean; payload?: { payload: PontoCurva }[]; total: number }) {
+  if (!active || !payload?.length) return null
+  const d = payload[0].payload
+  return (
+    <div className="rounded-lg bg-white border border-slate-200 shadow-md px-3 py-2 text-xs text-slate-700">
+      <p className="font-semibold text-slate-800">Até o fim de {d.mes}</p>
+      <p>
+        <span className="inline-block h-2 w-2 rounded-sm mr-1" style={{ backgroundColor: COR_PREVISTO }} />
+        Deveria ter andado: {d.projetado}% ({d.projetadas} de {total})
+      </p>
+      {d.realizado !== null && (
+        <p>
+          <span className="inline-block h-2 w-2 rounded-sm mr-1" style={{ backgroundColor: COR_REALIZADO }} />
+          Andou: {d.realizado}% ({d.realizadas} de {total})
+        </p>
+      )}
+    </div>
+  )
+}
+
+function CurvaAcumulada({ meses, base, ano, mesHoje }: { meses: MesAndamento[]; base: { doAno: number; previstas: number; realizadas: number }; ano: string; mesHoje: number }) {
+  const total = base.doAno
+  let proj = 0
+  let real = 0
+  const dados: PontoCurva[] = meses.map((m, i) => {
+    proj += m.projetadas
+    real += m.realizadas
+    const realizadas = i < mesHoje ? real : i === mesHoje ? base.realizadas : null
+    return {
+      mes: `${MESES[i]}/${ano.slice(2)}`,
+      projetado: percentual(proj, total),
+      realizado: realizadas === null ? null : percentual(realizadas, total),
+      projetadas: proj,
+      realizadas,
+    }
+  })
+  const deveria = percentual(base.previstas, total)
+  const andou = percentual(base.realizadas, total)
+  return (
+    <>
+      <h3 className="mt-4 text-sm font-semibold text-slate-800">Andamento acumulado do projeto</h3>
+      <p className="text-xs text-slate-500">
+        100% = as {total} ações com prazo em {ano}. Hoje o projeto deveria estar em <b className="text-slate-700">{deveria}%</b> e está em{' '}
+        <b className="text-slate-700">{andou}%</b>
+        {deveria > andou ? ` (${deveria - andou} pontos abaixo).` : '.'}
+      </p>
+      <div className="mt-1 overflow-x-auto">
+        <div className="h-72 min-w-[680px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={dados} margin={{ top: 24, right: 28, left: -8, bottom: 0 }}>
+              <CartesianGrid vertical={false} stroke="#e2e8f0" />
+              <XAxis dataKey="mes" interval={0} tick={EIXO} tickLine={false} axisLine={{ stroke: '#cbd5e1' }} />
+              <YAxis domain={[0, 100]} ticks={[0, 25, 50, 75, 100]} tickFormatter={v => `${v}%`} tick={EIXO} tickLine={false} axisLine={false} />
+              <ReferenceLine x={dados[mesHoje].mes} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: 'hoje', position: 'insideBottomLeft', fontSize: 11, fill: '#64748b' }} />
+              <Tooltip content={<DicaCurva total={total} />} cursor={{ stroke: '#cbd5e1' }} />
+              <Legend itemSorter={null} verticalAlign="top" align="right" height={28} iconType="plainline" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
+              <Line type="monotone" dataKey="projetado" name="Deveria ter andado" stroke={COR_PREVISTO} strokeWidth={2} strokeDasharray="6 4" dot={{ r: 4, fill: COR_PREVISTO, stroke: '#fff', strokeWidth: 2 }} animationDuration={450} animationEasing="ease-out">
+                <LabelList dataKey="projetado" position="top" formatter={(v: unknown) => `${v}%`} style={{ fontSize: 10, fill: '#64748b' }} />
+              </Line>
+              <Line type="monotone" dataKey="realizado" name="Andou" stroke={COR_REALIZADO} strokeWidth={2} connectNulls={false} dot={{ r: 4, fill: COR_REALIZADO, stroke: '#fff', strokeWidth: 2 }} animationDuration={450} animationEasing="ease-out">
+                <LabelList dataKey="realizado" position="bottom" formatter={(v: unknown) => (v === null || v === undefined ? '' : `${v}%`)} style={{ fontSize: 10, fill: '#1e293b', fontWeight: 600 }} />
+              </Line>
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+      <p className="text-xs text-slate-500">
+        Cada ponto mostra o acumulado até o fim do mês. No mês atual, “andou” soma tudo o que já foi concluído até hoje, inclusive o que foi
+        adiantado.
+      </p>
+    </>
   )
 }
