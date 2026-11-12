@@ -10,7 +10,7 @@ import { PROGRAMAS, RUBRICAS, acoesFisicas, evolucao, fisicoAte, fisicoEmPlanilh
 
 // Físico-financeiro (pedido de 10/11/2026). Para cada programa (Educação Financeira, Socioemocional,
 // Coordenadores Pedagógicos e Diretores), a evolução física mês a mês do esperado (prazo) e do realizado
-// (fim real), no total e por rubrica, com os marcos da execução financeira (dados/financeiro.json, fora do git).
+// (fim real), no total e por rubrica, com os marcos da execução financeira (dados/financeiro.json).
 // Regras de classificação em src/lib/fisico.ts.
 
 const COR_ESPERADO = '#86b6ef'
@@ -76,7 +76,7 @@ export default function FisicoFinanceiro() {
     return () => clearTimeout(t)
   }, [imprimindo, dataArquivo])
 
-  // Marco mais recente do ano (por enquanto, um só: setembro).
+  // Marco mais recente do ano (setembro e outubro em dados/financeiro.json; mostra o último).
   const marco = marcos.filter(m => m.data.startsWith(ano)).sort((a, b) => b.data.localeCompare(a.data))[0] ?? null
 
   const baixarExcel = () => {
