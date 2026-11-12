@@ -45,6 +45,52 @@
           }
         }
       }
+    },
+    {
+      "data": "2026-10-31",
+      "fonte": "Print enviado pela Isa em 12/11/2026 (segunda coluna: evolução financeira com FOPAG; Coordenadores Pedagógicos e Diretores = linha Coordenadores Pedagógicos)",
+      "programas": {
+        "Educação Financeira": {
+          "total": 75,
+          "rubricas": {
+            "Articulação": 78,
+            "Avaliação": 46,
+            "Conteúdo": 72,
+            "Formação e Implementação": 77
+          },
+          "justificativas": {
+            "Conteúdo": "Conteúdo já inteiro desenvolvido, mas FOPAG segue até o final do ano.",
+            "Avaliação": "Considerando PdM no primeiro semestre, por isso pode haver variação.",
+            "Formação e Implementação": "Ações físicas concentradas no 2º semestre: 17 de 23 com prazo em novembro e dezembro (oferta do curso de extensão). Até outubro, o físico estava 100% em dia com o cronograma."
+          }
+        },
+        "Educação Socioemocional": {
+          "total": 66,
+          "rubricas": {
+            "Articulação": 88,
+            "Avaliação": 61,
+            "Conteúdo": 75,
+            "Eixo Público": 24,
+            "Formação e Implementação": 72
+          },
+          "justificativas": {
+            "Avaliação": "Os marcos se concentram na execução da coleta de campo e análises, além de validações de instrumento. Como são marcos, pode não representar as articulações com Comitê e os fornecedores. Por isso o financeiro está a maior.",
+            "Conteúdo": "Parte é desenvolvida dentro de casa. FOPAG se estende até dezembro."
+          }
+        },
+        "Coordenadores Pedagógicos e Diretores": {
+          "total": 75,
+          "rubricas": {
+            "Articulação": 78,
+            "Avaliação": 46,
+            "Conteúdo": 92,
+            "Formação e Implementação": 71
+          },
+          "justificativas": {
+            "Conteúdo": "Conteúdo já inteiro desenvolvido, mas FOPAG segue até o final do ano."
+          }
+        }
+      }
     }
   ]
 }
