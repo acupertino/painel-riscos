@@ -4,14 +4,16 @@ import { useMemo, useState } from 'react'
 import { useSemana } from '@/components/semana/ContextoSemana'
 import { EtiquetaNivel, Vazio } from '@/components/semana/Etiquetas'
 import { COR_NIVEL, dataCurta, montarPauta, pautaEmTexto } from '@/lib/semana'
+import { pautaManual } from '@/lib/pautaManual'
 
-// Pauta do squad: usa todas as ações da semana (sem os filtros das outras abas).
+// Pauta do squad: no topo, as pautas principais definidas à mão para a semana (src/lib/pautaManual.ts);
+// depois, o que é gerado de todas as ações da semana (sem os filtros das outras abas).
 export default function Pauta() {
   const { semana, daSemana, todas, hoje } = useSemana()
-  const blocos = useMemo(() => montarPauta(semana, daSemana, todas, hoje), [semana, daSemana, todas, hoje])
+  const blocos = useMemo(() => [...pautaManual(semana), ...montarPauta(semana, daSemana, todas, hoje)], [semana, daSemana, todas, hoje])
   const [copiado, setCopiado] = useState(false)
 
-  if (!daSemana.length) return <Vazio texto="Nenhuma ação com término nesta semana: sem pauta." />
+  if (!blocos.length) return <Vazio texto="Nenhuma ação com término nesta semana: sem pauta." />
 
   const copiar = async () => {
     await navigator.clipboard.writeText(pautaEmTexto(semana, blocos))
@@ -27,7 +29,7 @@ export default function Pauta() {
             Pauta do Squad · semana de {dataCurta(semana.inicio)} a {dataCurta(semana.fim)}
           </h2>
           <p className="text-sm text-slate-500">
-            Gerada a partir do Calendário Detalhado da Monday ({daSemana.length} ações com término na semana).
+            Pautas principais definidas pelo squad e, abaixo, o que é gerado a partir do Calendário Detalhado da Monday ({daSemana.length} ações com término na semana).
           </p>
         </div>
         <button
