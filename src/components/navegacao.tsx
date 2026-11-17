@@ -88,6 +88,12 @@ export const LINKS_RESTRITOS: LinkNavegacao[] = [
     icone: c => svg(c, <><circle cx="5" cy="6" r="2" /><circle cx="5" cy="18" r="2" /><circle cx="19" cy="12" r="2" /><path d="M7 6h4l2 6h4M7 18h4l2-6" /></>),
   },
   {
+    href: `${RESTRITO}/esteira-politicas`,
+    rotulo: 'Esteira de políticas',
+    rotuloCurto: 'Políticas',
+    icone: c => svg(c, <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="m9 15 2 2 4-4" /></>),
+  },
+  {
     href: `${RESTRITO}/relatorio`,
     rotulo: 'Relatório',
     icone: c => svg(c, <><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></>),
