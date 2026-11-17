@@ -98,6 +98,11 @@ body {
   .overflow-x-auto {
     overflow: visible !important;
   }
+  /* Sem o respiro de baixo da tela (BottomNav e rodapé do main), que no papel virava uma página em branco no fim. */
+  main,
+  .pb-16 {
+    padding-bottom: 0 !important;
+  }
   article,
   .recharts-responsive-container {
     break-inside: avoid;

@@ -1,0 +1,3385 @@
+{
+  "fonte": "[OFICIAL] RACI ANALISES - RESULTADOS, aba \"Analistas - RACI Geral v2\" (enviada pela Isa em 17/11/2026)",
+  "totalAcoes": 569,
+  "comMaisDeUmR": 50,
+  "semR": [
+    {
+      "id": 59,
+      "nome": "Acompanhar crono das avaliações de satisfação e NPS"
+    },
+    {
+      "id": 123,
+      "nome": "Validar a estrutura das UCs contemplando a sequência didática/pedagógica de GIPE"
+    },
+    {
+      "id": 169,
+      "nome": "Solicitar materias visuais para a agência de marketing do IÂ e para divulgação nas secretarias"
+    },
+    {
+      "id": 222,
+      "nome": "Realizar as pesquisas de colaboradores"
+    },
+    {
+      "id": 229,
+      "nome": "Definir critérios de seleção de convocados para cada território"
+    },
+    {
+      "id": 295,
+      "nome": "Análise e acompanhamento de protocolos de Dispensa de disciplina e relatar para monitoramento e GDA"
+    },
+    {
+      "id": 329,
+      "nome": "Garantir atualização regular das bases de dados para manter informações precisas no painel de BI GEOP"
+    },
+    {
+      "id": 348,
+      "nome": "Receber, validar e encaminhar justificativas de falta"
+    },
+    {
+      "id": 349,
+      "nome": "Receber e encaminhar para GDA solicitações de alterações de dados pessoais, notas e status de permanência dos cursistas"
+    },
+    {
+      "id": 350,
+      "nome": "Realizar atendimentos personalizados de acordo com as demandas do Monitoramento, Operações e cursistas"
+    },
+    {
+      "id": 351,
+      "nome": "Gerir fluxo de responsáveis por cada protocolo de atendimento"
+    },
+    {
+      "id": 352,
+      "nome": "Receber e emitir declaração de frequência"
+    },
+    {
+      "id": 354,
+      "nome": "Apoiar a Gestão de Implementação na definição de ofertas a partir das análises de políticas educacionais estaduais e federais"
+    },
+    {
+      "id": 355,
+      "nome": "Pesquisas e produção de relatórios sob demanda na área educacional para apoiar a Gerência Executiva"
+    },
+    {
+      "id": 376,
+      "nome": "Participação da execução da aula inaugural"
+    }
+  ],
+  "areas": [
+    {
+      "sigla": "GOPE",
+      "total": 128,
+      "clusters": [
+        {
+          "nome": "Oferta no ecossistema Ânima",
+          "acoes": [
+            {
+              "id": 98,
+              "nome": "Alinhar cronograma com EÂ",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 99,
+              "nome": "Criar formulário de inscrição",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 107,
+              "nome": "Enturmar inscritos (articular com GFOR para realizar a distribuição de professores entre as turmas)",
+              "comR": [
+                "GIMP",
+                "GFOR"
+              ]
+            },
+            {
+              "id": 108,
+              "nome": "Articular com GFOR o cronograma da pós",
+              "comR": [
+                "GIMP",
+                "GFOR"
+              ]
+            },
+            {
+              "id": 109,
+              "nome": "Elaborar e enviar cronograma de oferta para o EÂ",
+              "comR": []
+            },
+            {
+              "id": 110,
+              "nome": "Preencher e enviar portfólio para EÂ",
+              "comR": []
+            },
+            {
+              "id": 111,
+              "nome": "Enviar matrizes curriculares para EÂ",
+              "comR": []
+            },
+            {
+              "id": 112,
+              "nome": "Enviar portfólio para o EÂ cadastrar curso junto ao e-MEC",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 129,
+              "nome": "Acompanhar a realização de processos no ecossistema Ânima (importação, enturmação, criação de turmas, fakejoins)",
+              "comR": []
+            },
+            {
+              "id": 130,
+              "nome": "Definir calendário de oferta",
+              "comR": [
+                "GFOR"
+              ]
+            },
+            {
+              "id": 131,
+              "nome": "Definir quantidade de turmas a serem abertas",
+              "comR": [
+                "GFOR"
+              ]
+            },
+            {
+              "id": 133,
+              "nome": "Definir e encaminhar ordem de oferta",
+              "comR": []
+            },
+            {
+              "id": 134,
+              "nome": "Acompanhar a criação de fakesjoins",
+              "comR": []
+            },
+            {
+              "id": 135,
+              "nome": "Extrair relatórios SIAF para acompanhamento de matrículas (2060)",
+              "comR": []
+            },
+            {
+              "id": 230,
+              "nome": "Preparar e enviar base para importação no SIAF",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 231,
+              "nome": "Enviar enturmação para o EÂ",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 239,
+              "nome": "Acompanhar a realização de processos no ecossistema Ânima (importação, enturmação, criação de turmas, fakejoins, indicação docente)",
+              "comR": []
+            },
+            {
+              "id": 240,
+              "nome": "Definir abertura e encerramento de turmas",
+              "comR": []
+            },
+            {
+              "id": 242,
+              "nome": "Processar as indicações e alteraçõe docentes",
+              "comR": []
+            },
+            {
+              "id": 248,
+              "nome": "Gerir o site de inscrição dos programas de Pós e Extensão",
+              "comR": []
+            },
+            {
+              "id": 330,
+              "nome": "Validação da matrícula e enturmação dos cursistas",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Plataforma e Ulife",
+          "acoes": [
+            {
+              "id": 7,
+              "nome": "Disponibilizar os conteúdos na plataforma",
+              "comR": []
+            },
+            {
+              "id": 68,
+              "nome": "Gerir plataforma de conteúdos assíncronos",
+              "comR": []
+            },
+            {
+              "id": 121,
+              "nome": "Parametrizar o plano de avaliação com o EÂ",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 124,
+              "nome": "Criar catálogos de conteúdo",
+              "comR": [
+                "GDE"
+              ]
+            },
+            {
+              "id": 127,
+              "nome": "Refletir em sistema plano de avaliação de acordo com as regras estabelecidadas por GEA e GFOR para EÂ EPrtribuir os diferentes tipos de avaliações dentro das UCs de acordo com o plano de avaliação",
+              "comR": []
+            },
+            {
+              "id": 128,
+              "nome": "Distribuir tipo-nota nas atividades no Ulife",
+              "comR": [
+                "GDE"
+              ]
+            },
+            {
+              "id": 136,
+              "nome": "Definir cronograma de entregas de conteúdo (materiais) pedagógico",
+              "comR": [
+                "GDE"
+              ]
+            },
+            {
+              "id": 137,
+              "nome": "Planejar e executar formações extraordinárias aos formadores a fim de esclarecimentos técnicos sobre a utilização do Ulife",
+              "comR": [
+                "GFOR"
+              ]
+            },
+            {
+              "id": 138,
+              "nome": "Elaborar conteúdos informativos sobre processos no ULife",
+              "comR": []
+            },
+            {
+              "id": 140,
+              "nome": "Extrair relatórios, conferir e elaborar planilha com links de acesso às aulas",
+              "comR": []
+            },
+            {
+              "id": 141,
+              "nome": "Conferência por amostragem dos links de acesso às aulas",
+              "comR": []
+            },
+            {
+              "id": 142,
+              "nome": "Acompanhar e operar streamyard em aulas e palestras extraordinárias",
+              "comR": []
+            },
+            {
+              "id": 143,
+              "nome": "Criar links para aulas síncronas quando não forem gerados pelo Ulife",
+              "comR": []
+            },
+            {
+              "id": 147,
+              "nome": "Criar catálogo provas para avaliações substitutivas",
+              "comR": [
+                "GDE"
+              ]
+            },
+            {
+              "id": 148,
+              "nome": "Liberar as substitutivas para os cursistas do ULife a partir dos dados recebidos pelo monitoramento",
+              "comR": []
+            },
+            {
+              "id": 149,
+              "nome": "Tratar as bases recebidas pelo monitoramento de acordo com as necessidades da plataforma ULife (vinculação de substitutivas)",
+              "comR": []
+            },
+            {
+              "id": 150,
+              "nome": "Abrir chamados para correção de problemas no sistema e acompanhar sua resolução",
+              "comR": []
+            },
+            {
+              "id": 237,
+              "nome": "Inserir conteúdo nas UCs (Realize/Ulife)",
+              "comR": []
+            },
+            {
+              "id": 238,
+              "nome": "Inserir atividades (avaliação final / substitutivas)",
+              "comR": []
+            },
+            {
+              "id": 243,
+              "nome": "Elaborar conteúdos informativos sobre processos no ULife e realizar capacitações (docentes, administrativos e tutores)",
+              "comR": []
+            },
+            {
+              "id": 278,
+              "nome": "Realizar ronda nos links de aula (conferência)",
+              "comR": []
+            },
+            {
+              "id": 313,
+              "nome": "Garantir que os dados estejam corretos para a visualização do cursista na plataforma Ulife",
+              "comR": []
+            },
+            {
+              "id": 367,
+              "nome": "Garantir a visualização dos dados de aprovações dos cursistas antes e após a recuperação na plataforma Ulife",
+              "comR": []
+            },
+            {
+              "id": 423,
+              "nome": "Disponibilizar os conteúdos na plataforma do Instituto",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Certificação",
+          "acoes": [
+            {
+              "id": 144,
+              "nome": "Preencher planilhas para geração de micro-certificados",
+              "comR": []
+            },
+            {
+              "id": 244,
+              "nome": "Estruturar a planilha de cursistas que serão microcertificados por Unidade Curricular",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": 245,
+              "nome": "Realizar a emissão da microcertificação dos cursistas por Unidade Curricular",
+              "comR": []
+            },
+            {
+              "id": 246,
+              "nome": "Fazer o report dos cursistas que obtiveram microcertificação para o monitoramento",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": 332,
+              "nome": "Certificar os executivos CAIXA",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Fornecedores e pagamentos",
+          "acoes": [
+            {
+              "id": 250,
+              "nome": "Acompanhamento de aprovação de pagamento dos contratos de GEOP no Ongsys",
+              "comR": []
+            },
+            {
+              "id": 251,
+              "nome": "Abertura de requisição de compra no Ongsys em caso de contratos por medição",
+              "comR": []
+            },
+            {
+              "id": 252,
+              "nome": "Preenchimento mensal dos questionários para pagamento (envio NF e informações para pagamento)",
+              "comR": []
+            },
+            {
+              "id": 253,
+              "nome": "Abertura de requisição de compras na plataforma Ongsys",
+              "comR": []
+            },
+            {
+              "id": 254,
+              "nome": "Abertura de formulário com as informações do fornecedor",
+              "comR": []
+            },
+            {
+              "id": 255,
+              "nome": "Articulação com fornecedores de GEOP",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Comunicação e engajamento do cursista",
+          "acoes": [
+            {
+              "id": 154,
+              "nome": "Criar e atualizar régua de comunicação com os cursistas",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 155,
+              "nome": "Registrar os envios das comunicações e divulgar para a equipe mensalmente [quando; o quê; pra quem; taxa de abertura das comunicações, etc]",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 156,
+              "nome": "Acompanhar e extrair relatório do salesforce",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 157,
+              "nome": "Demandar bases para envios das comunicações",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 160,
+              "nome": "Articular ações de comunicação com equipe de atendimento",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 161,
+              "nome": "Criar textos dos programas para divulgação para as SEDUCs",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 162,
+              "nome": "Comunicar aprovação e desaprovação de inscritos",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 164,
+              "nome": "Realizar as comunicações de onboarding (enviar comunicado de assinatura de contrato, link das aulas inaugurais tutoriais, login no Ulife)",
+              "comR": []
+            },
+            {
+              "id": 170,
+              "nome": "Elaborar e atualizar FAQ para cursistas",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 209,
+              "nome": "Executar comunicações para estudantes do pé de meia e reportar as métricas",
+              "comR": []
+            },
+            {
+              "id": 249,
+              "nome": "Criar e implementar programa de engajamento",
+              "comR": []
+            },
+            {
+              "id": 257,
+              "nome": "Elaborar e enviar materiais da jornada acadêmica.",
+              "comR": []
+            },
+            {
+              "id": 258,
+              "nome": "Importar bases de comunicações e textos no salesforce, mobsim e CXone para envio de e-mail, sms e whats",
+              "comR": []
+            },
+            {
+              "id": 259,
+              "nome": "Articular com a equipe de marketing do EÂ",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 260,
+              "nome": "Solicitar materias visuais para a agência de marketing do IÂ e EÂ",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 262,
+              "nome": "Acompanhar e extrair relatórios do Google Analytics em relação ao tráfego da FAQ",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 263,
+              "nome": "Realizar ações de comunicação [EPrparos de WhatsApp]",
+              "comR": []
+            },
+            {
+              "id": 264,
+              "nome": "Criação de site para equipe interna (Conecta Geop)",
+              "comR": []
+            },
+            {
+              "id": 265,
+              "nome": "Ações de engajamento",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Dados operacionais e satisfação",
+          "acoes": [
+            {
+              "id": 58,
+              "nome": "Realizar as avaliações de satisfação em relação a atendimento e plataforma",
+              "comR": []
+            },
+            {
+              "id": 220,
+              "nome": "Disponibilizar as pesquisa de satisfação em relação a atendimento",
+              "comR": []
+            },
+            {
+              "id": 281,
+              "nome": "Análise de indicadores mensais de Pós e reportar dados para GDA",
+              "comR": []
+            },
+            {
+              "id": 282,
+              "nome": "Análise de indicadores mensais de Pesquisa e reportar dados para GDA",
+              "comR": []
+            },
+            {
+              "id": 300,
+              "nome": "Extração e estruturação de bases para acompanhamento de inscritos",
+              "comR": []
+            },
+            {
+              "id": 303,
+              "nome": "Estruturação da base de selecionados GEOP",
+              "comR": []
+            },
+            {
+              "id": 308,
+              "nome": "Assegurar que a Gerência de Formação compreenda os critérios de padronização de lançamento das notas",
+              "comR": []
+            },
+            {
+              "id": 309,
+              "nome": "Extração de bases de dados de desempenho via plataforma Ulife",
+              "comR": []
+            },
+            {
+              "id": 310,
+              "nome": "Extração da bases de dados de frequência",
+              "comR": []
+            },
+            {
+              "id": 315,
+              "nome": "Acompanhar e registrar os casos de desistência declarados por meio do Microsoft Forms e os adicionar às bases para retenção e comunicação",
+              "comR": []
+            },
+            {
+              "id": 319,
+              "nome": "Tratar os dados de cursistas aprovados e reprovados para a equipe de Implementação e Operações",
+              "comR": []
+            },
+            {
+              "id": 324,
+              "nome": "Garantir da atualização as bases de dados para refletir as mudanças nas turmas e cursos, reavaliação de notas, alterações nominais, etc",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": 325,
+              "nome": "Preparar bases sob demanda (recorrente) para comunicação",
+              "comR": [
+                "GIMP"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Atendimento ao cursista",
+          "acoes": [
+            {
+              "id": 113,
+              "nome": "Atualizar e elaborar contratos com os cursistas",
+              "comR": []
+            },
+            {
+              "id": 114,
+              "nome": "Atualizar regulamento do curso",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 115,
+              "nome": "Validar regulamento do curso",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 116,
+              "nome": "Planejar melhorias nos processos de implementação (exemplo: contratação de solução de frequência e ampliação de equipe)",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 117,
+              "nome": "Gerir e armazenar os documentos dos cursistas",
+              "comR": []
+            },
+            {
+              "id": 151,
+              "nome": "Acompanhar e preparar equipe de atendimento nos plantões operacionais",
+              "comR": []
+            },
+            {
+              "id": 152,
+              "nome": "Preparar escala da equipe de atendimento",
+              "comR": []
+            },
+            {
+              "id": 153,
+              "nome": "Acompanhar e desdobrar demandas do atendimento (dúvidas, reinvidindicações relacionadas à monitoramento, problemas sistêmicos do ULife)",
+              "comR": []
+            },
+            {
+              "id": 256,
+              "nome": "[EXECUTADO ATÉ 2025] Promover treinamentos com equipe de atendimento [boas práticas de comunicação/atendimento]",
+              "comR": []
+            },
+            {
+              "id": 261,
+              "nome": "Elaborar e atualizar FAQ para equipe de atendimento",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 266,
+              "nome": "Receber e validar justificativas de falta via plataforma de frequência",
+              "comR": []
+            },
+            {
+              "id": 267,
+              "nome": "Receber, validar e encaminhar solicitações de alteração/verificação de nota",
+              "comR": []
+            },
+            {
+              "id": 268,
+              "nome": "Encaminhar questões pedagógicas para a Coordenação pertinente",
+              "comR": []
+            },
+            {
+              "id": 269,
+              "nome": "Análise de protocolos de pedidos de alteração de dados pessoais e encaminhamento para monitoramento.",
+              "comR": []
+            },
+            {
+              "id": 270,
+              "nome": "Análise de protocolos de pedidos de mudança de turma e encaminhamento para monitoramento.",
+              "comR": []
+            },
+            {
+              "id": 271,
+              "nome": "Receber e solucionar dúvidas dos cursistas sobre o curso, critérios de seleção, prazos acadêmicos, etc",
+              "comR": []
+            },
+            {
+              "id": 272,
+              "nome": "Realizar atendimentos personalizados de acordo com as demandas do GIMP, GFOR, GDA e monitoramento",
+              "comR": []
+            },
+            {
+              "id": 273,
+              "nome": "Análise e tratativa de protocolos em outros setores",
+              "comR": []
+            },
+            {
+              "id": 274,
+              "nome": "Conduzir plantões de dúvidas para cursistas",
+              "comR": []
+            },
+            {
+              "id": 275,
+              "nome": "Receber solicitações e emitir declaração de frequência",
+              "comR": []
+            },
+            {
+              "id": 276,
+              "nome": "Monitoria de amostragem de atendimento Pós",
+              "comR": []
+            },
+            {
+              "id": 277,
+              "nome": "Monitoria de amostragem de atendimento Pesquisa",
+              "comR": []
+            },
+            {
+              "id": 279,
+              "nome": "Análise e acompanhamento de protocolos NAPI",
+              "comR": []
+            },
+            {
+              "id": 280,
+              "nome": "Análise e acompanhamento de protocolos APD e relatar para monitoramento e GDA",
+              "comR": []
+            },
+            {
+              "id": 283,
+              "nome": "Conduzir plantões de assinatura de contrato para novos ingressos",
+              "comR": []
+            },
+            {
+              "id": 284,
+              "nome": "Revisão do BOT de atendimento",
+              "comR": []
+            },
+            {
+              "id": 285,
+              "nome": "Crição de fluxos para demandas do atendimento",
+              "comR": []
+            },
+            {
+              "id": 286,
+              "nome": "Criação de documento com respostas padrão para casos mais comuns",
+              "comR": []
+            },
+            {
+              "id": 287,
+              "nome": "Abertura de protocolos para emissão de certificados de alunos formados",
+              "comR": []
+            },
+            {
+              "id": 288,
+              "nome": "Análise de protocolos de pedidos de declaração de matrícula",
+              "comR": []
+            },
+            {
+              "id": 289,
+              "nome": "Ação de retenção",
+              "comR": []
+            },
+            {
+              "id": 290,
+              "nome": "Abertura de protocolos para cancelamento de matrícula para desistentes",
+              "comR": []
+            },
+            {
+              "id": 291,
+              "nome": "Receber, analisar e enviar devolutivas para registros no Reclame Aqui",
+              "comR": []
+            },
+            {
+              "id": 292,
+              "nome": "Identificar possíveis formandos com pendência de documentação e realizar contato com cursistas",
+              "comR": []
+            },
+            {
+              "id": 293,
+              "nome": "Reenvio certificados de extensão concluintes",
+              "comR": []
+            },
+            {
+              "id": 294,
+              "nome": "Solicitação de criação de protocolos PIA",
+              "comR": []
+            },
+            {
+              "id": 296,
+              "nome": "Envio de documentação de cursistas no salesforce",
+              "comR": []
+            },
+            {
+              "id": 297,
+              "nome": "Treinamento de novos atendentes",
+              "comR": []
+            },
+            {
+              "id": 298,
+              "nome": "Cancelamento de alunos temporários após o prazo para ativação",
+              "comR": []
+            },
+            {
+              "id": 331,
+              "nome": "Criação dos fluxos e manuais de GEOP",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GIMP",
+      "total": 94,
+      "clusters": [
+        {
+          "nome": "Acordos e governança com os territórios",
+          "acoes": [
+            {
+              "id": 9,
+              "nome": "Executar o plano de trabalho dos ACTs - extensão",
+              "comR": [
+                "GFOR"
+              ]
+            },
+            {
+              "id": 10,
+              "nome": "Aprovar o plano de trabalho pactuado com os territórios",
+              "comR": [
+                "GEX (LIPPE)"
+              ]
+            },
+            {
+              "id": 11,
+              "nome": "Garantir a execução dos cronogramas conforme pactuado",
+              "comR": [
+                "EPPg"
+              ]
+            },
+            {
+              "id": 90,
+              "nome": "Articulação com governos e entes públicos",
+              "comR": []
+            },
+            {
+              "id": 91,
+              "nome": "Coletar documentação do IÂ",
+              "comR": []
+            },
+            {
+              "id": 92,
+              "nome": "Elaborar Acordo de Cooperação/Termo Aditivo",
+              "comR": []
+            },
+            {
+              "id": 93,
+              "nome": "Elaborar plano de trabalho",
+              "comR": []
+            },
+            {
+              "id": 94,
+              "nome": "Enviar documentação para validação do jurídico",
+              "comR": []
+            },
+            {
+              "id": 95,
+              "nome": "Inserir documentação validada no fluxo de assinaturas",
+              "comR": []
+            },
+            {
+              "id": 96,
+              "nome": "Enviar documentos para a equipe técnica das secretarias",
+              "comR": []
+            },
+            {
+              "id": 186,
+              "nome": "Gestão dos aditivos dos Acordos de Cooperação com os territórios parceiros",
+              "comR": []
+            },
+            {
+              "id": 191,
+              "nome": "Mapeamento de pessoas chave para articulação",
+              "comR": []
+            },
+            {
+              "id": 192,
+              "nome": "Definir governança com a Secretaria",
+              "comR": []
+            },
+            {
+              "id": 194,
+              "nome": "Apresentação final aos territórios",
+              "comR": []
+            },
+            {
+              "id": 195,
+              "nome": "Executar o plano de trabalho dos ACTs - especialização",
+              "comR": [
+                "GFOR"
+              ]
+            },
+            {
+              "id": 425,
+              "nome": "Executar Elaborar o plano de trabalho dos ACTs - especialização e de outros programas do IÂ",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Lançamento, inscrição e seleção",
+          "acoes": [
+            {
+              "id": 97,
+              "nome": "Planejar e articular cronograma de lançamento da pós com as SEDUCs",
+              "comR": []
+            },
+            {
+              "id": 98,
+              "nome": "Alinhar cronograma com EÂ",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 99,
+              "nome": "Criar formulário de inscrição",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 100,
+              "nome": "Definir critérios de seleção de selecionados para cada território",
+              "comR": []
+            },
+            {
+              "id": 101,
+              "nome": "Acompanhar o andamento das inscrições",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": 102,
+              "nome": "Planejar ações de engajamento com a SEDUC",
+              "comR": []
+            },
+            {
+              "id": 103,
+              "nome": "Executar e acompanhar as ações de engajamento com a SEDUC",
+              "comR": []
+            },
+            {
+              "id": 104,
+              "nome": "Solicitar bases administrativas às SEDUCs",
+              "comR": []
+            },
+            {
+              "id": 105,
+              "nome": "Tratar bases de inscritos",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": 107,
+              "nome": "Enturmar inscritos (articular com GFOR para realizar a distribuição de professores entre as turmas)",
+              "comR": [
+                "GOPE",
+                "GFOR"
+              ]
+            },
+            {
+              "id": 108,
+              "nome": "Articular com GFOR o cronograma da pós",
+              "comR": [
+                "GOPE",
+                "GFOR"
+              ]
+            },
+            {
+              "id": 112,
+              "nome": "Enviar portfólio para o EÂ cadastrar curso junto ao e-MEC",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 114,
+              "nome": "Atualizar regulamento do curso",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 115,
+              "nome": "Validar regulamento do curso",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 193,
+              "nome": "Planejamento de Métrica de inscrições",
+              "comR": []
+            },
+            {
+              "id": 230,
+              "nome": "Preparar e enviar base para importação no SIAF",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 231,
+              "nome": "Enviar enturmação para o EÂ",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 356,
+              "nome": "Apoiar a Gestão de Implementação na elaboração de instrumentos de inscrição no programa",
+              "comR": []
+            },
+            {
+              "id": 357,
+              "nome": "Organizar dados de entrada dos cursistas - dados de inscritos",
+              "comR": []
+            },
+            {
+              "id": 358,
+              "nome": "Organizar bases de selecionados e não selecionados",
+              "comR": []
+            },
+            {
+              "id": 359,
+              "nome": "Organizar dados para divulgar perfil de candidatos por turma",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Comunicação com cursistas e secretarias",
+          "acoes": [
+            {
+              "id": 154,
+              "nome": "Criar e atualizar régua de comunicação com os cursistas",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 155,
+              "nome": "Registrar os envios das comunicações e divulgar para a equipe mensalmente [quando; o quê; pra quem; taxa de abertura das comunicações, etc]",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 156,
+              "nome": "Acompanhar e extrair relatório do salesforce",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 157,
+              "nome": "Demandar bases para envios das comunicações",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 158,
+              "nome": "Promover treinamentos com equipe de atendimento [boas práticas de comunicação/atendimento]",
+              "comR": []
+            },
+            {
+              "id": 159,
+              "nome": "Solicitar ações de comunicação (demanda de secretaria ou ação estratégica)",
+              "comR": []
+            },
+            {
+              "id": 160,
+              "nome": "Articular ações de comunicação com equipe de atendimento",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 161,
+              "nome": "Criar textos dos programas para divulgação para as SEDUCs",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 162,
+              "nome": "Comunicar aprovação e desaprovação de inscritos",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 163,
+              "nome": "Divulgar formulário de desistência (em casos aplicaveis)",
+              "comR": []
+            },
+            {
+              "id": 165,
+              "nome": "Elaborar e enviar materiais da jornada acadêmica (materiais, calendário, tutoriais, etc)",
+              "comR": []
+            },
+            {
+              "id": 166,
+              "nome": "Elaborar e enviar comunicações sobre o processo de recuperação (frequência e desempenho)",
+              "comR": []
+            },
+            {
+              "id": 167,
+              "nome": "Elaborar e enviar comunicações sobre alterações de rotina acadêmica (feriados, aulas canceladas, aulas realocadas, palestras, etc)",
+              "comR": []
+            },
+            {
+              "id": 168,
+              "nome": "Elaborar e enviar comunicações de aprovação e acesso aos microcertificados",
+              "comR": []
+            },
+            {
+              "id": 170,
+              "nome": "Elaborar e atualizar FAQ para cursistas",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 259,
+              "nome": "Articular com a equipe de marketing do EÂ",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 260,
+              "nome": "Solicitar materias visuais para a agência de marketing do IÂ e EÂ",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 261,
+              "nome": "Elaborar e atualizar FAQ para equipe de atendimento",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 262,
+              "nome": "Acompanhar e extrair relatórios do Google Analytics em relação ao tráfego da FAQ",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 325,
+              "nome": "Preparar bases sob demanda (recorrente) para comunicação",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 346,
+              "nome": "Realizar as comunicações de onboarding (enviar comunicado de assinatura de contrato, link das aulas inaugurais tutoriais, login no Ulife e Strateegia)",
+              "comR": []
+            },
+            {
+              "id": 347,
+              "nome": "Importar bases de comunicações e textos no salesforce e no mobsim para envio de SMS",
+              "comR": []
+            },
+            {
+              "id": 373,
+              "nome": "Garantir quadro atualizado em excel de dados para comunicação consolidados",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Monitoramento e reporte às secretarias",
+          "acoes": [
+            {
+              "id": 41,
+              "nome": "Articular com as secretarias as datas de aplicação das avaliações",
+              "comR": []
+            },
+            {
+              "id": 42,
+              "nome": "Monitorar a implementação de avaliações",
+              "comR": []
+            },
+            {
+              "id": 49,
+              "nome": "Validar instrumentos de pesquisa com Secretarias",
+              "comR": []
+            },
+            {
+              "id": 122,
+              "nome": "Apoiar preenchimento de relatórios para investidores",
+              "comR": []
+            },
+            {
+              "id": 145,
+              "nome": "Fazer o report para secretarias dos cursistas que obtiveram microcertificação",
+              "comR": []
+            },
+            {
+              "id": 146,
+              "nome": "Fazer o report para secretarias dos cursistas que obtiveram certificação final",
+              "comR": []
+            },
+            {
+              "id": 174,
+              "nome": "Solicitar base de dados para as secretarias",
+              "comR": []
+            },
+            {
+              "id": 177,
+              "nome": "Fornecer reporte de monitoramento para as secretarias parceiras",
+              "comR": []
+            },
+            {
+              "id": 178,
+              "nome": "Organizar e realizar agenda de monitoramento com equipes técnicas das secretarias",
+              "comR": []
+            },
+            {
+              "id": 182,
+              "nome": "Validação de mapeamentos com Secretarias",
+              "comR": [
+                "CPE"
+              ]
+            },
+            {
+              "id": 247,
+              "nome": "Registrar na planilha de desempenho os cursistas que foram certificados",
+              "comR": [
+                "GDA"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Frequência, satisfação e desistência",
+          "acoes": [
+            {
+              "id": 299,
+              "nome": "Planejamento de coleta e visualização de dados",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": 307,
+              "nome": "Coordenar prazos com a Gerência de Formação para lançamento dos dados de desempenho",
+              "comR": []
+            },
+            {
+              "id": 360,
+              "nome": "Elaborar instrumentos de registro de frequência para o aula a aula (atualmente, usando Google Forms)",
+              "comR": [
+                "GFOR"
+              ]
+            },
+            {
+              "id": 361,
+              "nome": "Garantir que a Gerência de Formação direcione os links dos instrumentos claramente aos respectivos professores-formadores e que as regras de contabilização da presença sejam claras",
+              "comR": []
+            },
+            {
+              "id": 362,
+              "nome": "Manter atualizada e clara a base de frequência e acessível para o sistema",
+              "comR": []
+            },
+            {
+              "id": 368,
+              "nome": "Sistematizar e encaminhar para GeOP necessidades de atualização de status RA (desistências, abandono)",
+              "comR": []
+            },
+            {
+              "id": 370,
+              "nome": "Acompanhar e registrar os casos de desistência declarados por meio do Google Forms e os adicionar às bases",
+              "comR": []
+            },
+            {
+              "id": 371,
+              "nome": "Elaborar instrumentos de pesquisa de satisfação para o aula a aula (atualmente, usando Google Forms)",
+              "comR": []
+            },
+            {
+              "id": 372,
+              "nome": "Informar à Gestão Pedagógica critérios de coleta de dados (fluxo de pesquisa de satisfação)",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Gestão da área e processos",
+          "acoes": [
+            {
+              "id": 116,
+              "nome": "Planejar melhorias nos processos de implementação (exemplo: contratação de solução de frequência e ampliação de equipe)",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 118,
+              "nome": "Articular contratação de pontos focais no território",
+              "comR": []
+            },
+            {
+              "id": 119,
+              "nome": "Acompanhar fluxos e processos da equipes envolvidas na implementação",
+              "comR": []
+            },
+            {
+              "id": 120,
+              "nome": "Articular construção do plano de avaliação com GFOR e GEA",
+              "comR": []
+            },
+            {
+              "id": 121,
+              "nome": "Parametrizar o plano de avaliação com o EÂ",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 171,
+              "nome": "Organizar eventos presenciais relacionados aos Programas de pós junto às SEDUCs",
+              "comR": []
+            },
+            {
+              "id": 172,
+              "nome": "Fazer cotações e contratações para eventos",
+              "comR": []
+            },
+            {
+              "id": 173,
+              "nome": "Gerir fornecedores de GIMP (instruir emissão de NF e boleto de pagamentos)",
+              "comR": []
+            },
+            {
+              "id": 232,
+              "nome": "Articular com o RH questões de contratação de pessoas (pontos focais no território)",
+              "comR": []
+            },
+            {
+              "id": 233,
+              "nome": "Gerir pessoas (calendário de férias, banco de horas, PDI, etc)",
+              "comR": []
+            },
+            {
+              "id": 234,
+              "nome": "Gerir fluxos e processos da equipe",
+              "comR": []
+            },
+            {
+              "id": 235,
+              "nome": "Acompanhar as metas de indicadores de todas as áreas (dentro da gerência)",
+              "comR": []
+            },
+            {
+              "id": 344,
+              "nome": "Articular com o RH questões de contratação de pessoas (pontos focais no teeritório)",
+              "comR": []
+            },
+            {
+              "id": 353,
+              "nome": "Apoiar a Gestão de Implementação em pesquisas de melhorias e fluxos para a área",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GAF",
+      "total": 66,
+      "clusters": [
+        {
+          "nome": "Tesouraria e caixa",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Gestão do fluxo de caixa diário, semanal e mensal",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Monitoramento e controle de saldos bancários",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Programação financeira de curto prazo",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Execução de transferências bancárias (TED, PIX, aplicações e resgates)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Controle de contas bancárias e cadastros financeiros",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Relacionamento operacional com instituições financeiras",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Conciliação bancária",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Gestão de aplicações financeiras (Controle de juros e tributação mais provisões contábeis)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Controle de contrato de mútuo (Juros, correções e tributação)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Controle de tarifas bancárias",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Garantia de liquidez para cumprimento das obrigações",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Controle e atualização de forecast de caixa",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Faturamento e recebimentos",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Interface com Contas a Receber para previsão de entradas",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Recebimento, conferência e lançamento de documentos fiscais",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Recebimento da informação de faturamento (Core e Inspirali)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Emissão de Notas Fiscais",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Acompanhamento do recebimento da Nota Fiscal no Fiscal e Contas a pagar do Ecossistema",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Controle de recebimentos",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Registro e baixa de recebimentos (liberação para pagamento dos bolsistas)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Conciliação de receitas",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Indicadores de recebimento",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Contas a pagar",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Interface com Contas a Pagar para liberação de recursos",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Validação do Formulário de Controladoria",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Programação de pagamentos conforme cronograma financeiro",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Processamento de pagamentos a fornecedores e prestadores",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Controle de vencimentos e compromissos financeiros",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Conciliação de pagamentos efetuados",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Relacionamento com fornecedores para esclarecimentos financeiros",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Aplicação de políticas internas de pagamento",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Interface com áreas solicitantes para validação de despesas",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Orçamento e projeções",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Elaboração do orçamento anual",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Revisões orçamentárias",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Acompanhamento do realizado x orçado",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Análise de desvios e variações",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Consolidação de informações financeiras",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Elaboração de projeções financeiras",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Apoio às áreas na construção de previsões",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Controle da Política de rateios",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Preparação de relatórios gerenciais",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Suporte à tomada de decisão da gestão",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Validação de dados para relatórios gerenciais",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Apoio a projetos do Instituto",
+          "acoes": [
+            {
+              "id": 60,
+              "nome": "Realizar as pesquisas de NPS",
+              "comR": [
+                "EPPg"
+              ]
+            },
+            {
+              "id": 228,
+              "nome": "Desenhar e implementar estratégia de ESG",
+              "comR": [
+                "EPPg"
+              ]
+            },
+            {
+              "id": 397,
+              "nome": "Planejar e alocar recursos humano para a submissão dos projetos",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Controladoria, auditoria e prestação de contas",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Atendimento a auditorias no que tange a movimentações financeiras",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Suporte à auditoria e controladoria",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Cumprimento de prazos contratuais e legais",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Acompanhamento de aprovação",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Suporte a áreas internas (RH e Pesquisa)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Interface com controladoria e diretoria",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Consolidação de informações financeiras e contábeis",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Análise de resultados financeiros",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Suporte a auditorias externas",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Monitoramento de controles internos financeiros",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Garantia da aderência a normas e políticas",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Interface com contabilidade e planejamento financeiro",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Análise de riscos financeiros",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Apoio à governança corporativa",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Elaboração de prestações de contas financeiras",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Consolidação de documentos comprobatórios",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Atendimento a exigências de órgãos reguladores ou financiadores",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Suporte a auditorias específicas de projetos",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Interface com áreas internas para coleta de informações",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Garantia de conformidade com normas e prazos",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Acompanhamento de pendências identificadas",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Apoio institucional à governança e compliance",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GDA",
+      "total": 48,
+      "clusters": [
+        {
+          "nome": "Indicadores e apoio à decisão",
+          "acoes": [
+            {
+              "id": 82,
+              "nome": "Organizar, analisar e reportar dados para DIREX",
+              "comR": []
+            },
+            {
+              "id": 83,
+              "nome": "Coletar dados relativos aos indicadores dos projetos e áreas",
+              "comR": []
+            },
+            {
+              "id": 84,
+              "nome": "Coletar dados relativos a execução dos programas, projetos e áreas",
+              "comR": []
+            },
+            {
+              "id": 85,
+              "nome": "Analisar dados relativos aos indicadores e a execução dos programas de Educação",
+              "comR": []
+            },
+            {
+              "id": 86,
+              "nome": "Desdobrar contramedidas necessárias, plano de ação e encaminhamentos das tomadas de decisão",
+              "comR": []
+            },
+            {
+              "id": 87,
+              "nome": "Direcionar tomadas de decisão durante COMEX e reuniões de N1",
+              "comR": []
+            },
+            {
+              "id": 88,
+              "nome": "Construir dashboards analíticos sobre os dados de implementação (NPS, frequência, dados de programas)",
+              "comR": []
+            },
+            {
+              "id": 89,
+              "nome": "Fornecer dados para a construção de relatórios para investidores (dados) e colaborar com a construção da estratégia ESG",
+              "comR": []
+            },
+            {
+              "id": 179,
+              "nome": "Fornecer dados para relatórios de investidores",
+              "comR": []
+            },
+            {
+              "id": 224,
+              "nome": "Produzir as árvores de indicadores junto às gerências",
+              "comR": []
+            },
+            {
+              "id": 225,
+              "nome": "Produzir as ferramentas de coleta de resultados por pilar estratégico e áreas",
+              "comR": []
+            },
+            {
+              "id": 226,
+              "nome": "Produzir o mapa de Indicadores (MID)",
+              "comR": []
+            },
+            {
+              "id": 227,
+              "nome": "Produzir o cronograma",
+              "comR": []
+            },
+            {
+              "id": 387,
+              "nome": "Acompanhar indicadores do portfólio de projetos sob sua atuação",
+              "comR": [
+                "GEX (LIPPE)"
+              ]
+            },
+            {
+              "id": null,
+              "nome": "Metas Institucionais",
+              "comR": [
+                "GGP"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Bases de inscritos e seleção",
+          "acoes": [
+            {
+              "id": 101,
+              "nome": "Acompanhar o andamento das inscrições",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 105,
+              "nome": "Tratar bases de inscritos",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 106,
+              "nome": "Selecionar inscritos",
+              "comR": []
+            },
+            {
+              "id": 302,
+              "nome": "Estruturar e tratar os dados de entrada dos cursistas - dados de inscritos",
+              "comR": []
+            },
+            {
+              "id": 304,
+              "nome": "Estruturar e tratar as bases de selecionados e não selecionados",
+              "comR": []
+            },
+            {
+              "id": 305,
+              "nome": "Estruturar e tratar os dados para divulgar perfil de candidatos por turma",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Frequência, desempenho e certificação",
+          "acoes": [
+            {
+              "id": 244,
+              "nome": "Estruturar a planilha de cursistas que serão microcertificados por Unidade Curricular",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 246,
+              "nome": "Fazer o report dos cursistas que obtiveram microcertificação para o monitoramento",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 247,
+              "nome": "Registrar na planilha de desempenho os cursistas que foram certificados",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 306,
+              "nome": "Aferir a presença semanal dos cursistas utilizando bases de dados pré definidas",
+              "comR": []
+            },
+            {
+              "id": 311,
+              "nome": "Consolidar e padronizar as bases de dados de desempenho - Tratar",
+              "comR": []
+            },
+            {
+              "id": 312,
+              "nome": "Cruzar as bases de dados de frequência e desempenho - Tratar",
+              "comR": []
+            },
+            {
+              "id": 318,
+              "nome": "Tratar aprovados e reprovados para a equipe de Implementação e Operações",
+              "comR": []
+            },
+            {
+              "id": 320,
+              "nome": "Cruzar dados de assinatura de contrato/matriculados com os dados de frequência (2060)",
+              "comR": []
+            },
+            {
+              "id": 363,
+              "nome": "Solicitar bases de dados de desempenho via chamado na plataforma Ulife",
+              "comR": []
+            },
+            {
+              "id": 364,
+              "nome": "Solicitar bases de dados de frequência via chamado na plataforma SIAF",
+              "comR": []
+            },
+            {
+              "id": 365,
+              "nome": "Consolidar e padronizar as bases de dados de desempenho",
+              "comR": []
+            },
+            {
+              "id": 366,
+              "nome": "Cruzar as bases de dados de frequência e desempenho",
+              "comR": []
+            },
+            {
+              "id": 369,
+              "nome": "Informar aprovados e reprovados para a equipe de Implementação e Operações",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Evasão, retenção, engajamento e satisfação",
+          "acoes": [
+            {
+              "id": 314,
+              "nome": "Acompanhar e registrar os casos de desistência declarados por meio do Microsoft Forms e os adicionar às bases",
+              "comR": []
+            },
+            {
+              "id": 316,
+              "nome": "Tratar os dados de cursistas referente a abandono e retenção",
+              "comR": []
+            },
+            {
+              "id": 317,
+              "nome": "Trtatar os dados de cursistas referentes à retenção (evasão, abandono)",
+              "comR": []
+            },
+            {
+              "id": 321,
+              "nome": "Produzir as análises de engajamento dos cursistas",
+              "comR": []
+            },
+            {
+              "id": 322,
+              "nome": "Elaborar instrumentos de pesquisa de satisfação",
+              "comR": []
+            },
+            {
+              "id": 323,
+              "nome": "Consolidar e analisar dados quantitativos e qualitativos da pesquisa de satisfação",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Dashboards e BI",
+          "acoes": [
+            {
+              "id": 175,
+              "nome": "Acompanhamento e proposição de melhorias para Painel de Business Intelligence (BI)",
+              "comR": []
+            },
+            {
+              "id": 176,
+              "nome": "Garantir atualização regular das bases de dados para manter informações precisas no painel de BI",
+              "comR": []
+            },
+            {
+              "id": 299,
+              "nome": "Planejamento de coleta e visualização de dados",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 301,
+              "nome": "Pesquisas e produção de relatórios sob demanda na áreas",
+              "comR": []
+            },
+            {
+              "id": 324,
+              "nome": "Garantir da atualização as bases de dados para refletir as mudanças nas turmas e cursos, reavaliação de notas, alterações nominais, etc",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 326,
+              "nome": "Garantir tabelas em excel e dashboard analíticos de dados para comunicação instituto consolidados",
+              "comR": []
+            },
+            {
+              "id": 327,
+              "nome": "Fornecimento de relatórios pré acordados",
+              "comR": []
+            },
+            {
+              "id": 328,
+              "nome": "Produzir os dashboards de acompanhamento para as secretarias",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "EPPg",
+      "total": 47,
+      "clusters": [
+        {
+          "nome": "Gestão do portfólio de projetos",
+          "acoes": [
+            {
+              "id": 11,
+              "nome": "Garantir a execução dos cronogramas conforme pactuado",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 197,
+              "nome": "Garantir as hierarquias de validação e aprovação da RACI",
+              "comR": []
+            },
+            {
+              "id": 385,
+              "nome": "Coconstrução dos cronogramas dos projetos do Instituto",
+              "comR": []
+            },
+            {
+              "id": 386,
+              "nome": "Monitorar cronograma, escopo e custo dos projetos do Instituto (Educação Básica e Superior)",
+              "comR": []
+            },
+            {
+              "id": 392,
+              "nome": "Avaliar propostas de participação de editais, com base em valor estratégico, risco e retorno",
+              "comR": []
+            },
+            {
+              "id": 393,
+              "nome": "Revisar continuamente o portfólio de projetos em relação a escopo, custo e prazo conforme mudanças organizacionais",
+              "comR": []
+            },
+            {
+              "id": 394,
+              "nome": "Identificar desvios e propor ações corretivas nos projetos",
+              "comR": []
+            },
+            {
+              "id": 396,
+              "nome": "Planejar e alocar recursos (financeiros e materiais) para a submissão dos projetos",
+              "comR": []
+            },
+            {
+              "id": 398,
+              "nome": "Resolver conflitos de alocação entre projetos",
+              "comR": []
+            },
+            {
+              "id": 399,
+              "nome": "Forneceser subsídio para decisão de contratação ou terceirização de serviços",
+              "comR": []
+            },
+            {
+              "id": 400,
+              "nome": "Elaboração de documentação de encerramentos de projetos",
+              "comR": []
+            },
+            {
+              "id": 401,
+              "nome": "Criar repositórios de documentos e boas práticas no sharepoint",
+              "comR": []
+            },
+            {
+              "id": 402,
+              "nome": "Fornecer orientação metodológica para demais áreas sobre gestão de projetos",
+              "comR": []
+            },
+            {
+              "id": 403,
+              "nome": "Conduzir processos de prestação de contas de projetos",
+              "comR": []
+            },
+            {
+              "id": 404,
+              "nome": "Assegurar conformidade com requisitos legais/regulatórios",
+              "comR": []
+            },
+            {
+              "id": 405,
+              "nome": "Desdobrar contramedidas, planos de ação e tomadas de decisão em relação ao escopo dos projetos executados",
+              "comR": []
+            },
+            {
+              "id": 427,
+              "nome": "Garantir a execução dos cronograma de liberação de conteúdo e de plano avaliativo conforme pactuado",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Reports e indicadores",
+          "acoes": [
+            {
+              "id": 29,
+              "nome": "Apresentar os relatórios parciais e o relatório final para CAIXA",
+              "comR": []
+            },
+            {
+              "id": 52,
+              "nome": "Apresentar para os investidores",
+              "comR": []
+            },
+            {
+              "id": 81,
+              "nome": "Reportar dados para investidor",
+              "comR": []
+            },
+            {
+              "id": 388,
+              "nome": "Elaborar reports para investidores",
+              "comR": []
+            },
+            {
+              "id": 389,
+              "nome": "Elaborar reports para diretoria com informações consolidadas",
+              "comR": []
+            },
+            {
+              "id": 390,
+              "nome": "Desenvolver report com executado físico-financeiro dos projetos",
+              "comR": []
+            },
+            {
+              "id": 391,
+              "nome": "Desenvolvimento de dashboards para acompanhamento físico dos projetos",
+              "comR": []
+            },
+            {
+              "id": 395,
+              "nome": "Realizar reuniões periódicas de status e report para diretorias",
+              "comR": []
+            },
+            {
+              "id": 406,
+              "nome": "Executar agendas de apresentação dos resultados de projetos",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "ESG",
+          "acoes": [
+            {
+              "id": 228,
+              "nome": "Desenhar e implementar estratégia de ESG",
+              "comR": [
+                "GAF"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Compras e contratos",
+          "acoes": [
+            {
+              "id": 445,
+              "nome": "CADASTRO DE PRODUTO",
+              "comR": []
+            },
+            {
+              "id": 446,
+              "nome": "HOMOLOGAÇÃO DE FORNECEDORES",
+              "comR": []
+            },
+            {
+              "id": 447,
+              "nome": "COMPRA DE PRODUTOS",
+              "comR": []
+            },
+            {
+              "id": 448,
+              "nome": "CONTRATAÇÃO DE SERVIÇOS",
+              "comR": []
+            },
+            {
+              "id": 449,
+              "nome": "INTERLOCUÇÃO COM JURÍDICO",
+              "comR": []
+            },
+            {
+              "id": 450,
+              "nome": "CONTRATO DE PRESTAÇÃO DE SERVIÇO",
+              "comR": []
+            },
+            {
+              "id": 451,
+              "nome": "MODULO DE CONTRATOS",
+              "comR": []
+            },
+            {
+              "id": 454,
+              "nome": "MEDIÇÃO DE CONTRATO",
+              "comR": []
+            },
+            {
+              "id": 455,
+              "nome": "CONTRATO PROJETADO",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Documentos e sistemas",
+          "acoes": [
+            {
+              "id": 452,
+              "nome": "CONTROLE DE DOCUMENTOS INSTITUTO ÂNIMA",
+              "comR": []
+            },
+            {
+              "id": 453,
+              "nome": "ATUALIZAÇÃO DE DOCUMENTOS",
+              "comR": []
+            },
+            {
+              "id": 456,
+              "nome": "CADASTRO EM PLATAFORMAS E SISTEMAS",
+              "comR": []
+            },
+            {
+              "id": 457,
+              "nome": "ATUALIZAÇÃO DE BANCO DE DADOS (USUARIOS)",
+              "comR": []
+            },
+            {
+              "id": 458,
+              "nome": "ATUALIZAÇÃO DE FUNÇÕES",
+              "comR": []
+            },
+            {
+              "id": 459,
+              "nome": "DADOS DE USO",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Fluxos, manuais e boas práticas",
+          "acoes": [
+            {
+              "id": 460,
+              "nome": "DESENHO DE FLUXO DE OPERAÇÃO",
+              "comR": []
+            },
+            {
+              "id": 461,
+              "nome": "ELABORAÇÃO DE GUIA E MANUAIS",
+              "comR": []
+            },
+            {
+              "id": 462,
+              "nome": "PROPOSTA DE MELHORIAS",
+              "comR": []
+            },
+            {
+              "id": 463,
+              "nome": "CRIAR REPOSITÓRIO DE DOCUMENTOS E BOAS PRÁTICAS",
+              "comR": []
+            },
+            {
+              "id": 464,
+              "nome": "DISSEMINAR CONHECIMENTO ENTRE EQUIPES",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GGP",
+      "total": 42,
+      "clusters": [
+        {
+          "nome": "Atração, seleção e marca empregadora",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Processos seletivos",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Marca Empregadora",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Indica + Instituto",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Entrevistas de desligamento",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Onboarding",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Amigo anjo",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Sindicatos",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Indicadores",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Definição de indicadores (KPIs)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Revisão de indicadores (ciclo)",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Desenvolvimento e engajamento",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Avaliação de competências",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Metas Institucionais",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": null,
+              "nome": "Pesquisa de Engajamento",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Treinamento",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Suporte de TI",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Núcleo de Suporte a Informática",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Gestão de Processos de Tecnologia da Informação",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Departamento pessoal",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Admissão",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Benefícios",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Ponto Eletrônico",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Férias",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Saúde Ocupacional",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Movimentações/Promoções",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Folha de pagamento",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Gestão de Fornecedores de Sistemas (Folha/TOTVS)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Gestão de Estagiários e Faturamento CIEE",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Gestão de Bolsista de Pesquisa",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Gestão de Prontuários",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Chamado Jurídico",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Remuneração/Cargos e salários",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Normas, indicadores e governança administrativa",
+          "acoes": [
+            {
+              "id": null,
+              "nome": "Gestão de agendas",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Orçamento e prestação de contas",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Governança adm",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Levantamento de necessidade de norma",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Revisão técnica",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Publicação (intranet/sistema)",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Comunicação e Disseminação",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Treinamento/orientação",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Coleta de dados",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Monitoramento periódico",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Análise de resultados",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Elaboração de matriz FCA",
+              "comR": []
+            },
+            {
+              "id": null,
+              "nome": "Plano de ação (desvios)",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GDE",
+      "total": 40,
+      "clusters": [
+        {
+          "nome": "Produção de conteúdo e design instrucional",
+          "acoes": [
+            {
+              "id": 1,
+              "nome": "Elaborar conteúdos da especialização",
+              "comR": []
+            },
+            {
+              "id": 2,
+              "nome": "Elaborar conteúdos da extensão",
+              "comR": []
+            },
+            {
+              "id": 3,
+              "nome": "Elaborar roteiros pedagógicos com currículo escolar",
+              "comR": []
+            },
+            {
+              "id": 14,
+              "nome": "Produzir conteúdos para videos de EDUFIN para familiares e estudantes (VIVAE)",
+              "comR": []
+            },
+            {
+              "id": 69,
+              "nome": "Planejar conteúdos da extensão em Educação Ambiental",
+              "comR": []
+            },
+            {
+              "id": 70,
+              "nome": "Produzir conteúdos da extensão em Educação Ambiental",
+              "comR": []
+            },
+            {
+              "id": 408,
+              "nome": "Elaborar o Design instrucional de todas as ofertas e programas do IÂ",
+              "comR": []
+            },
+            {
+              "id": 411,
+              "nome": "Produzir diversos materiais instrucionais (manuais, guias, trilhas, mapas e jornadas) e didáticos conforme escopo dos programas do IÂ roteiros pedagógicos com currículo escolar",
+              "comR": []
+            },
+            {
+              "id": 418,
+              "nome": "Apresentar propostas de inovação pedagógica para as ofertas do IÂ",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Revisão de jornadas, conteúdos e orçamento",
+          "acoes": [
+            {
+              "id": 4,
+              "nome": "Revisar a jornada da especialização (nível de personalização)",
+              "comR": []
+            },
+            {
+              "id": 5,
+              "nome": "Revisar o conteúdo da especialização",
+              "comR": []
+            },
+            {
+              "id": 6,
+              "nome": "Revisar o orçamento com base no ajuste da jornada e conteúdos",
+              "comR": []
+            },
+            {
+              "id": 67,
+              "nome": "Revisar conteúdos da especialização nos módulos já implementados",
+              "comR": []
+            },
+            {
+              "id": 339,
+              "nome": "Validar trilhas para professores",
+              "comR": []
+            },
+            {
+              "id": 421,
+              "nome": "Revisar e atualizar continuamente a jornada e os conteúdos da especialização e de outras ofertas do IÂ (nível de personalização)",
+              "comR": []
+            },
+            {
+              "id": 422,
+              "nome": "Apoiar a gestão e revisão revisar do orçamento da área com base no design instrucional dos programas",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Estrutura das UCs e plano avaliativo",
+          "acoes": [
+            {
+              "id": 124,
+              "nome": "Criar catálogos de conteúdo",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 125,
+              "nome": "Inserir conteúdo nas UCs",
+              "comR": []
+            },
+            {
+              "id": 126,
+              "nome": "Definição do plano de avaliação",
+              "comR": []
+            },
+            {
+              "id": 128,
+              "nome": "Distribuir tipo-nota nas atividades no Ulife",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 147,
+              "nome": "Criar catálogo provas para avaliações substitutivas",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 236,
+              "nome": "Validar a estrutura das UCs contemplando a sequência didática/pedagógica de GIP",
+              "comR": []
+            },
+            {
+              "id": 345,
+              "nome": "Validar a estrutura das UCs contemplando a sequência didática/pedagógica de GEC",
+              "comR": []
+            },
+            {
+              "id": 415,
+              "nome": "Elaborar o Plano Avaliativo das ofertas de Pós-graduação e extensão",
+              "comR": []
+            },
+            {
+              "id": 424,
+              "nome": "Disponibilizar os conteúdos na plataforma do território parceiro",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Documentação e governança dos conteúdos",
+          "acoes": [
+            {
+              "id": 62,
+              "nome": "Organizar menções à Open academy frente às UCs e aulas",
+              "comR": []
+            },
+            {
+              "id": 136,
+              "nome": "Definir cronograma de entregas de conteúdo (materiais) pedagógico",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 409,
+              "nome": "Conduzir oficinas/grupos de trabalho/workshops de co construção de matriz curricular",
+              "comR": []
+            },
+            {
+              "id": 410,
+              "nome": "Conduzir oficinas/grupos de trabalho/workshops de validação de matriz curricular",
+              "comR": []
+            },
+            {
+              "id": 412,
+              "nome": "Elaborar o cronogramas de produção do conteúdo de todas as ofertas e programas do IÂ",
+              "comR": []
+            },
+            {
+              "id": 413,
+              "nome": "Elaborar os fluxos de trabalho da governança dos conteúdos",
+              "comR": []
+            },
+            {
+              "id": 414,
+              "nome": "Realizar a seleção, contratação e gestão de fornecedores necessários para a produção de conteúdo das ofertas de pós-graduação e extensão",
+              "comR": []
+            },
+            {
+              "id": 416,
+              "nome": "Elaborar e gerir ferramentas de validação de conteúdo das ofertas anualmente",
+              "comR": []
+            },
+            {
+              "id": 417,
+              "nome": "Elaborar a documentação (PPC, matriz, Plano de Curso) das ofertas",
+              "comR": []
+            },
+            {
+              "id": 419,
+              "nome": "Apoiar a condução de painéis de abertura/aula magna das ofertas",
+              "comR": []
+            },
+            {
+              "id": 420,
+              "nome": "Planjejar encontros formativos com os autores de pós-graduação para o time de formadores",
+              "comR": [
+                "GFOR"
+              ]
+            }
+          ]
+        },
+        {
+          "nome": "Formação executiva CAIXA",
+          "acoes": [
+            {
+              "id": 202,
+              "nome": "Planejar o programa de formação executiva para colaboradores CAIXA",
+              "comR": []
+            },
+            {
+              "id": 203,
+              "nome": "Produzir os conteúdos da formação executiva (mesas de debate, comunidade de aprendizagem, vídeos)",
+              "comR": []
+            },
+            {
+              "id": 204,
+              "nome": "Definir os participantes do painel para colaboradores CAIXA",
+              "comR": []
+            },
+            {
+              "id": 205,
+              "nome": "Executar as mesas de debate",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GAV",
+      "total": 25,
+      "clusters": [
+        {
+          "nome": "Desenho e instrumentos das avaliações",
+          "acoes": [
+            {
+              "id": 43,
+              "nome": "ão da TDM (planejamento",
+              "comR": []
+            },
+            {
+              "id": 48,
+              "nome": "Validar instrumentos de pesquisa com Comitê Científico",
+              "comR": []
+            },
+            {
+              "id": 74,
+              "nome": "Levantar estratégias de avaliação de Educação Ambiental e CPs",
+              "comR": []
+            },
+            {
+              "id": 75,
+              "nome": "Elaborar mapa de perguntas da pesquisa",
+              "comR": []
+            },
+            {
+              "id": 76,
+              "nome": "Fazer validações com CC",
+              "comR": []
+            },
+            {
+              "id": 77,
+              "nome": "Construir instrumentos de coleta primária",
+              "comR": []
+            },
+            {
+              "id": 210,
+              "nome": "Elaborar o planejamento das avaliações de desenho e de impacto (especialização e extensão)",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Contratação e gestão de fornecedores",
+          "acoes": [
+            {
+              "id": 26,
+              "nome": "Definir o fornecedor da avaliação de impacto",
+              "comR": []
+            },
+            {
+              "id": 27,
+              "nome": "Gerenciar as entregas do avaliador",
+              "comR": []
+            },
+            {
+              "id": 44,
+              "nome": "Contratar o fornecedor de pesquisa",
+              "comR": []
+            },
+            {
+              "id": 45,
+              "nome": "Contratar o fornecedor do sistema de avaliação",
+              "comR": []
+            },
+            {
+              "id": 46,
+              "nome": "Gerenciar as entregas dos fornecedores das avaliações",
+              "comR": []
+            },
+            {
+              "id": 211,
+              "nome": "Contratar o fornecedor para condução das avaliações",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Realização das avaliações",
+          "acoes": [
+            {
+              "id": 28,
+              "nome": "Monitorar a avaliação de impacto",
+              "comR": []
+            },
+            {
+              "id": 54,
+              "nome": "Implementar as avaliações (impacto, diagnóstica e de implementação)",
+              "comR": []
+            },
+            {
+              "id": 55,
+              "nome": "Realizar as avaliações de impacto",
+              "comR": []
+            },
+            {
+              "id": 56,
+              "nome": "Realizar as avaliações de implementação",
+              "comR": []
+            },
+            {
+              "id": 219,
+              "nome": "Realizar as avaliações de desenho",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Análise e publicação dos resultados",
+          "acoes": [
+            {
+              "id": 47,
+              "nome": "Analisar os resultados a partir da entrega do relatório do fornecedor de pesquisa",
+              "comR": []
+            },
+            {
+              "id": 50,
+              "nome": "Validar os resultados com o Comitê Científico",
+              "comR": []
+            },
+            {
+              "id": 78,
+              "nome": "Fazer análise dos resuiltados de avaliação",
+              "comR": []
+            },
+            {
+              "id": 79,
+              "nome": "Publicar os resultados de pesquisa",
+              "comR": []
+            },
+            {
+              "id": 212,
+              "nome": "Analisar os resultados à partir da entrega do relatório do fornecedor",
+              "comR": []
+            },
+            {
+              "id": 213,
+              "nome": "Apresentar os resultados para secretarias",
+              "comR": []
+            },
+            {
+              "id": 223,
+              "nome": "Publicar os resultados",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GFOR",
+      "total": 25,
+      "clusters": [
+        {
+          "nome": "Gestão de formadores, tutores e coordenadores",
+          "acoes": [
+            {
+              "id": 374,
+              "nome": "Organização da agenda semanal e do plano formativo do formador",
+              "comR": []
+            },
+            {
+              "id": 377,
+              "nome": "Alocação Docente em cada Módulo",
+              "comR": []
+            },
+            {
+              "id": 378,
+              "nome": "Gestão do time de coordenadores, formadores e tutores",
+              "comR": []
+            },
+            {
+              "id": 379,
+              "nome": "Monitoramento das ações de GFOR na Monday",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Formação da equipe de formadores",
+          "acoes": [
+            {
+              "id": 73,
+              "nome": "Formar equipe de formadores",
+              "comR": []
+            },
+            {
+              "id": 137,
+              "nome": "Planejar e executar formações extraordinárias aos formadores a fim de esclarecimentos técnicos sobre a utilização do Ulife",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 196,
+              "nome": "Formar a equipe de formadores",
+              "comR": []
+            },
+            {
+              "id": 375,
+              "nome": "Organização e execução da Formação de Tutores",
+              "comR": []
+            },
+            {
+              "id": 420,
+              "nome": "Planjejar encontros formativos com os autores de pós-graduação para o time de formadores",
+              "comR": [
+                "GDE"
+              ]
+            },
+            {
+              "id": 426,
+              "nome": "Formar a equipe de formadores em Encontros de Desenvolvimento Docente",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Planejamento de oferta e turmas",
+          "acoes": [
+            {
+              "id": 9,
+              "nome": "Executar o plano de trabalho dos ACTs - extensão",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 107,
+              "nome": "Enturmar inscritos (articular com GFOR para realizar a distribuição de professores entre as turmas)",
+              "comR": [
+                "GOPE",
+                "GIMP"
+              ]
+            },
+            {
+              "id": 108,
+              "nome": "Articular com GFOR o cronograma da pós",
+              "comR": [
+                "GOPE",
+                "GIMP"
+              ]
+            },
+            {
+              "id": 130,
+              "nome": "Definir calendário de oferta",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 131,
+              "nome": "Definir quantidade de turmas a serem abertas",
+              "comR": [
+                "GOPE"
+              ]
+            },
+            {
+              "id": 132,
+              "nome": "Definir abertura, fakejoin e encerramento de turmas",
+              "comR": []
+            },
+            {
+              "id": 139,
+              "nome": "Criar as jornadas das turmas no Strateegia",
+              "comR": []
+            },
+            {
+              "id": 195,
+              "nome": "Executar o plano de trabalho dos ACTs - especialização",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 241,
+              "nome": "Definir a indicação docente das turmas",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Acompanhamento das aulas",
+          "acoes": [
+            {
+              "id": 360,
+              "nome": "Elaborar instrumentos de registro de frequência para o aula a aula (atualmente, usando Google Forms)",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 380,
+              "nome": "Manutenção do banco de evidencias das aulas",
+              "comR": []
+            },
+            {
+              "id": 381,
+              "nome": "Acompanhamento do diáriod e classe dos formadores",
+              "comR": []
+            },
+            {
+              "id": 382,
+              "nome": "Aplicação do instrumento de observação da aula",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Conteúdos e melhorias dos cursos",
+          "acoes": [
+            {
+              "id": 383,
+              "nome": "validação e revisçaoi de conteúdos",
+              "comR": []
+            },
+            {
+              "id": 384,
+              "nome": "Propor melhorias execução dos cursos",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "Comunicação",
+      "total": 17,
+      "clusters": [
+        {
+          "nome": "Divulgação de cursos e avaliações",
+          "acoes": [
+            {
+              "id": 428,
+              "nome": "Peças para divulgação de cursos",
+              "comR": []
+            },
+            {
+              "id": 433,
+              "nome": "Peças de divulgação para avaliação",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Redes sociais",
+          "acoes": [
+            {
+              "id": 429,
+              "nome": "Planejamento de conteúdo redes sociais",
+              "comR": []
+            },
+            {
+              "id": 430,
+              "nome": "Produção conteúdo redes sociais",
+              "comR": []
+            },
+            {
+              "id": 441,
+              "nome": "Atendimento Redes Sociais (IG)",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Comunicação institucional e marca",
+          "acoes": [
+            {
+              "id": 431,
+              "nome": "Apresentações institucionais (ajustes ou criação)",
+              "comR": []
+            },
+            {
+              "id": 434,
+              "nome": "Criação/revisão de textos institucionais",
+              "comR": []
+            },
+            {
+              "id": 435,
+              "nome": "Criação de itens e ajustes no site institucional",
+              "comR": []
+            },
+            {
+              "id": 439,
+              "nome": "Conteúdos externos de marca empregadora",
+              "comR": []
+            },
+            {
+              "id": 440,
+              "nome": "Criação de identidade visual para projetos",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Comunicação interna",
+          "acoes": [
+            {
+              "id": 432,
+              "nome": "Peças de conteúdos internos - comunicação interna",
+              "comR": []
+            },
+            {
+              "id": 436,
+              "nome": "Criação e manutenção de site interno (Comunica)",
+              "comR": []
+            },
+            {
+              "id": 438,
+              "nome": "TV Corporativa",
+              "comR": []
+            },
+            {
+              "id": 444,
+              "nome": "Produção de notícias internas",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Produção visual e eventos",
+          "acoes": [
+            {
+              "id": 437,
+              "nome": "Materiais para impressão - comunicação externa",
+              "comR": []
+            },
+            {
+              "id": 442,
+              "nome": "Captação de fotos e vídeos em eventos do Instituto",
+              "comR": []
+            },
+            {
+              "id": 443,
+              "nome": "Diagramação de relatórios, onepages etc.",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "CPE",
+      "total": 10,
+      "clusters": [
+        {
+          "nome": "Mapeamentos de políticas públicas e normativos",
+          "acoes": [
+            {
+              "id": 181,
+              "nome": "Produção aprofundada de mapeamentos para outros projetos",
+              "comR": []
+            },
+            {
+              "id": 182,
+              "nome": "Validação de mapeamentos com Secretarias",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 184,
+              "nome": "Mapeamento da estrutura de carreiras dos estados",
+              "comR": []
+            },
+            {
+              "id": 187,
+              "nome": "Mapeamento e análise aprofundada de indicadores secundários de educação",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Monitoramento político e de notícias",
+          "acoes": [
+            {
+              "id": 183,
+              "nome": "Monitoramento e análise das noticias dos territórios e políticas educacionais nacionais",
+              "comR": []
+            },
+            {
+              "id": 185,
+              "nome": "Análise de cenário político para eleições",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Insumos para cursos e políticas",
+          "acoes": [
+            {
+              "id": 180,
+              "nome": "Produção de insumos para construção e atualização dos cursos",
+              "comR": []
+            },
+            {
+              "id": 188,
+              "nome": "Gestão de insumos para institucionalização de políticas nos territórios",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Apresentação dos mapeamentos",
+          "acoes": [
+            {
+              "id": 189,
+              "nome": "Apresentação de mapeamentos para Secretarias",
+              "comR": []
+            },
+            {
+              "id": 190,
+              "nome": "Apresentação de mapeamentos Formadores e demais equipes internas",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigla": "GEX (LIPPE)",
+      "total": 6,
+      "clusters": [
+        {
+          "nome": "Governança dos ACTs e resultados às secretarias",
+          "acoes": [
+            {
+              "id": 8,
+              "nome": "Executar governança do plano de trabalho dos ACTs",
+              "comR": []
+            },
+            {
+              "id": 10,
+              "nome": "Aprovar o plano de trabalho pactuado com os territórios",
+              "comR": [
+                "GIMP"
+              ]
+            },
+            {
+              "id": 51,
+              "nome": "Apresentar os resultados para secretarias (governança de consequências)",
+              "comR": []
+            },
+            {
+              "id": 63,
+              "nome": "Articular com secretaria a divulgação da plataforma",
+              "comR": []
+            }
+          ]
+        },
+        {
+          "nome": "Demandas formativas e indicadores",
+          "acoes": [
+            {
+              "id": 387,
+              "nome": "Acompanhar indicadores do portfólio de projetos sob sua atuação",
+              "comR": [
+                "GDA"
+              ]
+            },
+            {
+              "id": 407,
+              "nome": "Mapear as principais demandas e necessidades formativas dos territórios",
+              "comR": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
