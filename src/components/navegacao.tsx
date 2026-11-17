@@ -82,6 +82,12 @@ export const LINKS_RESTRITOS: LinkNavegacao[] = [
     icone: c => svg(c, <><path d="M3 3v18h18" /><path d="m7 15 4-4 3 3 5-6" /></>),
   },
   {
+    href: `${RESTRITO}/raci`,
+    rotulo: 'Frentes por área (RACI)',
+    rotuloCurto: 'Frentes RACI',
+    icone: c => svg(c, <><circle cx="5" cy="6" r="2" /><circle cx="5" cy="18" r="2" /><circle cx="19" cy="12" r="2" /><path d="M7 6h4l2 6h4M7 18h4l2-6" /></>),
+  },
+  {
     href: `${RESTRITO}/relatorio`,
     rotulo: 'Relatório',
     icone: c => svg(c, <><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></>),
