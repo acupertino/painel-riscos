@@ -67,7 +67,7 @@
   "areas": [
     {
       "sigla": "GOPE",
-      "total": 128,
+      "total": 126,
       "clusters": [
         {
           "nome": "Oferta no ecossistema Ânima",
@@ -362,11 +362,6 @@
               "comR": [
                 "GDA"
               ]
-            },
-            {
-              "id": 332,
-              "nome": "Certificar os executivos CAIXA",
-              "comR": []
             }
           ]
         },
@@ -509,11 +504,6 @@
               "comR": [
                 "GIMP"
               ]
-            },
-            {
-              "id": 263,
-              "nome": "Realizar ações de comunicação [EPrparos de WhatsApp]",
-              "comR": []
             },
             {
               "id": 264,
@@ -1394,7 +1384,7 @@
     },
     {
       "sigla": "GAF",
-      "total": 66,
+      "total": 65,
       "clusters": [
         {
           "nome": "Tesouraria e caixa",
@@ -1627,13 +1617,6 @@
             {
               "id": 60,
               "nome": "Realizar as pesquisas de NPS",
-              "comR": [
-                "EPPg"
-              ]
-            },
-            {
-              "id": 228,
-              "nome": "Desenhar e implementar estratégia de ESG",
               "comR": [
                 "EPPg"
               ]
@@ -2053,7 +2036,7 @@
     },
     {
       "sigla": "EPPg",
-      "total": 47,
+      "total": 46,
       "clusters": [
         {
           "nome": "Gestão do portfólio de projetos",
@@ -2194,18 +2177,6 @@
               "id": 406,
               "nome": "Executar agendas de apresentação dos resultados de projetos",
               "comR": []
-            }
-          ]
-        },
-        {
-          "nome": "ESG",
-          "acoes": [
-            {
-              "id": 228,
-              "nome": "Desenhar e implementar estratégia de ESG",
-              "comR": [
-                "GAF"
-              ]
             }
           ]
         },
@@ -2571,7 +2542,7 @@
     },
     {
       "sigla": "GDE",
-      "total": 40,
+      "total": 36,
       "clusters": [
         {
           "nome": "Produção de conteúdo e design instrucional",
@@ -2782,31 +2753,6 @@
               ]
             }
           ]
-        },
-        {
-          "nome": "Formação executiva CAIXA",
-          "acoes": [
-            {
-              "id": 202,
-              "nome": "Planejar o programa de formação executiva para colaboradores CAIXA",
-              "comR": []
-            },
-            {
-              "id": 203,
-              "nome": "Produzir os conteúdos da formação executiva (mesas de debate, comunidade de aprendizagem, vídeos)",
-              "comR": []
-            },
-            {
-              "id": 204,
-              "nome": "Definir os participantes do painel para colaboradores CAIXA",
-              "comR": []
-            },
-            {
-              "id": 205,
-              "nome": "Executar as mesas de debate",
-              "comR": []
-            }
-          ]
         }
       ]
     },
@@ -2819,7 +2765,7 @@
           "acoes": [
             {
               "id": 43,
-              "nome": "ão da TDM (planejamento",
+              "nome": "Revisão da TDM",
               "comR": []
             },
             {

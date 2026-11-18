@@ -14,8 +14,8 @@ export default function FrentesRaci() {
   const [aberta, setAberta] = useState<string | null>(null)
   const { hoje } = useSemana()
 
-  // PDF (pedido de 17/11/2026): abre a janela de impressão ("Salvar como PDF") com a tela como está,
-  // inclusive a área aberta; no papel os cards ficam em 3 colunas.
+  // PDF (pedido de 17/11/2026): abre a janela de impressão ("Salvar como PDF"): os cards em 3 colunas na
+  // primeira folha e, a partir da seguinte, o detalhamento das ações de todas as áreas.
   const baixarPdf = () => {
     const titulo = document.title
     document.title = `Frentes por area (RACI) - ${hoje.split('-').reverse().join('-')}`
@@ -36,7 +36,11 @@ export default function FrentesRaci() {
   if (erro) return <Vazio texto={erro} />
   if (!dados) return <Vazio texto="Carregando a RACI…" />
 
-  const area = dados.areas.find(a => a.sigla === aberta) ?? null
+  // Card leva ao detalhamento da área, que fica sempre aberto abaixo (pedido de 18/11/2026).
+  const irPara = (sigla: string) => {
+    setAberta(sigla)
+    document.getElementById(`area-${sigla}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <div className="space-y-4">
@@ -53,7 +57,7 @@ export default function FrentesRaci() {
       <section className="rounded-xl bg-white border border-slate-200 shadow-sm p-4">
         <h2 className="text-base font-semibold text-slate-800">Grandes frentes de cada área</h2>
         <p className="mt-1 text-sm text-slate-600">
-          Agrupamento das ações em que cada área é <b>R (responsável)</b> na RACI. <span className="print:hidden">Clique numa área para ver as ações de cada frente.</span>
+          Agrupamento das ações em que cada área é <b>R (responsável)</b> na RACI. <span className="print:hidden">Clique numa área para ir ao detalhamento das ações de cada frente.</span>
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <Chip rotulo="Ações na RACI" valor={dados.totalAcoes} />
@@ -65,11 +69,14 @@ export default function FrentesRaci() {
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 print:grid-cols-3">
         {dados.areas.map(a => (
-          <CartaoArea key={a.sigla} area={a} ativa={a.sigla === aberta} onClick={() => setAberta(a.sigla === aberta ? null : a.sigla)} />
+          <CartaoArea key={a.sigla} area={a} ativa={a.sigla === aberta} onClick={() => irPara(a.sigla)} />
         ))}
       </div>
 
-      {area && <Detalhe area={area} onFechar={() => setAberta(null)} />}
+      <h2 className="pt-2 text-base font-semibold text-slate-800 print:break-before-page">Detalhamento das ações por área e frente</h2>
+      {dados.areas.map(a => (
+        <Detalhe key={a.sigla} area={a} />
+      ))}
     </div>
   )
 }
@@ -115,16 +122,13 @@ function CartaoArea({ area, ativa, onClick }: { area: AreaRaci; ativa: boolean; 
   )
 }
 
-function Detalhe({ area, onFechar }: { area: AreaRaci; onFechar: () => void }) {
+function Detalhe({ area }: { area: AreaRaci }) {
   return (
-    <section className="rounded-xl bg-white border border-slate-200 shadow-sm p-4">
+    <section id={`area-${area.sigla}`} className="scroll-mt-40 rounded-xl bg-white border border-slate-200 shadow-sm p-4">
       <header className="flex items-baseline justify-between gap-2">
         <h3 className="text-base font-semibold text-slate-800">
           {area.sigla} · {area.clusters.length} frentes, {area.total} ações
         </h3>
-        <button onClick={onFechar} className="print:hidden text-sm text-slate-500 hover:text-slate-800">
-          Fechar
-        </button>
       </header>
       <div className="mt-3 grid gap-3 lg:grid-cols-2">
         {area.clusters.map(c => (
