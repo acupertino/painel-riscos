@@ -81,7 +81,18 @@ const fimPrevisto = (c: Record<string, string>) => ultimaData(c['Fim projetado']
 const fimReal = (c: Record<string, string>) => ultimaData(c['Fim real'] ?? c['TÉRMINO REAL'] ?? null)
 
 const GAV = 'Avaliações_GAV'
-const GRUPOS_GAV_FORA = ['impacto coordenacao pedagogica', 'coordenacao pedagogica quali', 'diagnostica se 2026', 'diagnostica se 2025', 'policy papers']
+// Avaliações de EDUFIN e Pé-de-Meia retiradas da rubrica Avaliação de Educação Financeira (Isa, 24/11/2026):
+// Diagnósticas Edufin, Reabertura Edufin e PdM MG e PdM SP. O policy paper Edufin (Advocacy) continua.
+const GRUPOS_GAV_FORA = [
+  'impacto coordenacao pedagogica',
+  'coordenacao pedagogica quali',
+  'diagnostica se 2026',
+  'diagnostica se 2025',
+  'policy papers',
+  'diagnosticas edufin',
+  'reabertura avaliacoes edufin e pdm 2026 - minas gerais',
+  'pdm sp',
+]
 
 // Relações da Isa (10/11/2026):
 // - quadros sem coluna RUBRICA: Calendário Detalhado = Formação e Implementação; Avaliações_GAV = Avaliação;
@@ -99,7 +110,6 @@ const OFERTA_GM = /^BA\s*-\s*GM\b/i
 // programa pelas siglas. `fora: true` tira a linha da conta.
 const ADVOCACY = 'EIXO ADVOCACY + POLICY PAPERS'
 const RELACOES: { quadro: string; grupo?: string; programa?: Programa; rubrica?: Rubrica; fora?: boolean }[] = [
-  { quadro: GAV, grupo: 'PdM SP', programa: 'Educação Financeira' },
   // Só as linhas sem sigla (agendas de governança, entregáveis com as Secretarias). Extensão EDUFIN → Educação
   // Financeira e extensão SE → Socioemocional pelas siglas (Isa, 24/11/2026); Gestores Municipais (GM) → Diretores Escolares.
   { quadro: 'CURSOS DE EXTENSÃO, GM E ENTREGÁVEIS COM SEDUC', fora: true },

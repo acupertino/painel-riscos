@@ -150,8 +150,8 @@ export default function FisicoFinanceiro() {
             de um programa (ex.: “CP e SE”) conta nos dois. Coordenação Pedagógica = CP + Vice-Direção (VD, VDP, VDE); Diretores Escolares = DE +
             Gestores Municipais (GM); a Avaliação de Socioemocional soma a avaliação de CP. Sem coluna RUBRICA, o Calendário Detalhado entra como Formação e Implementação
             e o Avaliações_GAV como Avaliação. Ficam fora os quadros de Comunicação e de Credenciamento, e, no Calendário, as ofertas
-            EDUAMB, Operação Resgate e Regular - Síncrono; a oferta BA - GM entra em Diretores Escolares. Linhas sem sigla: PdM SP (Avaliações_GAV)
-            entra em Educação Financeira; as de Advocacy, em Socioemocional. Em Socioemocional, tudo o que vem do quadro de Advocacy (policy paper SE, Papo de Cabeça, ENAP…) é Eixo Público; nos quadros de Cursos de Extensão, a extensão de EDUFIN entra em Educação Financeira, a de SE em Socioemocional e a de
+            EDUAMB, Operação Resgate e Regular - Síncrono; a oferta BA - GM entra em Diretores Escolares. Em Educação Financeira, a Avaliação não conta as avaliações
+            Diagnósticas Edufin, a Reabertura Edufin e PdM MG nem o PdM SP (fica o policy paper Edufin). Linhas sem sigla do Advocacy entram em Socioemocional. Em Socioemocional, tudo o que vem do quadro de Advocacy (policy paper SE, Papo de Cabeça, ENAP…) é Eixo Público; nos quadros de Cursos de Extensão, a extensão de EDUFIN entra em Educação Financeira, a de SE em Socioemocional e a de
             Gestores Municipais em Diretores Escolares; ficam de fora as agendas de governança, os entregáveis com as Secretarias e a EDUAMB.
             {marco && ` Financeiro: % executado até ${dataBr(marco.data)}${marco.fonte ? ` (${marco.fonte})` : ''}, comparado ao físico acumulado até a mesma data.`}
           </p>
