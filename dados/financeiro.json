@@ -32,7 +32,7 @@
             "Conteúdo": "Parte é desenvolvida dentro de casa. FOPAG se estende até dezembro."
           }
         },
-        "Coordenadores Pedagógicos e Diretores": {
+        "Coordenação Pedagógica": {
           "total": 69,
           "rubricas": {
             "Articulação": 68,
@@ -48,7 +48,7 @@
     },
     {
       "data": "2026-10-31",
-      "fonte": "Print enviado pela Isa em 12/11/2026 (segunda coluna: evolução financeira com FOPAG; Coordenadores Pedagógicos e Diretores = linha Coordenadores Pedagógicos)",
+      "fonte": "Print enviado pela Isa em 12/11/2026 (segunda coluna: evolução financeira com FOPAG; Coordenação Pedagógica = linha Coordenadores Pedagógicos; Diretores Escolares: 66% no total, informado pela Isa em 24/11/2026, sem abertura por rubrica)",
       "programas": {
         "Educação Financeira": {
           "total": 75,
@@ -78,7 +78,7 @@
             "Conteúdo": "Parte é desenvolvida dentro de casa. FOPAG se estende até dezembro."
           }
         },
-        "Coordenadores Pedagógicos e Diretores": {
+        "Coordenação Pedagógica": {
           "total": 75,
           "rubricas": {
             "Articulação": 78,
@@ -89,6 +89,10 @@
           "justificativas": {
             "Conteúdo": "Conteúdo já inteiro desenvolvido, mas FOPAG segue até o final do ano."
           }
+        },
+        "Diretores Escolares": {
+          "total": 66,
+          "rubricas": {}
         }
       }
     }

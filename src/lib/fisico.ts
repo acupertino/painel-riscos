@@ -3,8 +3,8 @@
 //
 // Programa: pelas siglas e nomes, procurando primeiro no nome da linha, depois na ação-mãe, no grupo e nas
 // colunas Programa / TIPO DE OFERTA / Público. EDUFIN ou "Educação Financeira" → Educação Financeira;
-// SE ou "Socioemocional" → Educação Socioemocional; CP, VDP, DE, "Coordenação Pedagógica" ou "Diretor" →
-// Coordenadores Pedagógicos e Diretores. As siglas só valem em maiúsculas ("de" e "se" são palavras comuns) e o
+// SE ou "Socioemocional" → Educação Socioemocional; CP, VD, VDP, VDE, "Coordenação Pedagógica" ou "Vice-Direção" →
+// Coordenação Pedagógica; DE, GM, "Gestores Municipais" ou "Diretor" → Diretores Escolares. As siglas só valem em maiúsculas ("de" e "se" são palavras comuns) e o
 // DE só quando vem separado por traço, barra, colchete ou parêntese ("BA - DE - Assíncrono", "DE/GE"), para não
 // pegar o "DE" de títulos em maiúsculas ("DATA DE INÍCIO"). Uma linha pode entrar em mais de um programa.
 //
@@ -23,7 +23,9 @@ const ficaFora = (nome: string) => ficaForaDoRelatorio(nome) && !/esteira de pro
 import { ultimaData } from '@/lib/quadroRestrito'
 import type { Celula, Planilha } from '@/lib/xlsx'
 
-export const PROGRAMAS = ['Educação Financeira', 'Educação Socioemocional', 'Coordenadores Pedagógicos e Diretores'] as const
+// Divisões refeitas pela Isa (24/11/2026): o antigo "Coordenadores Pedagógicos e Diretores" virou dois programas,
+// Coordenação Pedagógica (CP + Vice-Direção: VD, VDP, VDE) e Diretores Escolares (DE + Gestores Municipais, GM).
+export const PROGRAMAS = ['Educação Financeira', 'Educação Socioemocional', 'Coordenação Pedagógica', 'Diretores Escolares'] as const
 export type Programa = (typeof PROGRAMAS)[number]
 
 // Formação e Implementação são uma rubrica só (Isa, 10/11/2026): nos quadros só aparece "IMPLEMENTAÇÃO".
@@ -58,7 +60,8 @@ const semAcento = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLo
 const SIGLAS: [Programa, RegExp][] = [
   ['Educação Financeira', /EDUFIN|Edufin|edufin|[Ee]duca[cç][aã]o [Ff]inanceira/],
   ['Educação Socioemocional', /\bSE\b|[Ss]ocioemocional|SOCIOEMOCIONAL/],
-  ['Coordenadores Pedagógicos e Diretores', /\bCP\b|\bVDP\b|(^|[\s[(/–-])DE(?=\s*[-–/)\]]|$)|[Cc]oordena[cç][aã]o [Pp]edag|[Dd]iretor/],
+  ['Coordenação Pedagógica', /\bCP\b|\bVDP?\b|\bVDE\b|[Cc]oordena[cç][aã]o [Pp]edag|[Vv]ice[- ][Dd]ire/],
+  ['Diretores Escolares', /\bGM\b|[Gg]estor(es)? [Mm]unicipa|(^|[\s[(/–-])DE(?=\s*([-–/)\],]|e\s|$))|(?<![Vv]ice[- ])[Dd]iretor(es)?\b/],
 ]
 
 export const programasDoTexto = (t: string | null | undefined): Programa[] => (t ? SIGLAS.filter(([, re]) => re.test(t)).map(([p]) => p) : [])
@@ -89,13 +92,16 @@ const RUBRICA_DO_QUADRO: Record<string, Rubrica> = { 'Calendário Detalhado 2026
 const QUADROS_FORA = ['COMUNICAÇÃO INSTITUCIONAL', 'COMUNICAÇÃO EDUCAÇÃO BÁSICA', 'CREDENCIAMENTO IA NO MEC']
 const OFERTA = 'TIPO DE OFERTA/TERRITÓRIO'
 const OFERTA_FORA = /EDUAMB|OPERA[CÇ][AÃ]O RESGATE|^REGULAR\s*-\s*S[IÍ]NCRONO/i
-const OFERTA_SE = /^BA\s*-\s*GM\b/i
+// Oferta BA - GM (Gestores Municipais): era Socioemocional; desde 24/11/2026 entra em Diretores Escolares.
+const OFERTA_GM = /^BA\s*-\s*GM\b/i
 
 // Linhas sem sigla de programa, relacionadas pela Isa (10/11/2026). Só valem para linhas que não acharam
 // programa pelas siglas. `fora: true` tira a linha da conta.
 const ADVOCACY = 'EIXO ADVOCACY + POLICY PAPERS'
 const RELACOES: { quadro: string; grupo?: string; programa?: Programa; rubrica?: Rubrica; fora?: boolean }[] = [
   { quadro: GAV, grupo: 'PdM SP', programa: 'Educação Financeira' },
+  // Só as linhas sem sigla (agendas de governança, entregáveis com as Secretarias). Extensão EDUFIN → Educação
+  // Financeira e extensão SE → Socioemocional pelas siglas (Isa, 24/11/2026); Gestores Municipais (GM) → Diretores Escolares.
   { quadro: 'CURSOS DE EXTENSÃO, GM E ENTREGÁVEIS COM SEDUC', fora: true },
   { quadro: ADVOCACY, programa: 'Educação Socioemocional' },
 ]
@@ -121,17 +127,20 @@ export function acoesFisicas(linhas: LinhaBruta[]): AcaoFisica[] {
     const st = status(l.colunas)
     if (st && /cancel|previsto para 2027/i.test(st)) continue
     const fontes = [l.nome, l.mae, l.grupo, COLUNAS_PROGRAMA.map(c => l.colunas[c] ?? mae?.colunas[c]).filter(Boolean).join(' · ')]
-    let programas: Programa[] = OFERTA_SE.test(oferta) ? ['Educação Socioemocional'] : (fontes.map(programasDoTexto).find(p => p.length) ?? [])
+    let programas: Programa[] = OFERTA_GM.test(oferta) ? ['Diretores Escolares'] : (fontes.map(programasDoTexto).find(p => p.length) ?? [])
     const relacao = programas.length ? undefined : relacaoDe(l)
     if (relacao?.fora) continue
     if (relacao?.programa) programas = [relacao.programa]
+    const rubrica = eixoPublico(l.quadro, programas) ? 'Eixo Público' : relacao?.rubrica ?? rubricaDaLinha(l.colunas) ?? (mae ? rubricaDaLinha(mae.colunas) : null) ?? RUBRICA_DO_QUADRO[l.quadro] ?? null
+    // Avaliação SE = avaliação de SE + avaliação de CP (Isa, 24/11/2026): a avaliação de CP conta também em Socioemocional.
+    if (rubrica === 'Avaliação' && programas.includes('Coordenação Pedagógica') && !programas.includes('Educação Socioemocional')) programas = [...programas, 'Educação Socioemocional']
     acoes.push({
       quadro: l.quadro,
       grupo: l.grupo,
       mae: l.mae,
       nome: l.nome,
       programas,
-      rubrica: eixoPublico(l.quadro, programas) ? 'Eixo Público' : relacao?.rubrica ?? rubricaDaLinha(l.colunas) ?? (mae ? rubricaDaLinha(mae.colunas) : null) ?? RUBRICA_DO_QUADRO[l.quadro] ?? null,
+      rubrica,
       status: st,
       fimPrevisto: fimPrevisto(l.colunas),
       fimReal: fimReal(l.colunas),
@@ -149,33 +158,56 @@ export interface MesFisico {
 }
 
 export interface EvolucaoFisica {
-  total: number // ações com prazo no ano
+  total: number // ações com prazo no período
   meses: MesFisico[]
-  previstasAteHoje: number
+  previstasAteHoje: number // até hoje, ou até o fim do período, se ele já acabou
   realizadasAteHoje: number
 }
 
-export function evolucao(acoes: AcaoFisica[], ano: string, hoje: string): EvolucaoFisica {
+// Período escolhido na tela (pedido de 24/11/2026): meses do ano, de 1 a 12. Só entram as ações com prazo no
+// período, e o "até hoje" vira "até o fim do período" quando ele já acabou.
+export interface Periodo {
+  de: number
+  ate: number
+}
+export const ANO_TODO: Periodo = { de: 1, ate: 12 }
+const doisDigitos = (n: number) => String(n).padStart(2, '0')
+export const inicioDoPeriodo = (ano: string, p: Periodo) => `${ano}-${doisDigitos(p.de)}-01`
+export const fimDoPeriodo = (ano: string, p: Periodo) => `${ano}-${doisDigitos(p.ate)}-31` // comparação de texto: vale para qualquer mês
+export const corteDoPeriodo = (ano: string, hoje: string, p: Periodo) => (hoje < fimDoPeriodo(ano, p) ? hoje : fimDoPeriodo(ano, p))
+
+export function evolucao(acoes: AcaoFisica[], ano: string, hoje: string, periodo: Periodo = ANO_TODO): EvolucaoFisica {
   const meses = Array.from({ length: 12 }, () => ({ esperadas: 0, realizadas: 0 }))
+  const inicio = inicioDoPeriodo(ano, periodo)
+  const fim = fimDoPeriodo(ano, periodo)
+  const corte = corteDoPeriodo(ano, hoje, periodo)
   let total = 0
   let previstasAteHoje = 0
   let realizadasAteHoje = 0
   for (const a of acoes) {
-    if (!a.fimPrevisto?.startsWith(ano)) continue
+    if (!a.fimPrevisto || a.fimPrevisto < inicio || a.fimPrevisto > fim) continue
     total++
     meses[Number(a.fimPrevisto.slice(5, 7)) - 1].esperadas++
-    if (a.fimPrevisto <= hoje) previstasAteHoje++
+    if (a.fimPrevisto <= corte) previstasAteHoje++
     if (!a.concluida) continue
-    realizadasAteHoje++
-    // Fim real; sem ele (ou com fim real no futuro), o prazo, mas nunca depois de hoje.
+    // Fim real; sem ele (ou com fim real no futuro), o prazo, mas nunca depois de hoje. Concluída depois do fim
+    // do período não conta como realizada nele; antes do início, entra no primeiro mês.
     const quando = a.fimReal && a.fimReal <= hoje ? a.fimReal : a.fimPrevisto < hoje ? a.fimPrevisto : hoje
-    const mes = quando < `${ano}-01-01` ? 0 : quando > `${ano}-12-31` ? 11 : Number(quando.slice(5, 7)) - 1
+    if (quando > corte) continue
+    realizadasAteHoje++
+    const mes = quando < inicio ? periodo.de - 1 : Number(quando.slice(5, 7)) - 1
     meses[mes].realizadas++
   }
   return { total, meses, previstasAteHoje, realizadasAteHoje }
 }
 
 // ---------- Financeiro ----------
+
+// Marco que vale para o período: o mais recente do ano cujo mês cai dentro dele.
+export const marcoDoPeriodo = (marcos: MarcoFinanceiro[], ano: string, periodo: Periodo) =>
+  marcos
+    .filter(m => m.data.startsWith(ano) && Number(m.data.slice(5, 7)) >= periodo.de && Number(m.data.slice(5, 7)) <= periodo.ate)
+    .sort((a, b) => b.data.localeCompare(a.data))[0] ?? null
 
 // Marco da execução financeira: % executado até `data`, por programa e por rubrica (pode trazer rubricas que
 // não existem no físico, como "Eixo Público"). Vem de dados/financeiro.json.
@@ -187,9 +219,9 @@ export interface MarcoFinanceiro {
 }
 
 // Físico acumulado até uma data, em % das ações com prazo no ano (mesma base do gráfico acumulado).
-export function fisicoAte(acoes: AcaoFisica[], ano: string, data: string, hoje: string) {
-  const e = evolucao(acoes, ano, hoje)
-  const ate = Math.min(Number(data.slice(5, 7)), 12)
+export function fisicoAte(acoes: AcaoFisica[], ano: string, data: string, hoje: string, periodo: Periodo = ANO_TODO) {
+  const e = evolucao(acoes, ano, hoje, periodo)
+  const ate = Math.min(Number(data.slice(5, 7)), periodo.ate)
   const soma = (k: keyof MesFisico) => e.meses.slice(0, ate).reduce((n, m) => n + m[k], 0)
   const pct = (n: number) => (e.total ? Math.round((n / e.total) * 100) : 0)
   return { total: e.total, esperado: pct(soma('esperadas')), realizado: pct(soma('realizadas')) }
@@ -200,7 +232,11 @@ export function fisicoAte(acoes: AcaoFisica[], ano: string, data: string, hoje: 
 const MESES_LONGOS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 const pctDe = (parte: number, total: number) => (total ? Math.round((parte / total) * 100) : 0)
 
-export function fisicoEmPlanilhas(acoes: AcaoFisica[], ano: string, hoje: string, marco: MarcoFinanceiro | null): Planilha[] {
+export function fisicoEmPlanilhas(acoes: AcaoFisica[], ano: string, hoje: string, marco: MarcoFinanceiro | null, periodo: Periodo = ANO_TODO): Planilha[] {
+  const noPeriodo = (a: AcaoFisica) => !!a.fimPrevisto && a.fimPrevisto >= inicioDoPeriodo(ano, periodo) && a.fimPrevisto <= fimDoPeriodo(ano, periodo)
+  const textoPeriodo =
+    periodo.de === 1 && periodo.ate === 12 ? ano : `${MESES_LONGOS[periodo.de - 1].toLowerCase()} a ${MESES_LONGOS[periodo.ate - 1].toLowerCase()}/${ano}`
+  const ateQuando = corteDoPeriodo(ano, hoje, periodo) === hoje ? 'hoje' : `${MESES_LONGOS[periodo.ate - 1].toLowerCase()}`
   const mesMarco = marco ? `${MESES_LONGOS[Number(marco.data.slice(5, 7)) - 1].toLowerCase()}/${marco.data.slice(0, 4)}` : ''
   const colunasMarco = marco
     ? [
@@ -210,8 +246,8 @@ export function fisicoEmPlanilhas(acoes: AcaoFisica[], ano: string, hoje: string
       ]
     : []
   const linha = (lista: AcaoFisica[], fin: number | undefined): Celula[] => {
-    const e = evolucao(lista, ano, hoje)
-    const m = marco ? fisicoAte(lista, ano, marco.data, hoje) : null
+    const e = evolucao(lista, ano, hoje, periodo)
+    const m = marco ? fisicoAte(lista, ano, marco.data, hoje, periodo) : null
     return [
       e.total,
       e.previstasAteHoje,
@@ -222,15 +258,15 @@ export function fisicoEmPlanilhas(acoes: AcaoFisica[], ano: string, hoje: string
     ]
   }
   const base = [
-    { titulo: `Ações com prazo em ${ano}`, largura: 14 },
-    { titulo: 'Esperadas até hoje', largura: 12 },
+    { titulo: `Ações com prazo em ${textoPeriodo}`, largura: 14 },
+    { titulo: `Esperadas até ${ateQuando}`, largura: 12 },
     { titulo: 'Realizadas', largura: 12 },
-    { titulo: '% esperado até hoje', largura: 12 },
+    { titulo: `% esperado até ${ateQuando}`, largura: 12 },
     { titulo: '% realizado', largura: 12 },
   ]
   const doPrograma = (p: Programa) => acoes.filter(a => a.programas.includes(p))
   const rubricasDe = (p: Programa) => {
-    const fisicas = RUBRICAS.filter(r => doPrograma(p).some(a => a.rubrica === r && a.fimPrevisto?.startsWith(ano)))
+    const fisicas = RUBRICAS.filter(r => doPrograma(p).some(a => a.rubrica === r && noPeriodo(a)))
     const so = Object.keys(marco?.programas[p]?.rubricas ?? {}).filter(r => !(fisicas as string[]).includes(r))
     return [...fisicas, ...so]
   }
@@ -239,11 +275,12 @@ export function fisicoEmPlanilhas(acoes: AcaoFisica[], ano: string, hoje: string
   for (const p of PROGRAMAS)
     for (const r of ['Todas as rubricas', ...rubricasDe(p)]) {
       const lista = r === 'Todas as rubricas' ? doPrograma(p) : doPrograma(p).filter(a => a.rubrica === r)
-      const e = evolucao(lista, ano, hoje)
+      const e = evolucao(lista, ano, hoje, periodo)
       if (!e.total) continue
       let esp = 0
       let real = 0
       e.meses.forEach((m, i) => {
+        if (i + 1 < periodo.de || i + 1 > periodo.ate) return
         esp += m.esperadas
         real += m.realizadas
         const passou = `${ano}-${String(i + 1).padStart(2, '0')}` <= hoje.slice(0, 7)
@@ -296,7 +333,7 @@ export function fisicoEmPlanilhas(acoes: AcaoFisica[], ano: string, hoje: string
         { titulo: 'Status', largura: 20 },
       ],
       linhas: acoes
-        .filter(a => a.programas.length)
+        .filter(a => a.programas.length && (textoPeriodo === ano || noPeriodo(a)))
         .flatMap(a =>
           a.programas.map(p => [p, a.rubrica, a.quadro, a.grupo, a.mae, a.nome, a.fimPrevisto ? { data: a.fimPrevisto } : null, a.fimReal ? { data: a.fimReal } : null, a.status] as Celula[]),
         ),
