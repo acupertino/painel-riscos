@@ -6,12 +6,30 @@ import { useSemana } from '@/components/semana/ContextoSemana'
 import { Vazio } from '@/components/semana/Etiquetas'
 import BarraMonday from '@/components/restrito/BarraMonday'
 import { baixar, gerarXlsx } from '@/lib/xlsx'
-import { PROGRAMAS, RUBRICAS, acoesFisicas, evolucao, fisicoAte, fisicoEmPlanilhas, type AcaoFisica, type EvolucaoFisica, type LinhaBruta, type MarcoFinanceiro, type Programa } from '@/lib/fisico'
+import {
+  ANO_TODO,
+  PROGRAMAS,
+  RUBRICAS,
+  acoesFisicas,
+  corteDoPeriodo,
+  evolucao,
+  fimDoPeriodo,
+  fisicoAte,
+  fisicoEmPlanilhas,
+  inicioDoPeriodo,
+  marcoDoPeriodo,
+  type AcaoFisica,
+  type EvolucaoFisica,
+  type LinhaBruta,
+  type MarcoFinanceiro,
+  type Periodo,
+  type Programa,
+} from '@/lib/fisico'
 
 // Físico-financeiro (pedido de 10/11/2026). Para cada programa (Educação Financeira, Socioemocional,
-// Coordenadores Pedagógicos e Diretores), a evolução física mês a mês do esperado (prazo) e do realizado
-// (fim real), no total e por rubrica, com os marcos da execução financeira (dados/financeiro.json).
-// Regras de classificação em src/lib/fisico.ts.
+// Coordenação Pedagógica e Diretores Escolares, divisão de 24/11/2026), a evolução física mês a mês do esperado
+// (prazo) e do realizado (fim real), no total e por rubrica, com os marcos da execução financeira
+// (dados/financeiro.json). Desde 24/11/2026 dá para delimitar o período (meses do ano). Regras em src/lib/fisico.ts.
 
 const COR_ESPERADO = '#86b6ef'
 const COR_REALIZADO = '#1c5cab'
@@ -26,6 +44,12 @@ const financeiroDe = (m: MarcoFinanceiro | null, p: Programa, rubrica: string) =
   const v = m?.programas[p]
   return v ? (rubrica === 'todas' ? v.total : v.rubricas[rubrica]) : undefined
 }
+const MESES_LONGOS = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+const anoTodo = (p: Periodo) => p.de === 1 && p.ate === 12
+const textoPeriodo = (p: Periodo, ano: string) => (anoTodo(p) ? ano : p.de === p.ate ? `${MESES_LONGOS[p.de - 1]}/${ano}` : `${MESES[p.de - 1].toLowerCase()} a ${MESES[p.ate - 1].toLowerCase()}/${ano.slice(2)}`)
+// "até hoje" ou, se o período já acabou, "até o fim de <mês>".
+const ateQuando = (p: Periodo, ano: string, hoje: string) => (corteDoPeriodo(ano, hoje, p) === hoje ? 'até hoje' : `até o fim de ${MESES_LONGOS[p.ate - 1]}`)
+const noPeriodo = (a: AcaoFisica, ano: string, p: Periodo) => !!a.fimPrevisto && a.fimPrevisto >= inicioDoPeriodo(ano, p) && a.fimPrevisto <= fimDoPeriodo(ano, p)
 
 export default function FisicoFinanceiro() {
   const { hoje } = useSemana()
@@ -76,17 +100,20 @@ export default function FisicoFinanceiro() {
     return () => clearTimeout(t)
   }, [imprimindo, dataArquivo])
 
-  // Marco mais recente do ano (setembro e outubro em dados/financeiro.json; mostra o último).
-  const marco = marcos.filter(m => m.data.startsWith(ano)).sort((a, b) => b.data.localeCompare(a.data))[0] ?? null
+  const [periodo, setPeriodo] = useState<Periodo>(ANO_TODO)
+
+  // Marco mais recente do ano dentro do período (setembro e outubro em dados/financeiro.json).
+  const marco = marcoDoPeriodo(marcos, ano, periodo)
 
   const baixarExcel = () => {
-    if (acoes) baixar(gerarXlsx(fisicoEmPlanilhas(acoes, ano, hoje, marco)), `Fisico-financeiro - ${dataArquivo}.xlsx`)
+    const sufixo = anoTodo(periodo) ? '' : ` (${MESES[periodo.de - 1]} a ${MESES[periodo.ate - 1]})`
+    if (acoes) baixar(gerarXlsx(fisicoEmPlanilhas(acoes, ano, hoje, marco, periodo)), `Fisico-financeiro${sufixo} - ${dataArquivo}.xlsx`)
   }
 
   return (
     <div className="space-y-4 print:space-y-3" style={imprimindo ? { width: 940 } : undefined}>
       <p className="hidden print:block text-sm text-slate-600">
-        <b className="text-marca-marinho">Físico-financeiro</b> · gerado em {dataBr(hoje)}
+        <b className="text-marca-marinho">Físico-financeiro</b> · período: {textoPeriodo(periodo, ano)} · gerado em {dataBr(hoje)}
       </p>
       <BarraMonday quadros="todos os quadros conectados" geradoEm={geradoEm} carregando={carregando} erro={erro} aoAtualizar={() => buscar(true)} />
       {!acoes ? (
@@ -94,7 +121,8 @@ export default function FisicoFinanceiro() {
       ) : (
         <>
           <div className="flex flex-wrap items-center justify-end gap-2 print:hidden">
-            <span className="mr-auto text-xs text-slate-500">Baixe o físico-financeiro para enviar:</span>
+            <EscolhaPeriodo periodo={periodo} aoMudar={setPeriodo} ano={ano} />
+            <span className="ml-auto text-xs text-slate-500">Baixe o físico-financeiro para enviar:</span>
             <button
               onClick={() => setImprimindo(true)}
               disabled={imprimindo}
@@ -111,17 +139,20 @@ export default function FisicoFinanceiro() {
               Baixar Excel
             </button>
           </div>
-          <CartoesProgramas acoes={acoes} ano={ano} hoje={hoje} marco={marco} />
-          <Detalhe acoes={acoes} ano={ano} hoje={hoje} marco={marco} semAnimacao={imprimindo} />
+          <CartoesProgramas acoes={acoes} ano={ano} hoje={hoje} marco={marco} periodo={periodo} />
+          <Detalhe acoes={acoes} ano={ano} hoje={hoje} marco={marco} periodo={periodo} semAnimacao={imprimindo} />
           <ParaRelacionar acoes={acoes} />
           <p className="text-xs text-slate-500">
-            Físico: ações com prazo em {ano} de todos os quadros conectados. Esperado = ações com prazo até o fim do mês; realizado = ações
-            concluídas, no mês do fim real (sem fim real, no mês do prazo). Contam os subelementos e os elementos sem subelementos; ficam de fora
+            Físico: ações com prazo em {textoPeriodo(periodo, ano)} de todos os quadros conectados. Esperado = ações com prazo até o fim do mês; realizado = ações
+            concluídas, no mês do fim real (sem fim real, no mês do prazo); com um período escolhido, só contam as concluídas até o fim dele.
+            Contam os subelementos e os elementos sem subelementos; ficam de fora
             as canceladas e as com status “Previsto para 2027”; as esteiras de produção entram como Conteúdo. No Avaliações_GAV entram só os marcos. Uma ação com mais
-            de um programa (ex.: “CP e SE”) conta nos dois. Sem coluna RUBRICA, o Calendário Detalhado entra como Formação e Implementação
+            de um programa (ex.: “CP e SE”) conta nos dois. Coordenação Pedagógica = CP + Vice-Direção (VD, VDP, VDE); Diretores Escolares = DE +
+            Gestores Municipais (GM); a Avaliação de Socioemocional soma a avaliação de CP. Sem coluna RUBRICA, o Calendário Detalhado entra como Formação e Implementação
             e o Avaliações_GAV como Avaliação. Ficam fora os quadros de Comunicação e de Credenciamento, e, no Calendário, as ofertas
-            EDUAMB, Operação Resgate e Regular - Síncrono; a oferta BA - GM entra em Socioemocional. Linhas sem sigla: PdM SP (Avaliações_GAV)
-            entra em Educação Financeira; as de Advocacy, em Socioemocional. Em Socioemocional, tudo o que vem do quadro de Advocacy (policy paper SE, Papo de Cabeça, ENAP…) é Eixo Público; as de GM e SEDUC ficam de fora.
+            EDUAMB, Operação Resgate e Regular - Síncrono; a oferta BA - GM entra em Diretores Escolares. Linhas sem sigla: PdM SP (Avaliações_GAV)
+            entra em Educação Financeira; as de Advocacy, em Socioemocional. Em Socioemocional, tudo o que vem do quadro de Advocacy (policy paper SE, Papo de Cabeça, ENAP…) é Eixo Público; nos quadros de Cursos de Extensão, a extensão de EDUFIN entra em Educação Financeira, a de SE em Socioemocional e a de
+            Gestores Municipais em Diretores Escolares; ficam de fora as agendas de governança, os entregáveis com as Secretarias e a EDUAMB.
             {marco && ` Financeiro: % executado até ${dataBr(marco.data)}${marco.fonte ? ` (${marco.fonte})` : ''}, comparado ao físico acumulado até a mesma data.`}
           </p>
         </>
@@ -130,24 +161,54 @@ export default function FisicoFinanceiro() {
   )
 }
 
-function CartoesProgramas({ acoes, ano, hoje, marco }: { acoes: AcaoFisica[]; ano: string; hoje: string; marco: MarcoFinanceiro | null }) {
+function EscolhaPeriodo({ periodo, aoMudar, ano }: { periodo: Periodo; aoMudar: (p: Periodo) => void; ano: string }) {
+  const seletor = (valor: number, mudar: (n: number) => void, rotulo: string) => (
+    <select
+      value={valor}
+      onChange={e => mudar(Number(e.target.value))}
+      aria-label={rotulo}
+      className="rounded-full bg-white px-2 py-1 text-xs font-semibold text-slate-800 ring-1 ring-slate-200"
+    >
+      {MESES.map((m, i) => (
+        <option key={m} value={i + 1}>
+          {m}/{ano.slice(2)}
+        </option>
+      ))}
+    </select>
+  )
   return (
-    <div className="grid gap-3 lg:grid-cols-3">
+    <div className="flex flex-wrap items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 ring-1 ring-slate-200">
+      <span className="text-xs font-semibold text-slate-700">Período:</span>
+      {seletor(periodo.de, de => aoMudar({ de, ate: Math.max(de, periodo.ate) }), 'Mês inicial')}
+      <span className="text-xs text-slate-500">a</span>
+      {seletor(periodo.ate, ate => aoMudar({ de: Math.min(ate, periodo.de), ate }), 'Mês final')}
+      {!anoTodo(periodo) && (
+        <button onClick={() => aoMudar(ANO_TODO)} className="rounded-full px-2 py-0.5 text-xs text-marca-marinho hover:bg-white">
+          Ano todo
+        </button>
+      )}
+    </div>
+  )
+}
+
+function CartoesProgramas({ acoes, ano, hoje, marco, periodo }: { acoes: AcaoFisica[]; ano: string; hoje: string; marco: MarcoFinanceiro | null; periodo: Periodo }) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4 print:grid-cols-4">
       {PROGRAMAS.map(p => {
-        const e = evolucao(acoes.filter(a => a.programas.includes(p)), ano, hoje)
+        const e = evolucao(acoes.filter(a => a.programas.includes(p)), ano, hoje, periodo)
         const esperado = pct(e.previstasAteHoje, e.total)
         const realizado = pct(e.realizadasAteHoje, e.total)
         const dif = realizado - esperado
         const fin = financeiroDe(marco, p, 'todas')
-        const fisMarco = marco ? fisicoAte(acoes.filter(a => a.programas.includes(p)), ano, marco.data, hoje) : null
+        const fisMarco = marco ? fisicoAte(acoes.filter(a => a.programas.includes(p)), ano, marco.data, hoje, periodo) : null
         return (
           <section key={p} className="rounded-xl bg-white border border-slate-200 shadow-sm p-4">
             <h2 className="text-sm font-semibold text-slate-800">{p}</h2>
-            <p className="text-xs text-slate-500">{e.total} ações com prazo em {ano}</p>
+            <p className="text-xs text-slate-500">{e.total} ações com prazo em {textoPeriodo(periodo, ano)}</p>
             <div className="mt-3 flex items-end gap-2">
               <p className="text-4xl font-bold text-marca-marinho tabular-nums">{realizado}%</p>
               <p className="pb-1 text-xs text-slate-600">
-                realizado · esperado até hoje: <b className="text-slate-800">{esperado}%</b>
+                realizado · esperado {ateQuando(periodo, ano, hoje)}: <b className="text-slate-800">{esperado}%</b>
               </p>
             </div>
             <div className="relative mt-3 h-3 rounded-full bg-slate-100" role="img" aria-label={`Realizado ${realizado}%, esperado ${esperado}%`}>
@@ -155,8 +216,11 @@ function CartoesProgramas({ acoes, ano, hoje, marco }: { acoes: AcaoFisica[]; an
               <div className="absolute -top-1 -bottom-1 border-l-2 border-dashed border-slate-700" style={{ left: `${esperado}%` }} />
             </div>
             <p className="mt-2 text-xs text-slate-600">
-              {dif === 0 ? 'no esperado' : `${Math.abs(dif)} ${Math.abs(dif) === 1 ? "ponto" : "pontos"} ${dif > 0 ? "acima" : "abaixo"} do esperado`} · {e.realizadasAteHoje} de {e.previstasAteHoje} previstas até hoje
+              {dif === 0 ? 'no esperado' : `${Math.abs(dif)} ${Math.abs(dif) === 1 ? "ponto" : "pontos"} ${dif > 0 ? "acima" : "abaixo"} do esperado`} · {e.realizadasAteHoje} de {e.previstasAteHoje} previstas {ateQuando(periodo, ano, hoje)}
             </p>
+            {fin === undefined && marco && (
+              <p className="mt-3 text-xs text-slate-400">Sem marco financeiro para este programa.</p>
+            )}
             {fin !== undefined && fisMarco && (
               <div className="mt-3 rounded-lg bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-700">
                 <p className="font-semibold text-slate-800">Marco financeiro · {mesCurto(marco!.data)}</p>
@@ -184,10 +248,10 @@ type Ponto = {
   financeiro?: number // só no mês do marco financeiro
 }
 
-function pontos(e: EvolucaoFisica, ano: string, mesHoje: number): Ponto[] {
+function pontos(e: EvolucaoFisica, ano: string, mesHoje: number, periodo: Periodo): Ponto[] {
   let esp = 0
   let real = 0
-  return e.meses.map((m, i) => {
+  return e.meses.slice(0, periodo.ate).map((m, i) => {
     esp += m.esperadas
     real += m.realizadas
     return {
@@ -199,7 +263,7 @@ function pontos(e: EvolucaoFisica, ano: string, mesHoje: number): Ponto[] {
       acumEsperadas: esp,
       acumRealizadas: i <= mesHoje ? real : null,
     }
-  })
+  }).slice(periodo.de - 1) // meses antes do período estão zerados: o acumulado começa no primeiro mês dele
 }
 
 function DicaMes({ active, payload, total }: { active?: boolean; payload?: { payload: Ponto }[]; total: number }) {
@@ -247,30 +311,31 @@ function Pilulas<T extends string>({ opcoes, valor, aoMudar }: { opcoes: { valor
   )
 }
 
-function Detalhe({ acoes, ano, hoje, marco, semAnimacao }: { acoes: AcaoFisica[]; ano: string; hoje: string; marco: MarcoFinanceiro | null; semAnimacao: boolean }) {
+function Detalhe({ acoes, ano, hoje, marco, periodo, semAnimacao }: { acoes: AcaoFisica[]; ano: string; hoje: string; marco: MarcoFinanceiro | null; periodo: Periodo; semAnimacao: boolean }) {
   const [programa, setPrograma] = useState<Programa>(PROGRAMAS[0])
   const [rubrica, setRubrica] = useState<string>('todas')
   const doPrograma = acoes.filter(a => a.programas.includes(programa))
   const rubricaDe = (a: AcaoFisica) => a.rubrica ?? SEM_RUBRICA
-  const presentes = [...RUBRICAS, SEM_RUBRICA].filter(r => doPrograma.some(a => rubricaDe(a) === r && a.fimPrevisto?.startsWith(ano)))
+  const presentes = [...RUBRICAS, SEM_RUBRICA].filter(r => doPrograma.some(a => rubricaDe(a) === r && noPeriodo(a, ano, periodo)))
   const ativa = rubrica === 'todas' || presentes.includes(rubrica) ? rubrica : 'todas'
   const filtradas = ativa === 'todas' ? doPrograma : doPrograma.filter(a => rubricaDe(a) === ativa)
-  const e = evolucao(filtradas, ano, hoje)
+  const e = evolucao(filtradas, ano, hoje, periodo)
   const mesHoje = Number(hoje.slice(5, 7)) - 1
   const fin = financeiroDe(marco, programa, ativa)
-  const mesMarco = marco ? Number(marco.data.slice(5, 7)) - 1 : -1
-  const dados = pontos(e, ano, mesHoje).map((d, i) => (i === mesMarco && fin !== undefined ? { ...d, financeiro: fin } : d))
-  const fisMarco = marco ? fisicoAte(filtradas, ano, marco.data, hoje) : null
+  const mesMarco = marco ? Number(marco.data.slice(5, 7)) - periodo.de : -1
+  const dados = pontos(e, ano, mesHoje, periodo).map((d, i) => (i === mesMarco && fin !== undefined ? { ...d, financeiro: fin } : d))
+  const pontoHoje = mesHoje >= periodo.de - 1 && mesHoje <= periodo.ate - 1 ? dados[mesHoje - periodo.de + 1] : undefined
+  const fisMarco = marco ? fisicoAte(filtradas, ano, marco.data, hoje, periodo) : null
   // Justificativas da variação físico x financeiro: a da rubrica escolhida, ou todas as do programa.
   const todasJustificativas = Object.entries(marco?.programas[programa]?.justificativas ?? {})
   const justificativas = ativa === 'todas' ? todasJustificativas : todasJustificativas.filter(([r]) => r === ativa)
-  const fisMarcoDe = (r: string) => (marco ? fisicoAte(doPrograma.filter(a => rubricaDe(a) === r), ano, marco.data, hoje) : null)
+  const fisMarcoDe = (r: string) => (marco ? fisicoAte(doPrograma.filter(a => rubricaDe(a) === r), ano, marco.data, hoje, periodo) : null)
 
   return (
     <section className="rounded-xl bg-white border border-slate-200 shadow-sm p-4">
       <header>
         <h2 className="text-base font-semibold text-slate-800">Evolução física mês a mês</h2>
-        <p className="text-xs text-slate-500">Esperado (prazo) e realizado (conclusão) acumulados, em % das ações do programa com prazo em {ano}.</p>
+        <p className="text-xs text-slate-500">Esperado (prazo) e realizado (conclusão) acumulados, em % das ações do programa com prazo em {textoPeriodo(periodo, ano)}.</p>
       </header>
       <div className="mt-3 space-y-2">
         <Pilulas opcoes={PROGRAMAS.map(p => ({ valor: p, rotulo: p }))} valor={programa} aoMudar={setPrograma} />
@@ -279,7 +344,7 @@ function Detalhe({ acoes, ano, hoje, marco, semAnimacao }: { acoes: AcaoFisica[]
 
       <p className="mt-3 text-sm text-slate-700">
         {programa}
-        {ativa !== 'todas' && ` · ${ativa}`}: {e.total} ações. Até hoje era esperado <b>{pct(e.previstasAteHoje, e.total)}%</b> e foi realizado{' '}
+        {ativa !== 'todas' && ` · ${ativa}`}: {e.total} ações. {ateQuando(periodo, ano, hoje).replace(/^a/, 'A')} era esperado <b>{pct(e.previstasAteHoje, e.total)}%</b> e foi realizado{' '}
         <b>{pct(e.realizadasAteHoje, e.total)}%</b>.
         {fin !== undefined && fisMarco && (
           <>
@@ -299,7 +364,7 @@ function Detalhe({ acoes, ano, hoje, marco, semAnimacao }: { acoes: AcaoFisica[]
               <CartesianGrid vertical={false} stroke="#e2e8f0" />
               <XAxis dataKey="mes" interval={0} tick={EIXO} tickLine={false} axisLine={{ stroke: '#cbd5e1' }} />
               <YAxis domain={[0, 100]} ticks={[0, 25, 50, 75, 100]} tickFormatter={v => `${v}%`} tick={EIXO} tickLine={false} axisLine={false} />
-              <ReferenceLine x={dados[mesHoje].mes} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: 'hoje', position: 'insideBottomLeft', fontSize: 11, fill: '#64748b' }} />
+              {pontoHoje && <ReferenceLine x={pontoHoje.mes} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: 'hoje', position: 'insideBottomLeft', fontSize: 11, fill: '#64748b' }} />}
               <Tooltip content={<DicaMes total={e.total} />} cursor={{ stroke: '#cbd5e1' }} />
               <Legend itemSorter={null} verticalAlign="top" align="right" height={28} iconType="plainline" wrapperStyle={{ fontSize: 12 }} formatter={v => <span className="text-slate-600">{v}</span>} />
               <Line type="monotone" dataKey="esperado" name="Esperado" stroke={COR_ESPERADO} strokeWidth={2} strokeDasharray="6 4" dot={{ r: 4, fill: COR_ESPERADO, stroke: '#fff', strokeWidth: 2 }} animationDuration={450} animationEasing="ease-out" isAnimationActive={!semAnimacao} />
